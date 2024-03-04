@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -27,5 +29,22 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+
+
+Route::get('/login-admin', [AdminController::class, 'loginAdmin']);
+
+
+Route::middleware('auth')->controller(AdminController::class)->group(function(){
+    Route::get('/admin', 'index');
+    Route::get('/admin/customer-satisfaction-list', 'csfList');
+    Route::get('/admin/settings/profile', 'profile');
+    Route::get('/admin/settings/office-details', 'officeDetails');
+    Route::get('/admin/settings/personnel-list', 'personnelList');
+});
+
+
+
+
+Route::get('/user', [UserController::class, 'index']);
 
 require __DIR__.'/auth.php';
