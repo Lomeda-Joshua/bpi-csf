@@ -22,7 +22,7 @@ class customer_satisfaction extends Model
         'ifGroup',
         'nameOFAgency',
         'classification',
-        'nameOFAgency',
+        'name_of_agency',
         'type_and_quantity',
         'criteria_quality_of_goods',
         'criteria_courteousness',

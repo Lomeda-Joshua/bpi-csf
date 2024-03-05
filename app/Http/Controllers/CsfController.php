@@ -45,7 +45,7 @@ class CsfController extends Controller
             'contact_details' => $contact_details,
             'customer_category' => $customer_category,
             'customer_type' => $ifGroup,
-            'nameOFAgency' => $nameOFAgency,
+            'name_of_agency' => $nameOFAgency,
             'classification' => $classification,
             'nameOFAgency' => $nameOFAgency,
             'type_and_quantity' => $type_and_quantity,
