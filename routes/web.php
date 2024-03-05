@@ -30,12 +30,13 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+Route::get('/customer-satisfaction-form', function () { 
+    return view('customer_satisfaction_form');
+})->name('csf_form');
 
-Route::get('/login-admin', [AdminController::class, 'loginAdmin']);
 
-
-Route::middleware('auth')->controller(AdminController::class)->group(function(){
-    Route::get('/admin', 'index');
+Route::middleware(['auth', 'role:1'])->controller(AdminController::class)->group(function(){
+    Route::get('/admin/dashboard', 'index');
     Route::get('/admin/customer-satisfaction-list', 'csfList');
     Route::get('/admin/settings/profile', 'profile');
     Route::get('/admin/settings/office-details', 'officeDetails');
@@ -43,8 +44,11 @@ Route::middleware('auth')->controller(AdminController::class)->group(function(){
 });
 
 
-
-
-Route::get('/user', [UserController::class, 'index']);
+Route::middleware(['auth', 'role:0'])->controller(UserController::class)->group(function(){
+    Route::get('/user/dashboard', 'index');
+    Route::get('/user/customer-satisfaction-list', 'csfList');
+    Route::get('/user/settings/profile', 'profile');
+    Route::get('/user/settings/office-details', 'officeDetails');
+});
 
 require __DIR__.'/auth.php';
