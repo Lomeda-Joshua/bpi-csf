@@ -22,6 +22,8 @@ class RoleMiddleware
             return $next($request);    
         }elseif($request->user()->role_id == 2){
             return $next($request);
+        }elseif($request->user()->role_id == 3){
+            return $next($request);
         }
 
     }

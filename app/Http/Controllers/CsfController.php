@@ -8,7 +8,7 @@ use App\Models\customer_satisfaction;
 class CsfController extends Controller
 {
 
-    public function informationComputerSection()
+    public function index()
     {
         $office_name = 'information and computer section';
         $office_id = 1;
@@ -65,12 +65,6 @@ class CsfController extends Controller
         
     }
 
-    public function humanResourcesSection()
-    {
-        $office_name = 'human resources section';
-        $office_id = 2;
 
-        return view('customer_satisfaction_form', ['office_name' => $office_name, 'office_id' => $office_id]);
-    }
 
 }
