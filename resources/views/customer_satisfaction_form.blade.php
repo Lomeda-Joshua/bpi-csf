@@ -5,8 +5,9 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Customer Satisfaction Form | BPI</title>
-    <link rel="shortcut icon" type="image/png" href="../assets/images/logos/favicon.png" />
+    <link rel="shortcut icon" type="image/png" href="{{ asset('assets/images/logos/bpi_logo.png')}}" />
     <link rel="stylesheet" href="{{asset('assets/css/styles.min.css')}}" />
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -15,9 +16,11 @@
 <div class="body-wrapper">
     <div class="container-fluid">
 
+
         <div class="card">
             <div class="card-body">
 
+                <img style="margin-left:auto; margin-right:auto; width:20%; display:block; margin-bottom:13px;" src = "{{ asset('assets/images/logos/bpi_logo.png')}}" />
                 <h5 class="fw-semibold text-center"><i>Department of Agriculture</i></h5>
                 <h4 class="fw-semibold text-center" style="text-transform: uppercase; font-weight:700"><u>Bureau of Plant Industry</u></h4>
 
@@ -37,7 +40,7 @@
                     <input type="hidden" name="office_id" value="{{ $office_id }}"/>
 
                     <label for="time"><span class="fw-semibold" style="font-weight:700">Time/</span>Oras :</label>
-                    <input type="time" class="form-control" name="csf_time" id="csf_time" aria-describedby="time" />
+                    <input type="time" class="form-control" name="csf_time" id="csf_time" value="" aria-describedby="time" />
                     
                     <br>
 
@@ -49,43 +52,52 @@
                     <input type="text" class="form-control" id="name" name="name" aria-describedby="emailHelp">
                     <br>
 
+                    <label for="age"><span class="fw-semibold" style="font-weight:700">Age/ Edad*</span></label>
+                    <input type="number" class="form-control" name="age" id="age" aria-describedby="age">
+                    <br>
+
+                    <label for="gender"><span class="fw-semibold" style="font-weight:700">Gender/ kasarian*</span></label>
+                    <input type="number" class="form-control" name="gender" id="gender" aria-describedby="gender">
+                    <br>
+
                     <label><span class="fw-semibold" style="font-weight:700">Contact details (e-mail address or contact no.)</label>
                     <input type="text" class="form-control" id="contact_details" name="contact_details" aria-describedby="contactDetails">
                     <br>
 
-                    <input type="radio" name="customer_category" id="Individual" value = "1">
-                    <label class="form-check-label" for="Individual">Individual/ Indibidwal</label>
+                    <input type="radio" name="individual_group" id="individual" value = "1">
+                    <label class="form-check-label" for="individual">Individual/ Indibidwal</label>
                     <br>
-                    <input type="radio" name="customer_category" id="Group" value = "2">
-                    <label class="form-check-label" for="Group">Group/ Grupo</label>
+                    <input type="radio" name="individual_group" id="group" value = "2">
+                    <label class="form-check-label" for="group">Group/ Grupo</label>
                     <br><br>
 
+                    <label><span class="fw-semibold" style="font-weight:700">If Group, name of your Agency or Association/ Kung Grupo, pangalan ng iyong Ahensya/ Asosasyon. Put N/A if Individual/ Ilagay N/A kung ikaw indibidwal.*</span></label>
+                    <label class="form-check-label" for="nameOFAgency">Name of Agency</label>
+                    <input type="text" class="form-control" name="nameOFAgency" id="nameOFAgency" aria-describedby="nameOFAgency">
+                    <br>
+                    <br>
+
                     <h4>If Group/ Kung Grupo:</h4>
-                    <input type="radio" name="ifGroup" id="Private" value = "1">
+                    <input type="radio" name="private_government" id="Private" value = "1">
                     <label class="form-check-label" for="Private">Private/ Pribado</label>
                     <br>
-                    <input type="radio" name="ifGroup" id="Government" value = "2">
+                    <input type="radio" name="private_government" id="Government" value = "2">
                     <label class="form-check-label" for="Government">Government/ Gobyerno</label>
                     <br>
 
-                    <label class="form-check-label" for="nameOFAgency">Name of Agency</label>
-                    <input type="text" class="form-control" name="nameOFAgency" id="nameOFAgency" aria-describedby="nameOFAgency" />
-
                     <p>Not applicable/ Hindi angkop  (If Individual/ Kung indibidwal)</p>
-            
+
+                    
                     <h4>Please choose your answer/ Piliin ang iyong sagot:*</h4>
-                    <input type="radio" name="classification" id="external" value = "1">
+                    <input type="radio" name="internal_external" id="external" value = "1">
                     <label class="form-check-label" for="external">External Customer</label>
                     <br>
-                    <input type="radio" name="classification" id="internal" value = "2">
+                    <input type="radio" name="internal_external" id="internal" value = "2">
                     <label class="form-check-label" for="internal">Internal Customer (BPI Employee)</label>
                     <br>
                     <br>
 
-                    <label><span class="fw-semibold" style="font-weight:700">If Group, name of your Agency or Association/ Kung Grupo, pangalan ng iyong Ahensya/ Asosasyon. Put N/A if Individual/ Ilagay N/A kung ikaw indibidwal.*</span></label>
-                    <input type="text" class="form-control" name="nameOFAgency" id="nameOFAgency" aria-describedby="nameOFAgency">
-                    <br>
-                    <br>
+
 
                     <h4>Specific Type and Quantity of goods or services received/ Uri at dami ng mga bagay at serbisyong natanggap:*(Ex. 1 pack of  seeds/ 3 Certificates of Accreditation or Permits)</h4>
                     <input type="text" class="form-control" name="type_and_quantity" id="type_and_quantity" aria-describedby="typeOfQuantity">
@@ -144,11 +156,24 @@
             </div>
         </div>
 
-
-        
-
     </div>
 </div>
 
+<script>
+    $('document').ready(function(){
+
+        /* Set current date in ris-form for mysql input box */
+        let risDate = new Date().toISOString().substr(0, 10);
+        document.getElementById("csf_date").setAttribute("value", risDate);
+
+        
+        let getTime = new Date();      
+        let setTime = getTime.getHours() + ":" + getTime.getMinutes();
+        $('#csf_time').val(setTime); 
+
+
+
+    });
+</script>
 </body>
 </html>

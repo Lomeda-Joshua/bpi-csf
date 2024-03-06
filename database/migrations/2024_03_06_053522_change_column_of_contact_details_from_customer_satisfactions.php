@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('customer_satisfactions', function (Blueprint $table) {
-            $table->string('name_of_agency')->nullable();
+            $table->string('contact_details')->change();
         });
     }
 
@@ -22,7 +22,7 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('customer_satisfactions', function (Blueprint $table) {
-            $table->dropIfExists('name_of_agency');
+            $table->dropIfExists('contact_details');
         });
     }
 };

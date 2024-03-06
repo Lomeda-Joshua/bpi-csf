@@ -11,19 +11,20 @@ class customer_satisfaction extends Model
     use HasFactory;
     use SoftDeletes;
 
-    protected $table = 'customer_satisfactions';
+    
 
     protected $fillable = [
         'csf_time',
         'csf_date',
         'name',
+        'age',
+        'gender',
         'contact_details',
-        'customer_category',
-        'ifGroup',
-        'nameOFAgency',
-        'classification',
+        'individual_group',
+        'private_government',
+        'internal_external',
         'name_of_agency',
-        'type_and_quantity',
+        'types_of_goods_services',
         'criteria_quality_of_goods',
         'criteria_courteousness',
         'criteria_responsiveness',
@@ -32,6 +33,6 @@ class customer_satisfaction extends Model
         'comments_suggestions',
         'encoder_id',
         'office_id',
-        'control_number'
+        'control_number',
     ];
 }

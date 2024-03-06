@@ -16,6 +16,7 @@ class CsfController extends Controller
         return view('customer_satisfaction_form', ['office_name' => $office_name, 'office_id' => $office_id] );
     }
 
+    
     public function store(Request $request)
     {
         $office_id = $request->input('office_id');
@@ -23,12 +24,13 @@ class CsfController extends Controller
         $csf_time = $request->input('csf_time');
         $csf_date = $request->input('csf_date');
         $name = $request->input('name');
+        $age = $request->input('age');
+        $gender = $request->input('gender');
         $contact_details = $request->input('contact_details');
-        $customer_category = $request->input('customer_category');
-        $ifGroup = $request->input('ifGroup');
+        $individual_group = $request->input('individual_group');
         $nameOFAgency = $request->input('nameOFAgency');
-        $classification = $request->input('classification');
-        $nameOFAgency = $request->input('nameOFAgency');
+        $private_government = $request->input('private_government');
+        $internal_external = $request->input('internal_external');
         $type_and_quantity = $request->input('type_and_quantity');
         $criteria_quality_of_goods = $request->input('criteria_quality_of_goods');
         $criteria_courteousness = $request->input('criteria_courteousness');
@@ -42,13 +44,14 @@ class CsfController extends Controller
             'csf_time' => $csf_time,
             'csf_date' => $csf_date,
             'name' => $name,
+            'age' => $age,
+            'gender' => $gender,
             'contact_details' => $contact_details,
-            'customer_category' => $customer_category,
-            'customer_type' => $ifGroup,
+            'individual_group' => $individual_group,
+            'private_government' => $private_government,
+            'internal_external' => $internal_external,
             'name_of_agency' => $nameOFAgency,
-            'classification' => $classification,
-            'nameOFAgency' => $nameOFAgency,
-            'type_and_quantity' => $type_and_quantity,
+            'types_of_goods_services' => $type_and_quantity,
             'criteria_quality_of_goods' => $criteria_quality_of_goods,
             'criteria_courteousness' => $criteria_courteousness,
             'criteria_responsiveness' => $criteria_responsiveness,
@@ -69,4 +72,5 @@ class CsfController extends Controller
 
         return view('customer_satisfaction_form', ['office_name' => $office_name, 'office_id' => $office_id]);
     }
+
 }

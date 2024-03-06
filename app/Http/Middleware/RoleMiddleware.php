@@ -20,7 +20,7 @@ class RoleMiddleware
             abort(404);
         }elseif($request->user()->role_id == 1){
             return $next($request);    
-        }elseif($request->user()->role_id == 0){
+        }elseif($request->user()->role_id == 2){
             return $next($request);
         }
 
