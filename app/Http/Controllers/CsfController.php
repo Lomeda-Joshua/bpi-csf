@@ -19,8 +19,9 @@ class CsfController extends Controller
     
     public function store(Request $request)
     {
-        $office_id = $request->input('office_id');
+        
 
+        $office_id = $request->input('office_id');
         $csf_time = $request->input('csf_time');
         $csf_date = $request->input('csf_date');
         $name = $request->input('name');
@@ -58,10 +59,11 @@ class CsfController extends Controller
             'criteria_overall_experience' => $criteria_overall_experience,
             'promoter_score' => $promoter_score,
             'comments_suggestions' => $comments_suggestions,
-            'encoder_id' => null,
             'office_id' => $office_id,
-            'control_number' => null
         ]);
+
+        
+        return redirect(route('csf.index'))->with('message', 'success!');
         
     }
 

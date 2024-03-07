@@ -45,52 +45,33 @@ Route::post('/customer-satisfaction-form/submitted', [ CsfController::class, 'st
 
 Route::middleware(['auth', 'role:3'])->controller(SuperAdminController::class)->group(function(){
     Route::prefix('/super-admin')->group(function(){
-        Route::get('/dashboard', 'index');
-        Route::get('/customer-satisfaction-list', 'csfList');
-        Route::get('/settings/profile', 'profile');
-        Route::get('/settings/office-details', 'officeDetails');
-        Route::get('/settings/personnel-list', 'personnelList');
+        Route::get('/dashboard', 'index')->name('index');
+        Route::get('/customer-satisfaction-list', 'csfList')->name('super.list');
+        Route::get('/settings/profile', 'profile')->name('super.profile');
+        Route::get('/settings/office-details', 'officeDetails')->name('super.office');
+        Route::get('/settings/office-details/create', 'office_create')->name('super.office.create');
+        Route::post('/settings/office-details/create', 'office_store')->name('super.office.store');
+        Route::get('/settings/office-details/{id}/edit', 'office_edit')->name('super.office.edit');
+        Route::put('/settings/office-details/{id}/edit', 'office_edit_save')->name('super.office.edit-save');
+        Route::get('/settings/personnel-list', 'personnelList')->name('super.personnel');
     });
 });
 
 
-Route::middleware(['auth', 'role:2', 'office_assign:1'])->controller(AdminController::class)->group(function(){
-    Route::get('/admin/dashboard', 'index');
-    Route::get('/admin/customer-satisfaction-list', 'csfList');
-    Route::get('/admin/settings/profile', 'profile');
-    Route::get('/admin/settings/office-details', 'officeDetails');
-    Route::get('/admin/settings/personnel-list', 'personnelList');
+Route::middleware(['auth', 'role:2'])->controller(AdminController::class)->prefix('/admin')->group(function(){
+    Route::get('/dashboard', 'index');
+    Route::get('/customer-satisfaction-list', 'csfList');
+    Route::get('/settings/profile', 'profile');
+    Route::get('/settings/office-details', 'officeDetails');
+    Route::get('/settings/personnel-list', 'personnelList');
 });
 
 
-Route::middleware(['auth', 'role:1', 'office_assign:2'])->controller(UserController::class)->group(function(){
-    Route::get('/user/dashboard', 'index');
-    Route::get('/user/customer-satisfaction-list', 'csfList');
-    Route::get('/user/settings/profile', 'profile');
-    Route::get('/user/settings/office-details', 'officeDetails');
-});
-
-Route::middleware(['auth','role:1'])->group(function(){
-    Route::prefix('/user')->group(function(){
-
-        $customer_satisfaction = new customer_satisfaction();
-        $office_assignment = $customer_satisfaction->all();
-
-        foreach($office_assignment as $id){
-
-            $assignment_id = $id->office_id;
-
-            Route::middleware([ 'office_assign:' . $assignment_id ])->group(function(){
-                Route::controller(UserController::class)->group(function(){
-                    Route::get('/dashboard', 'index');
-                    Route::get('/customer-satisfaction-list', 'csfList');
-                    Route::get('/settings/profile', 'profile');
-                    Route::get('/settings/office-details', 'officeDetails');
-                });
-            });
-        }
-
-    });
+Route::middleware(['auth', 'role:1'])->controller(UserController::class)->prefix('/user')->group(function(){
+    Route::get('/dashboard', 'index');
+    Route::get('/customer-satisfaction-list', 'csfList');
+    Route::get('/settings/profile', 'profile');
+    Route::get('/settings/office-details', 'officeDetails');
 });
 
 

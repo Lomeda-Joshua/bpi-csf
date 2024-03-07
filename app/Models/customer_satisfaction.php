@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class customer_satisfaction extends Model
 {
@@ -35,4 +36,9 @@ class customer_satisfaction extends Model
         'office_id',
         'control_number',
     ];
+
+    public function office() : belongsTo
+    {
+        Office::belongsTo(customer_satisfaction::class, 'office_id' );
+    }
 }

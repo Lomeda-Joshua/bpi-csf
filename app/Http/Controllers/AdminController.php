@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\User;
 
 class AdminController extends Controller
 {
@@ -11,7 +12,9 @@ class AdminController extends Controller
         return 'login Admin';
     }
 
-    public function index(){
+    public function index()
+    {
+        User::select('office_id')->get();
         return view('admin.index');
     }
 

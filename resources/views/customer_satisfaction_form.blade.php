@@ -7,7 +7,9 @@
     <title>Customer Satisfaction Form | BPI</title>
     <link rel="shortcut icon" type="image/png" href="{{ asset('assets/images/logos/bpi_logo.png')}}" />
     <link rel="stylesheet" href="{{asset('assets/css/styles.min.css')}}" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -17,6 +19,27 @@
     <div class="container-fluid">
 
 
+        @if(session('message'))
+            <!-- Modal -->
+                <div class="modal fade" id="exampleModal"  aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            {{ session('message') }}
+                        </div>
+                        <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Save changes</button>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+        @endif
+
+
         <div class="card">
             <div class="card-body">
 
@@ -24,24 +47,22 @@
                 <h5 class="fw-semibold text-center"><i>Department of Agriculture</i></h5>
                 <h4 class="fw-semibold text-center" style="text-transform: uppercase; font-weight:700">Bureau of Plant Industry</h4>
 
-                <form method="post" action="{{ route('csf.store') }}" data-parsley-validate="true" class="form-horizontal form-label-left" role="form">
-                    @csrf
-                    @method('post')
-
-                <div class="fw-semibold text-center" style="margin-bottom:12px;">
-                    <u>
-                        <select style="text-transform: uppercase; font-weight:700; padding:10px;">
-                            <option value="{{$office_id}}">{{ $office_name }}</option>
-                        </select>
-                    </u>    
-                </div>
-
                 <h1 class="fw-semibold text-center">Customer Satisfaction Form</h1>
                 <h3 class="fw-semibold text-center">Personal Information Protection Statement</h3>
                 <p class="fw-semibold text-center" style="text-align:justify !important; width:90%; margin-left:auto; margin-right:auto;">We value your privacy and we will keep your personal information confidential. In signing hereof, you authorize the Bureau of Plant Industry to use your information for the purpose of continuous improvement of our goods and services and quality management system. Your personal information may only be disclosed by BPI to relevant government agencies for the same purpose as stated above. The information will be managed in accordance with Data Privacy Act of 2012.</p>
         
+                <form method="post" action="{{ route('csf.store') }}" id="csf_form" data-parsley-validate="true" class="form-horizontal form-label-left" role="form">
+                    @csrf
+                    @method('post')
 
                             <div style="">
+                                <label for="office_id"><span class="fw-semibold" style="font-weight:700">Section where services is catered:</span></label>
+                                <select name="office_id" class="form-control" style="padding:10px;" required>
+                                    <option selected disabled>-- Select section services catered --</option>
+                                    <option value="{{$office_id}}">{{ $office_name }}</option>
+                                </select>
+                                <br>
+
                                 <label for="time"><span class="fw-semibold" style="font-weight:700">Time/</span>Oras :</label>
                                 <input type="time" class="form-control" name="csf_time" id="csf_time" value="" aria-describedby="time" />
                                 
@@ -60,26 +81,34 @@
                                 <br>
 
                                 <label for="gender"><span class="fw-semibold" style="font-weight:700">Gender/ kasarian*</span></label>
-                                <input type="number" class="form-control" name="gender" id="gender" aria-describedby="gender">
+                                <select class="form-control" name="gender" id="gender" aria-describedby="gender" >
+                                    <option selected disabled>-- Select Gender --</option>
+                                    <option value="1">Male</option>
+                                    <option value="2">Female</option>
+                                </select>
+                                
                                 <br>
 
                                 <label><span class="fw-semibold" style="font-weight:700">Contact details (e-mail address or contact no.)</label>
                                 <input type="text" class="form-control" id="contact_details" name="contact_details" aria-describedby="contactDetails">
                                 <br>
 
+                                <label><span class="fw-semibold" style="font-weight:700">Select your classification</span>:</label><br>
+
                                 <input type="radio" name="individual_group" id="individual" value = "1">
-                                <label class="form-check-label" for="individual">Individual/ Indibidwal</label>
+                                <label style="font-size:17px; font-weight:bold;" class="form-check-label" for="individual">Individual/ Indibidwal</label>
                                 <br>
                                 <input type="radio" name="individual_group" id="group" value = "2">
-                                <label class="form-check-label" for="group">Group/ Grupo</label>
+                                <label style="font-size:17px; font-weight:bold;" class="form-check-label" for="group">Group/ Grupo</label>
                                 <br><br>
 
-                                <label><span class="fw-semibold" style="font-weight:700">If Group, name of your Agency or Association/ <br><i>Kung Grupo, pangalan ng iyong Ahensya/ Asosasyon. Put N/A if Individual/ Ilagay N/A kung ikaw indibidwal.</i>*</span></label><br><br>
+                            <div id = "group_selected" style="display:none;">
+                                <label><span class="fw-semibold" style="font-weight:700">If Group, name of your Agency or Association/<i>Kung Grupo, pangalan ng iyong Ahensya/ Asosasyon.<br> Put N/A if Individual/ Ilagay N/A kung ikaw indibidwal.</i>*</span></label><br><br>
                                 <label class="form-check-label" for="nameOFAgency"><b>Name of Agency:</b></label>
                                 <input type="text" class="form-control" name="nameOFAgency" id="nameOFAgency" aria-describedby="nameOFAgency">
                                 <br>
                                 
-
+                        
                                 <label><b>If Group/ Kung Grupo:</b></label><br>
                                 <input type="radio" name="private_government" id="Private" value = "1">
                                 <label class="form-check-label" for="Private">Private/ Pribado</label>
@@ -87,8 +116,8 @@
                                 <input type="radio" name="private_government" id="Government" value = "2">
                                 <label class="form-check-label" for="Government">Government/ Gobyerno</label>
                                 <br>
-
-                                <p>Not applicable/ Hindi angkop  (If Individual/ Kung indibidwal)</p>
+                                <br>
+                            </div>
 
                                 
                                 <label><b>Please choose your answer/ Piliin ang iyong sagot:*</b></label><br>
@@ -236,7 +265,12 @@
     </div>
 </div>
 
+
+
+
 <script>
+    
+
     $('document').ready(function(){
 
         /* Set current date in ris-form for mysql input box */
@@ -248,7 +282,18 @@
         let setTime = getTime.getHours() + ":" + getTime.getMinutes();
         $('#csf_time').val(setTime); 
 
+        $('#csf_form').on('change', function() {
+            let selected = $('input[name=individual_group]:checked', '#csf_form').val();
+            let group_box = $('#group_selected');
+            if( selected == 2){
+                group_box.css('display','block');
+            }else{
+                group_box.css('display','none');
+            }
+            
+        });
 
+        
 
     });
 </script>
