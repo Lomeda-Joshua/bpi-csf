@@ -8,23 +8,39 @@
         <thead>
             <tr style="background-color:gray; color:white;">
                 <th class="text-center p-1">Name</th>
-                <th class="text-center">Position</th>
+                <th class="text-center">Role</th>
                 <th class="text-center">Office</th>
-                <th class="text-center">Age</th>
-                <th class="text-center">Start date</th>
-                <th class="text-center">Salary</th>
+                <th class="text-center">Created at</th>
+                <th class="text-center">Updated at</th>
             </tr>
         </thead>
         <tbody>
+            @foreach($personnels as $item)
             <tr>
-                <td>Tiger Nixon</td>
-                <td>System Architect</td>
-                <td>Edinburgh</td>
-                <td>61</td>
-                <td>2011-04-25</td>
-                <td>$320,800</td>
+                <td class="text-center">{{ $item->name }}</td>
+                <td class="text-center">
+                    @switch($item->role_id)
+                    
+                    @case(1)
+                        {{ "User" }}
+                    @break
+
+                    @case(2)
+                        {{ "Admin" }}
+                    @break
+
+                    @case(3)
+                        {{ "Super admin" }}
+                    @break
+                    
+                    
+                    @endswitch
+                </td>
+                <td class="text-center">{{ $item->office->office_name ?? "Super admin role"  }}</td>
+                <td class="text-center">{{ $item->created_at  }}</td>
+                <td class="text-center">{{ $item->updated_at  }}</td>
             </tr>
-            
+            @endforeach
         </tbody>
     </table>
     </div>

@@ -20,8 +20,11 @@ class SuperAdminController extends Controller
      */
     public function index()
     {
-        $csf = customer_satisfaction::paginate(10);
+        // $csf = customer_satisfaction::paginate(10);
+        $csf = customer_satisfaction::with('office')->get();
         $user = User::select('office_id')->paginate();
+
+        
 
         return view('super_admin.index', [ 'csf' => $csf]);
     }
@@ -51,9 +54,7 @@ class SuperAdminController extends Controller
     public function officeDetails()
     {
         $office = Office::with('customer_satisfaction')->paginate(10);
-
-        dd($office);
-
+        
         return view('super_admin.office.officeDetails', [ 'office' => $office]);
     }
      
@@ -112,6 +113,10 @@ class SuperAdminController extends Controller
      * Display the List view for all personnels of sections.
      */
     public function personnelList(){
-        return view('super_admin.personnelList');
+
+        $personnels = User::with('office')->get();
+        
+
+        return view('super_admin.personnelList', [ 'personnels' => $personnels]);
     }
 }

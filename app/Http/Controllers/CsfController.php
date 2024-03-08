@@ -4,16 +4,16 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\customer_satisfaction;
+use App\Models\OFfice;
 
 class CsfController extends Controller
 {
 
     public function index()
     {
-        $office_name = 'information and computer section';
-        $office_id = 1;
+        $office_data = OFfice::all();
 
-        return view('customer_satisfaction_form', ['office_name' => $office_name, 'office_id' => $office_id] );
+        return view('customer_satisfaction_form', ['office_data' => $office_data] );
     }
 
     

@@ -12,8 +12,6 @@ class customer_satisfaction extends Model
     use HasFactory;
     use SoftDeletes;
 
-    
-
     protected $fillable = [
         'csf_time',
         'csf_date',
@@ -39,6 +37,6 @@ class customer_satisfaction extends Model
 
     public function office() : belongsTo
     {
-        Office::belongsTo(customer_satisfaction::class, 'office_id' );
+        return $this->belongsto(Office::class, 'id' );
     }
 }

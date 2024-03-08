@@ -21,7 +21,7 @@
             @foreach($office as $items)
             <tr>
                 <td>{{ $items->office_name }}</td>
-                <td>Total CSF</td>
+                <td class="text-center">{{ $items->customer_satisfaction->count('id') }}</td>
                 <td>{{ $items->created_at }}</td>
                 <td>{{ $items->updated_at }}</td>
                 <td class="border-bottom-0">

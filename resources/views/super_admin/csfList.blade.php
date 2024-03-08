@@ -25,9 +25,9 @@
                 <tr>
                     <td>{{ $items->name }}</td>
                     <td>{{ $items->age }}</td>
-                    <td>{{ $items->gender }}</td>
+                    <td>{{ $items->gender == 1 ? "Male" : "Femaie" }}</td>
                     <td>{{ $items->contact_details }}</td>
-                    <td>{{ $items->office_id }}</td>
+                    <td>{{ $items->office->office_name }}</td>
                     <td>{{ $items->csf_date }}</td>
                     <td>{{ $items->csf_time }}</td>
                 </tr>

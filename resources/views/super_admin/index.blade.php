@@ -138,6 +138,9 @@
                     <h6 class="fw-semibold mb-0">Name</h6>
                     </th>
                     <th class="border-bottom-0">
+                    <h6 class="fw-semibold mb-0">Office destination</h6>
+                    </th>
+                    <th class="border-bottom-0">
                     <h6 class="fw-semibold mb-0">Age</h6>
                     </th>
                     <th class="border-bottom-0">
@@ -155,12 +158,17 @@
                 </tr>
                 </thead>
                 <tbody>
+
+
                     @foreach( $csf as $items)
                     <tr>
                         <td class="border-bottom-0"><h6 class="fw-semibold mb-0">{{ $items->id }}</h6></td>
                         <td class="border-bottom-0">
                             <h6 class="fw-semibold mb-1">{{ $items->name }}</h6>
-                            <span class="fw-normal">{{ $items->office_id }}</span>                          
+                            <span class="fw-normal">{{ $items->internal_external == 2 ? "External customer" : "Internal customer" }}</span>                          
+                        </td>
+                        <td class="border-bottom-0">
+                        <p class="mb-0 fw-normal">{{ $items->office->office_name }}</p>
                         </td>
                         <td class="border-bottom-0">
                         <p class="mb-0 fw-normal">{{ $items->age }}</p>
