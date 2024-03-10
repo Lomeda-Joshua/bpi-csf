@@ -37,6 +37,6 @@ class customer_satisfaction extends Model
 
     public function office() : belongsTo
     {
-        return $this->belongsto(Office::class, 'id' );
+        return $this->belongsto(Office::class, 'office_id' );
     }
 }

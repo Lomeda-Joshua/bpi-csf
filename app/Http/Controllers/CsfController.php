@@ -20,7 +20,6 @@ class CsfController extends Controller
     public function store(Request $request)
     {
         
-
         $office_id = $request->input('office_id');
         $csf_time = $request->input('csf_time');
         $csf_date = $request->input('csf_date');

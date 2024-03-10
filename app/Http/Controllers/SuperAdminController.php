@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use App\Models\customer_satisfaction;
 use App\Models\Office;
 
@@ -44,7 +45,24 @@ class SuperAdminController extends Controller
      * Display the User profile.
      */
     public function profile(){
-        return view('super_admin.profile');
+        $role_id = Auth::user()->role_id;
+
+        switch($role_id){
+            case 1:
+                $role_name = "User";
+            break;
+
+            case 2:
+                $role_name = "Admin";
+            break;
+
+            case 3:
+                $role_name = "Super admin";
+            break;
+        }
+
+        
+        return view('super_admin.profile', [ 'role_name' => $role_name, 'user_data' => Auth::user() ]);
     }
 
 

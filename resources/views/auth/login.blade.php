@@ -1,47 +1,69 @@
-<x-guest-layout>
-    <!-- Session Status -->
-    <x-auth-session-status class="mb-4" :status="session('status')" />
+<!doctype html>
+<html lang="en">
 
-    <form method="POST" action="{{ route('login') }}">
-        @csrf
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Customer Satisfaction Form | BPI</title>
+    <link rel="shortcut icon" type="image/png" href="../assets/images/logos/favicon.png" />
+    <link rel="stylesheet" href="{{asset('assets/css/styles.min.css')}}" />
+    <link href="https://cdn.datatables.net/v/bs5/dt-2.0.1/datatables.min.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+</head>
 
-        <!-- Email Address -->
-        <div>
-            <x-input-label for="email" :value="__('Email')" />
-            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus autocomplete="username" />
-            <x-input-error :messages="$errors->get('email')" class="mt-2" />
-        </div>
+<body>
 
-        <!-- Password -->
-        <div class="mt-4">
-            <x-input-label for="password" :value="__('Password')" />
-
-            <x-text-input id="password" class="block mt-1 w-full"
-                            type="password"
-                            name="password"
-                            required autocomplete="current-password" />
-
-            <x-input-error :messages="$errors->get('password')" class="mt-2" />
-        </div>
-
-        <!-- Remember Me -->
-        <div class="block mt-4">
-            <label for="remember_me" class="inline-flex items-center">
-                <input id="remember_me" type="checkbox" class="rounded dark:bg-gray-900 border-gray-300 dark:border-gray-700 text-indigo-600 shadow-sm focus:ring-indigo-500 dark:focus:ring-indigo-600 dark:focus:ring-offset-gray-800" name="remember">
-                <span class="ms-2 text-sm text-gray-600 dark:text-gray-400">{{ __('Remember me') }}</span>
-            </label>
-        </div>
-
-        <div class="flex items-center justify-end mt-4">
-            @if (Route::has('password.request'))
-                <a class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800" href="{{ route('password.request') }}">
-                    {{ __('Forgot your password?') }}
+  <!--  Body Wrapper -->
+  <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
+    data-sidebar-position="fixed" data-header-position="fixed">
+    <div
+      class="position-relative overflow-hidden radial-gradient min-vh-100 d-flex align-items-center justify-content-center">
+      <div class="d-flex align-items-center justify-content-center w-100">
+        <div class="row justify-content-center w-100">
+          <div class="col-md-8 col-lg-6 col-xxl-3">
+            <div class="card mb-0">
+              <div class="card-body">
+                <a href="./index.html" class="text-nowrap logo-img text-center d-block py-3 w-100">
+                  <img src="../assets/images/logos/dark-logo.svg" width="180" alt="">
                 </a>
-            @endif
+                <p class="text-center">Customer Satisfaction Login</p>
+                <form method="POST" action="{{ route('login') }}">
+                    @csrf
+                  <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">Username</label>
+                    <input id="email" class="block mt-1 w-full form-control" type="email" name="email" :value="old('email')" required autofocus autocomplete="username">
 
-            <x-primary-button class="ms-3">
-                {{ __('Log in') }}
-            </x-primary-button>
+                    
+                  </div>
+                  <div class="mb-4">
+                    <label for="exampleInputPassword1" class="form-label">Password</label>
+                    <input id="password" class="block mt-1 w-full form-control"
+                    type="password"
+                    name="password"
+                    required autocomplete="current-password">
+                  </div>
+                  <button type="submit" class="btn btn-primary w-100 py-8 fs-4 mb-4 rounded-2">{{ __('Log in') }}</button>
+                </form>
+              </div>
+            </div>
+          </div>
         </div>
-    </form>
-</x-guest-layout>
+      </div>
+    </div>
+  </div>
+
+<script src="{{asset('assets/libs/jquery/dist/jquery.min.js')}}"></script>
+<script src="{{asset('assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js')}}"></script>
+<script src="{{asset('assets/js/sidebarmenu.js')}}"></script>
+<script src="{{asset('assets/js/app.min.js')}}"></script>
+<script src="{{asset('assets/libs/apexcharts/dist/apexcharts.min.js')}}"></script>
+<script src="{{asset('assets/libs/simplebar/dist/simplebar.js')}}"></script>
+<script src="{{asset('assets/js/dashboard.js')}}"></script>
+<script src="https://cdn.datatables.net/v/bs5/dt-2.0.1/datatables.min.js"></script>
+
+</body>
+
+</html>
+
+
+

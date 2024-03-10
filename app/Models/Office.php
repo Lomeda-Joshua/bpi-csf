@@ -18,7 +18,7 @@ class Office extends Model
 
     public function customer_satisfaction() : hasMany
     {
-        return $this->hasMany(customer_satisfaction::class,'office_id');
+        return $this->hasMany(customer_satisfaction::class, 'office_id');
     }
 
 }

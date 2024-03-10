@@ -13,18 +13,13 @@ class RoleMiddleware
      *
      * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
      */
-    public function handle(Request $request, Closure $next, $role): Response
+    public function handle(Request $request, Closure $next, $role, ): Response
     {
         
         if( $request->user()->role_id != $role ){
             abort(404);
-        }elseif($request->user()->role_id == 1){
-            return $next($request);    
-        }elseif($request->user()->role_id == 2){
-            return $next($request);
-        }elseif($request->user()->role_id == 3){
-            return $next($request);
         }
-
+        
+        return $next($request);
     }
 }

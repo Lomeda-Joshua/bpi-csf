@@ -12,23 +12,43 @@
             <thead>
                 <tr style="background-color:gray; color:white;">
                     <th class="text-center p-1">Name</th>
-                    <th class="text-center">Position</th>
-                    <th class="text-center">Office</th>
+                    <th class="text-center">Gender</th>
+                    <th class="text-center">Contact Details</th>
                     <th class="text-center">Age</th>
-                    <th class="text-center">Start date</th>
-                    <th class="text-center">Salary</th>
+                    <th class="text-center">Date</th>
+                    <th class="text-center">Time</th>
+                    <th class="text-center">Actions</th>
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>Tiger Nixon</td>
-                    <td>System Architect</td>
-                    <td>Edinburgh</td>
-                    <td>61</td>
-                    <td>2011-04-25</td>
-                    <td>$320,800</td>
-                </tr>
-                
+                @foreach( $csf as $items)
+                  <tr>
+                      <td class="border-bottom-0">
+                          <h6 class="fw-semibold mb-1">{{ $items->name }}</h6>                   
+                      </td>
+                      <td class="border-bottom-0">
+                      <p class="mb-0 fw-normal">{{ $items->gender == 1 ? "Male" : "Female" }}</p>
+                      </td>
+                      <td class="border-bottom-0">
+                        <p class="mb-0 fw-normal text-center">{{ $items->contact_details }}</p>
+                        </td>
+                      <td class="border-bottom-0">
+                      <p class="mb-0 fw-normal text-center">{{ $items->age }}</p>
+                      </td>
+                      <td class="border-bottom-0">
+                      <p class="mb-0 fw-normal">{{ $items->csf_date }}</p>
+                      </td>
+                      <td class="border-bottom-0">
+                      <p class="mb-0 fw-normal">{{ $items->csf_time }}</p>
+                      </td>
+                      <td class="border-bottom-0 ">
+                        <div class="d-flex align-items-center gap-2 ">
+                            <button class="badge bg-success rounded-3 fw-semibold text-center">View</button>
+                        </div>
+                      </td>
+
+                  </tr>    
+                  @endforeach      
             </tbody>
         </table>
 

@@ -6,26 +6,47 @@ use Illuminate\Support\Facades\Auth;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Office;
+use App\Models\customer_satisfaction;
 
 class UserController extends Controller
 {
 
     public function index()
     {
-        return view('users.index');
+        $office_id = Auth::user()->office_id;
+        $office_user = User::with('office')->where('office_id', $office_id)->first();
+        $office_data = Office::with('customer_satisfaction')->where('id', '=', $office_id )->get();
+        $csf = customer_satisfaction::with('office')->where('office_id', '=', $office_id )->take(5)->get();
+
+        $csf_total = customer_satisfaction::with('office')->where('office_id', '=', $office_id )->get();
+
+        $internal_total = customer_satisfaction::with('office')->where('internal_external', '=', 1)->where('office_id', '=', $office_id )->get();
+        $external_total = customer_satisfaction::with('office')->where('internal_external', '=', 2 )->where('office_id', '=', $office_id )->get();
+
+        $max_created = customer_satisfaction::with('office')->max('created_at');
+        $min_created = customer_satisfaction::with('office')->min('created_at');
+        $total_month = customer_satisfaction::where('office_id', '=', $office_id )->whereBetween('created_at', [ $min_created, $max_created ])->get();
+
+        return view('users.index', [ 'office_data' => $office_data, 'csf' => $csf , 'office_user' => $office_user, 'csf_total' => $csf_total, 'internal_total' => $internal_total, 'external_total' => $external_total, 'total_month'  => $total_month ]);
     }
 
     public function csfList()
     {
-        return view('users.csfList');
+        $office_id = Auth::user()->office_id;
+        $csf = customer_satisfaction::with('office')->where('office_id', '=', $office_id )->take(5)->get();
+        return view('users.csfList', [ 'csf' => $csf ]);
     }
 
     public function profile()
     {
-        $profile_details = Auth::user()->select('name','email','role_id','office_id','created_at','updated_at')->get();
-        return view('users.profile', [ 'profile_details' => $profile_details]);
+        $profile = Auth::user();
+        
+
+        return view('users.profile', [ 'profile' => $profile]);
     }
 
+    
     public function officeDetails()
     {
         return view('users.officeDetails');

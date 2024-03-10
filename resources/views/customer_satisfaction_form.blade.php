@@ -248,14 +248,14 @@
                                         </tbody>
                                     </table>
                                 </div>
-                                
-                                <label><span class="fw-semibold" style="font-weight:700">Other comments or suggestions on how we can further improve our goods/services?/ <i>Iba pang komento o mungkahi upang lalong mapaganda ang aming produkto at serbisyo?</i></span></label> <br><br>
+                                <br>
+                                <label><span class="fw-semibold" style="font-weight:700">Other comments or suggestions on how we can further improve our goods/services?/ <i>Iba pang komento o mungkahi upang lalong mapaganda ang aming produkto at serbisyo?</i></span></label> <br>
                                 <label><span class="fw-semibold" style="font-weight:700">Put NONE if you don't have comments or suggestion/ <i>Ilagay WALA kung walang nais na ikomento o imungkahi.</i></span></label><br>
                                 <input type="text" class="form-control" id="comments_suggestions" name = "comments_suggestions" aria-describedby="comments">
                                 <br>
                                 <button type="submit" class="btn btn-primary me-2">Submit</button>
             
-                                <br>
+                                <br><br>
                                 <small>EFFECTIVITY DATE:</small>
                                 <small>September 15, 2022</small><br>
                                 <small>DOCUMENT NO.: BPI-QMS-KMT-F9</small><br>
