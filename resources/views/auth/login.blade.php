@@ -24,25 +24,28 @@
             <div class="card mb-0">
               <div class="card-body">
                 <a href="./index.html" class="text-nowrap logo-img text-center d-block py-3 w-100">
-                  <img src="../assets/images/logos/dark-logo.svg" width="180" alt="">
+                  <img src="{{ asset('assets/images/logos/bpi_logo.png')}}" width="180" alt="">
                 </a>
-                <p class="text-center">Customer Satisfaction Login</p>
+                <h5 class="text-center"><b>Customer Satisfaction Application</b></h5>
+                <p class="text-center">Login</p>
+
                 <form method="POST" action="{{ route('login') }}">
                     @csrf
                   <div class="mb-3">
-                    <label for="exampleInputEmail1" class="form-label">Username</label>
-                    <input id="email" class="block mt-1 w-full form-control" type="email" name="email" :value="old('email')" required autofocus autocomplete="username">
+                    <label for="email" class="form-label">Username</label>
+                      @error('title')
+                          <div class="alert alert-danger">{{ $errors->get('email') }}</div>
+                      @enderror
+                    <input id="email" class="block mt-1 w-full form-control" type="email" name="email" :value="old('email')" required autofocus autocomplete="username">                    
+                  </div>
 
-                    
-                  </div>
                   <div class="mb-4">
-                    <label for="exampleInputPassword1" class="form-label">Password</label>
-                    <input id="password" class="block mt-1 w-full form-control"
-                    type="password"
-                    name="password"
-                    required autocomplete="current-password">
+                    <label for="password" class="form-label">Password</label>
+                    <input id="password" class="block mt-1 w-full form-control" type="password" name="password" required autocomplete="current-password">
                   </div>
+
                   <button type="submit" class="btn btn-primary w-100 py-8 fs-4 mb-4 rounded-2">{{ __('Log in') }}</button>
+
                 </form>
               </div>
             </div>

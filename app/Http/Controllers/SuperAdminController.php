@@ -11,23 +11,16 @@ use App\Models\Office;
 
 class SuperAdminController extends Controller
 {
-    public function SuperloginAdmin(){
-        return 'Super Admin';
-    }
-
-
     /**
      * Display the dashboard.
      */
     public function index()
     {
-        // $csf = customer_satisfaction::paginate(10);
-        $csf = customer_satisfaction::with('office')->get();
-        $user = User::select('office_id')->paginate();
-
-        
-
-        return view('super_admin.index', [ 'csf' => $csf]);
+        $csf = customer_satisfaction::paginate(10);
+        $csf_data = customer_satisfaction::get();
+        $user_data = User::get();
+     
+        return view('super_admin.index', [ 'csf' => $csf, 'user' => $user_data, 'csf_data' => $csf_data ]);
     }
 
     

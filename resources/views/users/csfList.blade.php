@@ -26,6 +26,9 @@
     <div class="card-body">
         <h2>Customer Satisfaction List</h2>
         <br>
+
+        <button type="button" class="btn btn-primary">Print</button>
+
         <table id="csf_table" class="striped" style="width:100%">
             <thead>
                 <tr style="background-color:gray; color:white;">

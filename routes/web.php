@@ -28,20 +28,9 @@ Route::get('/', function () {
     return view('auth.login');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
-
-Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-});
-
 
 Route::get('/customer-satisfaction-form', [ CsfController::class, 'index'])->name('csf.index');
 Route::post('/customer-satisfaction-form/submitted', [ CsfController::class, 'store'])->name('csf.store');
-
 
 Route::middleware(['auth', 'role:3'])->controller(SuperAdminController::class)->group(function(){
     Route::prefix('/super-admin')->group(function(){

@@ -15,7 +15,7 @@
 <body>
 
 <!--  Main wrapper -->
-<div class="body-wrapper" style="background-color:blanchedalmond;">
+<div class="body-wrapper" style="background-color: #3c835c;">
     <div class="container-fluid">
 
 
@@ -43,7 +43,7 @@
         <div class="card">
             <div class="card-body">
 
-                <img style="margin-left:auto; margin-right:auto; width:20%; display:block; margin-bottom:13px;" src = "{{ asset('assets/images/logos/bpi_logo.png')}}" />
+                <img style="margin-left:auto; margin-right:auto; width:20%; display:block; margin-bottom:30px; margin-top:20px;" src = "{{ asset('assets/images/logos/bpi_logo.png')}}" />
                 <h5 class="fw-semibold text-center"><i>Department of Agriculture</i></h5>
                 <h4 class="fw-semibold text-center" style="text-transform: uppercase; font-weight:700">Bureau of Plant Industry</h4>
 
@@ -138,24 +138,24 @@
                                 <h5>Please check (✓) the appropriate column from 1 - 5, with 1 is being the lowest and 5 as the highest.</h5>
                                 <h5><i>Lagyan ng (✓) and napiling "kolum" mula 1 - 5, 1 bilang pinakamababa at 5 bilang pinakamataas,*</i></h5>
                                 
-                                <div class="container-fluid">
+                                <div class="container-fluid ">
                                     <table class="table mb-0 align-middle" style="width:100%">
-                                        <thead>
-                                            <tr>
-                                                <td style="width:30%"></td>
-                                                <td>
+                                        <thead class="text-center align-middle">
+                                            <tr class="col">
+                                                <td style="width:30%; background-color:#3c835c; color:white;"><b>Criteria/</b><i>Kriterya</i></td>
+                                                <td class='col'>
                                                     <label><b>Very Satisfied/ Lubos na nasiyahan</b></label>
                                                 </td>
-                                                <td>
+                                                <td class='col'>
                                                     <label><b>Satisfied/ Nasiyahan</b></label>
                                                 </td>
-                                                <td>
+                                                <td class='col'>
                                                     <label><b>Neutral</b></label>
                                                 </td>
-                                                <td>
+                                                <td class='col'>
                                                     <label><b>Hindi Nasiyahan</b></label>
                                                 </td>
-                                                <td>
+                                                <td class='col'>
                                                     <label><b>Very Dissatisfied/ Lubos na hindi Nasiyahan</b></label>
                                                 </td>
                                             </tr>
@@ -165,19 +165,19 @@
                                                 <td>
                                                     <label><b>1. Quality of goods or services provided</b>/ <i>Kalidad ng produkto o serbisyong natanggap?</i></label>
                                                 </td>
-                                                <td>
+                                                <td class="text-center">
                                                     <input type="radio" name="criteria_quality_of_goods" value = "5">
                                                 </td>
-                                                <td>
+                                                <td class="text-center">
                                                     <input type="radio" name="criteria_quality_of_goods" value = "4">
                                                 </td>
-                                                <td>
+                                                <td class="text-center">
                                                     <input type="radio" name="criteria_quality_of_goods" value = "3">
                                                 </td>
-                                                <td>
+                                                <td class="text-center">
                                                     <input type="radio" name="criteria_quality_of_goods" value = "2">
                                                 </td>
-                                                <td>
+                                                <td class="text-center">
                                                     <input type="radio" name="criteria_quality_of_goods" value = "1">
                                                 </td>
                                             </tr>
@@ -185,19 +185,19 @@
                                                 <td>
                                                     <label><b>2. Courteousness</b>/ <i>Pagiging magalang?</i></label>
                                                 </td>
-                                                <td>
+                                                <td class="text-center">
                                                     <input type="radio" name="criteria_courteousness" id="courteousness" value = "5">
                                                 </td>
-                                                <td>
+                                                <td class="text-center">
                                                     <input type="radio" name="criteria_courteousness" id="courteousness" value = "4">
                                                 </td>
-                                                <td>
+                                                <td class="text-center">
                                                     <input type="radio" name="criteria_courteousness" id="courteousness" value = "3">
                                                 </td>
-                                                <td>
+                                                <td class="text-center">
                                                     <input type="radio" name="criteria_courteousness" id="courteousness" value = "2">
                                                 </td>
-                                                <td>
+                                                <td class="text-center">
                                                     <input type="radio" name="criteria_courteousness" id="courteousness" value = "1">
                                                 </td>
                                             </tr>
@@ -205,21 +205,21 @@
                                                 <td>
                                                     <label><b>3. Responsiveness </b>/ <i>Mabilis na pagtugon?</i></label>
                                                 </td>
-                                                <td><input type="radio" name="criteria_responsiveness" id="internal" value = "5"></td>
-                                                <td><input type="radio" name="criteria_responsiveness" id="internal" value = "4"></td>
-                                                <td><input type="radio" name="criteria_responsiveness" id="internal" value = "3"></td>
-                                                <td><input type="radio" name="criteria_responsiveness" id="internal" value = "2"></td>
-                                                <td><input type="radio" name="criteria_responsiveness" id="internal" value = "1"></td>
+                                                <td class="text-center"><input type="radio" name="criteria_responsiveness" id="internal" value = "5"></td>
+                                                <td class="text-center"><input type="radio" name="criteria_responsiveness" id="internal" value = "4"></td>
+                                                <td class="text-center"><input type="radio" name="criteria_responsiveness" id="internal" value = "3"></td>
+                                                <td class="text-center"><input type="radio" name="criteria_responsiveness" id="internal" value = "2"></td>
+                                                <td class="text-center"><input type="radio" name="criteria_responsiveness" id="internal" value = "1"></td>
                                             </tr>
                                             <tr>
                                                 <td>
                                                     <label><b>4. Overall customer goods or services provided</b>/ <i>Kabuoang serbisyong natanggap?</i></label>
                                                 </td>
-                                                <td><input type="radio" name="criteria_overall_experience" id="internal" value = "5"></td>
-                                                <td><input type="radio" name="criteria_overall_experience" id="internal" value = "4"></td>
-                                                <td><input type="radio" name="criteria_overall_experience" id="internal" value = "3"></td>
-                                                <td><input type="radio" name="criteria_overall_experience" id="internal" value = "2"></td>
-                                                <td><input type="radio" name="criteria_overall_experience" id="internal" value = "1"></td>
+                                                <td class="text-center"><input type="radio" name="criteria_overall_experience" id="internal" value = "5"></td>
+                                                <td class="text-center"><input type="radio" name="criteria_overall_experience" id="internal" value = "4"></td>
+                                                <td class="text-center"><input type="radio" name="criteria_overall_experience" id="internal" value = "3"></td>
+                                                <td class="text-center"><input type="radio" name="criteria_overall_experience" id="internal" value = "2"></td>
+                                                <td class="text-center"><input type="radio" name="criteria_overall_experience" id="internal" value = "1"></td>
                                             </tr>
                                             <tr>
                                                 <td>
@@ -239,11 +239,11 @@
                                                 <td>
                                                     <label><b>5. BPI products and services are worth promotable</b> / <i>Ang mga produkto at serbisyo ng BPI ay karapat-dapat mapalaganap</i></label>
                                                 </td>
-                                                <td><input type="radio" name="promoter_score" id="internal" value = "5"></td>
-                                                <td><input type="radio" name="promoter_score" id="internal" value = "4"></td>
-                                                <td><input type="radio" name="promoter_score" id="internal" value = "3"></td>
-                                                <td><input type="radio" name="promoter_score" id="internal" value = "2"></td>
-                                                <td><input type="radio" name="promoter_score" id="internal" value = "1"></td>
+                                                <td class="text-center"><input type="radio" name="promoter_score" id="internal" value = "5"></td>
+                                                <td class="text-center"><input type="radio" name="promoter_score" id="internal" value = "4"></td>
+                                                <td class="text-center"><input type="radio" name="promoter_score" id="internal" value = "3"></td>
+                                                <td class="text-center"><input type="radio" name="promoter_score" id="internal" value = "2"></td>
+                                                <td class="text-center"><input type="radio" name="promoter_score" id="internal" value = "1"></td>
                                             </tr>
                                         </tbody>
                                     </table>
