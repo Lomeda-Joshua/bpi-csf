@@ -3,6 +3,24 @@
 @section('contents')
 
 
+  <!-- Modal -->
+  <div class="modal fade" id="csfFormWindow" tabindex="-1" aria-labelledby="csfFormWindow" aria-hidden="true" >
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          ...
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
 
 <div class="card">
     <div class="card-body">
@@ -43,7 +61,7 @@
                       </td>
                       <td class="border-bottom-0 ">
                         <div class="d-flex align-items-center gap-2 ">
-                            <button class="badge bg-success rounded-3 fw-semibold text-center">View</button>
+                            <button class="badge bg-success rounded-3 fw-semibold text-center" data-bs-toggle="modal" data-bs-target="#csfFormWindow">View</button>
                         </div>
                       </td>
 

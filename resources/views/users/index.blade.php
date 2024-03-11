@@ -16,11 +16,6 @@
                   <h5 class="card-title mb-9 fw-semibold"> Total CSF on this section </h5>
                   <h4 class="fw-semibold mb-3">{{ $csf_total->count('id') ? $csf_total->count('id') : 0 }}</h4>
                   <div class="d-flex align-items-center pb-1">
-                    <span class="me-2 rounded-circle bg-light-danger round-20 d-flex align-items-center justify-content-center">
-                      <i class="ti ti-123 text-danger"></i>
-                    </span>
-                    <p class="text-dark me-1 fs-3 mb-0">+9%</p>
-                    <p class="fs-3 mb-0">last year</p>
                   </div>
                 </div>
                 <div class="col-4">
@@ -43,11 +38,6 @@
                   <h5 class="card-title mb-9 fw-semibold"> Total Internal Customers </h5>
                   <h4 class="fw-semibold mb-3">{{ count($internal_total) ? count($internal_total) : 0  }}</h4>
                   <div class="d-flex align-items-center pb-1">
-                    <span class="me-2 rounded-circle bg-light-danger round-20 d-flex align-items-center justify-content-center">
-                      <i class="ti ti-arrow-down-right text-danger"></i>
-                    </span>
-                    <p class="text-dark me-1 fs-3 mb-0">+9%</p>
-                    <p class="fs-3 mb-0">last year</p>
                   </div>
                 </div>
                 <div class="col-4">
@@ -70,11 +60,7 @@
                   <h5 class="card-title mb-9 fw-semibold"> Total External Customers </h5>
                   <h4 class="fw-semibold mb-3">{{ count($external_total) ? count($external_total) : 0 }}</h4>
                   <div class="d-flex align-items-center pb-1">
-                    <span class="me-2 rounded-circle bg-light-danger round-20 d-flex align-items-center justify-content-center">
-                      <i class="ti ti-arrow-down-right text-danger"></i>
-                    </span>
-                    <p class="text-dark me-1 fs-3 mb-0">+9%</p>
-                    <p class="fs-3 mb-0">last year</p>
+                 
                   </div>
                 </div>
                 <div class="col-4">
@@ -97,11 +83,6 @@
                   <h5 class="card-title mb-9 fw-semibold"> CSF For this month </h5>
                   <h4 class="fw-semibold mb-3">{{ count($total_month) }}</h4>
                   <div class="d-flex align-items-center pb-1">
-                    <span class="me-2 rounded-circle bg-light-danger round-20 d-flex align-items-center justify-content-center">
-                      <i class="ti ti-arrow-down-right text-danger"></i>
-                    </span>
-                    <p class="text-dark me-1 fs-3 mb-0">+9%</p>
-                    <p class="fs-3 mb-0">last year</p>
                   </div>
                 </div>
                 <div class="col-4">

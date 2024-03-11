@@ -25,7 +25,7 @@ use App\Http\Controllers\CsfController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth.login');
 });
 
 Route::get('/dashboard', function () {
@@ -70,7 +70,7 @@ Route::middleware(['auth', 'role:2'])->controller(AdminController::class)->prefi
 Route::middleware(['auth', 'role:1'])->controller(UserController::class)->prefix('/user')->group(function(){
     Route::get('/dashboard', 'index');
     Route::get('/customer-satisfaction-list', 'csfList');
-    Route::get('/settings/profile', 'profile');
+    Route::get('/settings/profile', 'profile')->name('user.profile');
     Route::get('/settings/office-details', 'officeDetails');
 });
 
