@@ -15,7 +15,7 @@
 <body>
 
 <!--  Main wrapper -->
-<div class="body-wrapper" style="background-color: #3c835c;">
+<div class="body-wrapper" style="background-color: #214732;">
     <div class="container-fluid">
 
 

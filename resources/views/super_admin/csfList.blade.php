@@ -2,12 +2,11 @@
 
 @section('contents')
 
-
-
 <div class="card">
     <div class="card-body">
         <h2>Customer Satisfaction List</h2>
-        <br>
+        <a href="{{ route('print-summary') }}" target="_blank" id="printSummary" class="btn btn-success m-1">Print summary</a>
+        
         <table id="csf_table" class="table align-middle striped" style="width:100%">
             <thead>
                 <tr style="background-color:gray; color:white;">
@@ -41,6 +40,11 @@
 <script>
     $("document").ready(function(){
         new DataTable('#csf_table');
+
+
+        $("#printSummary").click(function(){
+            
+        });
     })
 </script>
 

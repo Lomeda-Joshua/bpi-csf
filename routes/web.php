@@ -43,6 +43,8 @@ Route::middleware(['auth', 'role:3'])->controller(SuperAdminController::class)->
         Route::get('/settings/office-details/{id}/edit', 'office_edit')->name('super.office.edit');
         Route::put('/settings/office-details/{id}/edit', 'office_edit_save')->name('super.office.edit-save');
         Route::get('/settings/personnel-list', 'personnelList')->name('super.personnel');
+
+        Route::get('/print-summary', 'printSummary')->name('print-summary');
     });
 });
 

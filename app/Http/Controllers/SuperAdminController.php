@@ -18,9 +18,11 @@ class SuperAdminController extends Controller
     {
         $csf = customer_satisfaction::paginate(10);
         $csf_data = customer_satisfaction::get();
-        $user_data = User::get();
+        $internal_total = customer_satisfaction::where('internal_external', '=', 1 )->count();
+        $external_total = customer_satisfaction::where('internal_external', '=', 2 )->count();
+        $user_data = User::count();
      
-        return view('super_admin.index', [ 'csf' => $csf, 'user' => $user_data, 'csf_data' => $csf_data ]);
+        return view('super_admin.index', [ 'csf' => $csf, 'user' => $user_data, 'csf_data' => $csf_data, 'internal_total' => $internal_total, 'external_total' => $external_total ]);
     }
 
     
@@ -127,7 +129,16 @@ class SuperAdminController extends Controller
 
         $personnels = User::with('office')->get();
         
+        
 
         return view('super_admin.personnelList', [ 'personnels' => $personnels]);
+    }
+
+    /**
+     * Display the print summary.
+     */
+    public function printSummary()
+    {
+        return view('super_admin.csf_summary');
     }
 }
