@@ -16,7 +16,7 @@
               <span class="hide-menu">Home</span>
             </li>
             <li class="sidebar-item">
-              <a class="sidebar-link" href="{{ route('index') }}" aria-expanded="false">
+              <a class="sidebar-link" href="{{ route('index.super-admin') }}" aria-expanded="false">
                 <span>
                   <i class="ti ti-home"></i>
                 </span>

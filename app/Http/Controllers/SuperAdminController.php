@@ -139,6 +139,8 @@ class SuperAdminController extends Controller
      */
     public function printSummary()
     {
-        return view('super_admin.csf_summary');
+        $csf_data = customer_satisfaction::get();
+
+        return view('super_admin.csf_summary', [ 'csf_data' => $csf_data]);
     }
 }

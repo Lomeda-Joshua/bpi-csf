@@ -12,18 +12,17 @@
 
 <body>  
   
-
-
     <div class="printable_area">
+
         <div class="content">
             
             <table>
                 <tr>
                     <td>DIVISION/OFFICE/UNIT:</td>
-                    <td></td>
+                    <td>{{ $csf_data }}</td>
                 </tr>
                 <tr>
-                    <td>SECTION/STATION:</td>
+                    <td>SECTION/STATION: </td>
                     <td></td>
                 </tr>
             </table>  
@@ -41,6 +40,7 @@
                     <td class="text-center align-middle" rowspan="2">Private (P) or Government (G)</td>
                     <td class="text-center" colspan="5" style="background-color:#d3db3d;">Criteria</td>
                 </tr>
+
                 <tr>
                     <td class="text-center align-middle">Individual (I) or Group (G)</td>
                     <td class="text-center align-middle">Male (M) or Female (F)</td>

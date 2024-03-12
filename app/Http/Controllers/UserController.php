@@ -52,4 +52,15 @@ class UserController extends Controller
         return view('users.officeDetails');
     }
 
+    /**
+     * Display the print summary.
+     */
+    public function printSummary()
+    {
+        $office_id = Auth::user()->office_id;
+        $csf = customer_satisfaction::with('office')->where('office_id', '=', $office_id )->get();
+
+        return view('super_admin.csf_summary', [ 'csf_data' => $csf]);
+    }
+
 }

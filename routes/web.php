@@ -2,12 +2,10 @@
 
 use Illuminate\Support\Facades\Route;
 
-use App\Http\Controllers\ProfileController;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\SuperAdminController;
-
-use App\Models\customer_satisfaction;
 
 use App\Http\Controllers\CsfController;
 
@@ -25,7 +23,8 @@ use App\Http\Controllers\CsfController;
 */
 
 Route::get('/', function () {
-    return view('auth.login');
+    $auth_id = Auth::user();
+    return view('auth.login', [ 'auth_id' => $auth_id] );
 });
 
 
@@ -34,7 +33,7 @@ Route::post('/customer-satisfaction-form/submitted', [ CsfController::class, 'st
 
 Route::middleware(['auth', 'role:3'])->controller(SuperAdminController::class)->group(function(){
     Route::prefix('/super-admin')->group(function(){
-        Route::get('/dashboard', 'index')->name('index');
+        Route::get('/dashboard', 'index')->name('index.super-admin');
         Route::get('/customer-satisfaction-list', 'csfList')->name('super.list');
         Route::get('/settings/profile', 'profile')->name('super.profile');
         Route::get('/settings/office-details', 'officeDetails')->name('super.office');
@@ -50,7 +49,7 @@ Route::middleware(['auth', 'role:3'])->controller(SuperAdminController::class)->
 
 
 Route::middleware(['auth', 'role:2'])->controller(AdminController::class)->prefix('/admin')->group(function(){
-    Route::get('/dashboard', 'index');
+    Route::get('/dashboard', 'index')->name('index.admin');
     Route::get('/customer-satisfaction-list', 'csfList');
     Route::get('/settings/profile', 'profile');
     Route::get('/settings/office-details', 'officeDetails');
@@ -59,10 +58,12 @@ Route::middleware(['auth', 'role:2'])->controller(AdminController::class)->prefi
 
 
 Route::middleware(['auth', 'role:1'])->controller(UserController::class)->prefix('/user')->group(function(){
-    Route::get('/dashboard', 'index');
+    Route::get('/dashboard', 'index')->name('index.user');
     Route::get('/customer-satisfaction-list', 'csfList');
     Route::get('/settings/profile', 'profile')->name('user.profile');
     Route::get('/settings/office-details', 'officeDetails');
+    
+    Route::get('/print-summary', 'printSummary')->name('print-summary-user');
 });
 
 

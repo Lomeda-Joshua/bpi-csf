@@ -15,9 +15,6 @@ class OfficeMiddleware
      */
     public function handle(Request $request, Closure $next, $office_assign): Response
     {
-
-        
-
         return $next($request);
     }
 }
