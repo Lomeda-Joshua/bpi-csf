@@ -59,8 +59,10 @@ class UserController extends Controller
     {
         $office_id = Auth::user()->office_id;
         $csf = customer_satisfaction::with('office')->where('office_id', '=', $office_id )->get();
+        $office_user = User::with('office')->where('office_id', $office_id)->first();
 
-        return view('super_admin.csf_summary', [ 'csf_data' => $csf]);
+
+        return view('users.csf_summary', [ 'csf_data' => $csf, 'office_user' => $office_user ]);
     }
 
 }
