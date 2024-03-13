@@ -64,7 +64,7 @@
                       </td>
                       <td class="border-bottom-0">
                         <div class="d-flex align-items-center gap-2 ">
-                            <button class="badge bg-success rounded-3 fw-semibold text-center" data-bs-toggle="modal" data-bs-target="#csfFormWindow">View</button>
+                            <button class="btn btn-success m-1" data-bs-toggle="modal" data-bs-target="#csfFormWindow">View</button>
                         </div>
                       </td>
 

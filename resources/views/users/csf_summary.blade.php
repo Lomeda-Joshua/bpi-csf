@@ -13,10 +13,15 @@
 <body>  
   
     <style>
-        table, th, td{
+        table, th, td
+        {
             border: 1px solid black;
-            padding:3px;
+            padding:5px;
+            font-size:14px;
+            
         }
+
+    
 
         .body-wrapper{
             padding:15px;
@@ -32,24 +37,24 @@
                 <div class="col">
                     <table>
                         <tr>
-                            <td>DIVISION/OFFICE/UNIT:</td>
-                            <td>{{ $office_user->office->office_name }}</td>                            
+                            <td><b>DIVISION/OFFICE/UNIT:</b></td>
+                            <td class="text-center">{{ $office_user->office->office_name }}</td>                            
                         </tr>
                         <tr>
-                            <td>SECTION/STATION: </td>
-                            <td>{{ $office_user->office->office_name }}</td>
+                            <td><b>SECTION/STATION:</b></td>
+                            <td class="text-center">{{ $office_user->office->office_name }}</td>
                         </tr>
                         <tr>
-                            <td>NO. OF INDIVIDUAL: </td>
-                            <td>NO. OF GROUP: </td>
+                            <td><b>NO. OF INDIVIDUAL: </b></td>
+                            <td class ="text-center">{{ count($individual) }}</td>
                         </tr>
                         <tr>
-                            <td>NO. OF MALE: </td>
-                            <td>NO. OF GOVERNMENT ENTITY: </td>
+                            <td><b>NO. OF MALE:</b></td>
+                            <td class ="text-center">{{ count($male) }}</td>
                         </tr>
                         <tr>
-                            <td>NO. OF FEMALE:</td>
-                            <td>NO. OF PRIVATE ENTITY:</td>
+                            <td><b>NO. OF FEMALE:</b></td>
+                            <td class ="text-center">{{ count($female) }}</td>
                         </tr>
                     </table> 
                     <table style="margin-top:20px;">
@@ -100,7 +105,7 @@
                         </tr>
                         <tr>
                             <td>Total number of customers</td>
-                            <td>{{ "65" }}</td>
+                            <td>{{ count($csf_data) }}</td>
                            
                         </tr>
                         <tr>
@@ -124,7 +129,7 @@
 
         
 
-
+    <div style="overflow-x:auto;">
             <table class="table">
                 <thead>
                     <tr>
@@ -168,6 +173,7 @@
                         <td>{{ $item->promoter_score  }}</td>
                         <td>{{ $totalCriteria = $item->criteria_quality_of_goods + $item->criteria_courteousness + $item->criteria_responsiveness + $item->criteria_overall_experience + $item->promoter_score }} </td>
                         <td>{{ $AdjectivalRating = $totalCriteria/5 }} </td>
+
                         <td> @switch( $AdjectivalRating )
 
                                 @case( 1 )
@@ -198,6 +204,9 @@
             </table>
         </div>
     </div>
+
+
+</div>
 
     <script>
 

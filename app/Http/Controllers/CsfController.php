@@ -13,13 +13,21 @@ class CsfController extends Controller
     {
         $office_data = OFfice::all();
 
+        $getData = date("Y");
+        $getMonth = date("m");
+        $setTrackNumber = 234;
+
+        dd( $getData . "-" . $getMonth . "-" . $setTrackNumber);
+
         return view('customer_satisfaction_form', ['office_data' => $office_data] );
     }
 
     
     public function store(Request $request)
     {
+
         
+
         $office_id = $request->input('office_id');
         $csf_time = $request->input('csf_time');
         $csf_date = $request->input('csf_date');
@@ -38,6 +46,7 @@ class CsfController extends Controller
         $criteria_overall_experience = $request->input('criteria_overall_experience');
         $promoter_score = $request->input('promoter_score');
         $comments_suggestions = $request->input('comments_suggestions');
+        
         
 
         customer_satisfaction::create([
@@ -59,6 +68,7 @@ class CsfController extends Controller
             'promoter_score' => $promoter_score,
             'comments_suggestions' => $comments_suggestions,
             'office_id' => $office_id,
+            
         ]);
 
         
