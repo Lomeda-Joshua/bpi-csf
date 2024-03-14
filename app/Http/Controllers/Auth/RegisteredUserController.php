@@ -60,6 +60,10 @@ class RegisteredUserController extends Controller
             case 3:
                 return redirect()->intended(RouteServiceProvider::SUPER_ADMIN_HOME);
             break;
+
+            default:    
+                return redirect('/');
+
         }
     }
 }

@@ -2,7 +2,18 @@
 
 @section('contents')
 
-<h2>You're signed on <b>{{ $office_user->office->office_name }}</b></h2>
+<h2><b>
+        @php
+          if(empty($office_user->office->office_name)){
+            echo "No office assigned yet contact administrator";
+          }else{
+            if( !empty($office_user->office->office_name) ){
+              echo "You're signed on " . $office_user->office->office_name ;
+            }
+          }
+        @endphp
+    </b>
+</h2>
 
 <br>
 

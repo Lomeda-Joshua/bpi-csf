@@ -34,7 +34,8 @@ class UserController extends Controller
     public function csfList()
     {
         $office_id = Auth::user()->office_id;
-        $csf = customer_satisfaction::with('office')->where('office_id', '=', $office_id )->take(5)->get();
+        $csf = customer_satisfaction::with('office')->where('office_id', '=', $office_id )->get();
+        
         return view('users.csfList', [ 'csf' => $csf ]);
     }
 
@@ -60,7 +61,6 @@ class UserController extends Controller
         $office_id = Auth::user()->office_id;
         $csf = customer_satisfaction::with('office')->where('office_id', '=', $office_id )->get();
         $office_user = User::with('office')->where('office_id', $office_id)->first();
-
 
         return view('users.csf_summary', [ 'csf_data' => $csf, 'office_user' => $office_user ]);
     }

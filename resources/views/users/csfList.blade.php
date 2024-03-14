@@ -27,7 +27,14 @@
         <h2>Customer Satisfaction List</h2>
         <br>
 
-        <a href="{{ route('print-summary-user') }}" type="button" class="btn btn-primary">Print</a>
+        
+
+        @if( !empty( count($csf) ) )
+            <a href='{{ route('print-summary-user') }}' type='button' class='btn btn-primary'>Print</a>
+        @else
+            <h5 class="text-danger">No CSF data yet</h5>
+        @endif
+
 
         <table id="csf_table" class="striped" style="width:100%">
             <thead>
@@ -42,34 +49,39 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach( $csf as $items)
-                  <tr>
-                      <td class="border-bottom-0 p-3">
-                          <h6 class="fw-semibold mb-1">{{ $items->name }}</h6>                   
-                      </td>
-                      <td class="border-bottom-0">
-                      <p class="mb-0 fw-normal text-center">{{ $items->gender == 1 ? "Male" : "Female" }}</p>
-                      </td>
-                      <td class="border-bottom-0">
-                        <p class="mb-0 fw-normal text-center">{{ $items->contact_details }}</p>
-                        </td>
-                      <td class="border-bottom-0">
-                        <p class="mb-0 fw-normal text-center">{{ $items->age }}</p>
-                      </td>
-                      <td class="border-bottom-0">
-                        <p class="mb-0 fw-normal">{{ $items->csf_date }}</p>
-                      </td>
-                      <td class="border-bottom-0">
-                        <p class="mb-0 fw-normal">{{ $items->csf_time }}</p>
-                      </td>
-                      <td class="border-bottom-0">
-                        <div class="d-flex align-items-center gap-2 ">
-                            <button class="badge bg-success rounded-3 fw-semibold text-center" data-bs-toggle="modal" data-bs-target="#csfFormWindow">View</button>
-                        </div>
-                      </td>
+              
 
-                  </tr>    
-                  @endforeach      
+              
+
+              @if( !empty(count($csf)) )
+                  @foreach( $csf as $items)
+                    <tr>
+                          <td class="border-bottom-0 p-3">
+                              <h6 class="fw-semibold mb-1">{{ $items->name }}</h6>                   
+                          </td>
+                          <td class="border-bottom-0">
+                          <p class="mb-0 fw-normal text-center">{{ $items->gender == 1 ? "Male" : "Female" }}</p>
+                          </td>
+                          <td class="border-bottom-0">
+                            <p class="mb-0 fw-normal text-center">{{ $items->contact_details }}</p>
+                          </td>
+                          <td class="border-bottom-0">
+                            <p class="mb-0 fw-normal text-center">{{ $items->age }}</p>
+                          </td>
+                          <td class="border-bottom-0">
+                            <p class="mb-0 fw-normal">{{ $items->csf_date }}</p>
+                          </td>
+                          <td class="border-bottom-0">
+                            <p class="mb-0 fw-normal">{{ $items->csf_time }}</p>
+                          </td>
+                          <td class="border-bottom-0">
+                            <div class="d-flex align-items-center gap-2 ">
+                                <button class="badge bg-success rounded-3 fw-semibold text-center" data-bs-toggle="modal" data-bs-target="#csfFormWindow">View</button>
+                            </div>
+                          </td>
+                      </tr>    
+                    @endforeach  
+              @endif
             </tbody>
         </table>
 
