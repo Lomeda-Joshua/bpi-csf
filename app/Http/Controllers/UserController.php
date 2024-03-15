@@ -41,10 +41,20 @@ class UserController extends Controller
 
     public function profile()
     {
-        $profile = Auth::user();
-        
+        $role_id_check = User::where( 'role_id', 'LIKE', '3%' )->count();     
+        $profile = Auth::user();        
 
-        return view('users.profile', [ 'profile' => $profile]);
+        return view('users.profile', [ 'profile' => $profile,  'role_id_check' => $role_id_check ]);
+    }
+    
+    
+    public function profile_update(Request $request, User $id )
+    {
+        $profile = Auth::user();
+        $profile_update = $request->all();
+        $id->update($profile_update);
+
+        return redirect('/');
     }
 
     

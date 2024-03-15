@@ -43,6 +43,9 @@ Route::middleware(['auth', 'role:3'])->controller(SuperAdminController::class)->
         Route::put('/settings/office-details/{id}/edit', 'office_edit_save')->name('super.office.edit-save');
         Route::get('/settings/personnel-list', 'personnelList')->name('super.personnel');
 
+        Route::get('/settings/personnel-list/add-new-user', 'addNewPersonnel')->name('super.admin-add.new.user');
+        Route::post('/settings/personnel-list/add-new-user', 'saveNewPersonnel')->name('super.admin-store.new.user');
+
         Route::get('/print-summary', 'printSummary')->name('print-summary');
     });
 });
@@ -63,6 +66,8 @@ Route::middleware(['auth', 'role:1'])->controller(UserController::class)->prefix
     Route::get('/settings/profile', 'profile')->name('user.profile');
     Route::get('/settings/office-details', 'officeDetails');
     
+    Route::put('/settings/profile/{id}', 'profile_update')->name('profile.update');
+
     Route::get('/print-summary', 'printSummary')->name('print-summary-user');
 });
 

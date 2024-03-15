@@ -12,22 +12,12 @@ class CsfController extends Controller
     public function index()
     {
         $office_data = OFfice::all();
-
-        $getData = date("Y");
-        $getMonth = date("m");
-        $setTrackNumber = 234;
-
-        dd( $getData . "-" . $getMonth . "-" . $setTrackNumber);
-
         return view('customer_satisfaction_form', ['office_data' => $office_data] );
     }
 
     
     public function store(Request $request)
     {
-
-        
-
         $office_id = $request->input('office_id');
         $csf_time = $request->input('csf_time');
         $csf_date = $request->input('csf_date');

@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\Rules;
+use Illuminate\Support\Facades\Hash;
+
+use App\Models\User;
 use App\Models\customer_satisfaction;
 use App\Models\Office;
 
@@ -128,11 +131,41 @@ class SuperAdminController extends Controller
     public function personnelList(){
 
         $personnels = User::with('office')->get();
-        
-        
-
         return view('super_admin.personnelList', [ 'personnels' => $personnels]);
     }
+
+    /**
+     * Display the add of new user.
+     */
+    public function addNewPersonnel(){
+
+        return view('super_admin.create_new_profile', ['office' => Office::all()] );
+    }
+
+
+    /**
+     * Store the new user
+     */
+    public function saveNewPersonnel(Request $request){
+        $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
+            'password' => ['required', 'confirmed', Rules\Password::defaults()],
+            'office_id' => ['required']
+        ]);
+
+        $user = User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+            'office_id' => $request->office_id
+        ]);
+
+        return redirect( route('super.personnel') );
+
+    }
+
+
 
     /**
      * Display the print summary.

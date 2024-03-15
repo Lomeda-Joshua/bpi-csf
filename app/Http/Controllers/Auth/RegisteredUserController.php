@@ -63,7 +63,7 @@ class RegisteredUserController extends Controller
 
             default:    
                 return redirect('/');
-
+                 
         }
     }
 }

@@ -25,6 +25,7 @@
         {{ $user_data->updated_at }}
       <br><br>
 
+      
 
     </div>
 </div>

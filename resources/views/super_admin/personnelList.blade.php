@@ -5,6 +5,9 @@
 <div class="card">
     <div class="card-body">
       <h5 class="card-title fw-semibold mb-4">Authorized Personnel</h5>
+
+      <a href="{{ route('super.admin-store.new.user') }}" id="new_user" class="btn btn-success m-1">Apply a new user</a>
+ 
       <table id="personnel_list" class="striped" style="width:100%">
         <thead>
             <tr style="background-color:gray; color:white;">
