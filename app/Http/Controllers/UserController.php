@@ -36,6 +36,7 @@ class UserController extends Controller
         $office_id = Auth::user()->office_id;
         $csf = customer_satisfaction::with('office')->where('office_id', '=', $office_id )->get();
         
+        
         return view('users.csfList', [ 'csf' => $csf ]);
     }
 
@@ -69,13 +70,13 @@ class UserController extends Controller
     public function printSummary()
     {
         $office_id = Auth::user()->office_id;
-        $csf = customer_satisfaction::with('office')->where('office_id', '=', $office_id )->get();
+        $csf_data = customer_satisfaction::with('office')->where('office_id', '=', $office_id )->get();
         $office_user = User::with('office')->where('office_id', $office_id)->first(); 
         $individual = customer_satisfaction::with('office')->where('individual_group', '=', 1)->where('office_id', $office_id)->get();
         $male = customer_satisfaction::with('office')->where('gender', '=', 1)->where('office_id', $office_id)->get();
         $female = customer_satisfaction::with('office')->where('gender', '=', 2)->where('office_id', $office_id)->get();
 
-        return view('users.csf_summary', [ 'csf_data' => $csf, 'office_user' => $office_user, 'individual' => $individual, 'male' => $male, 'female' => $female ]);
+        return view('users.csf_summary', [ 'csf_data' => $csf_data, 'office_user' => $office_user, 'individual' => $individual, 'male' => $male, 'female' => $female ]);
     }
 
 }

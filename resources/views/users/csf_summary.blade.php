@@ -200,6 +200,14 @@
                         </td>
                     </tr>   
                     @endforeach
+                    <tr>
+                        <td class="text-center" colspan="6">TOTAL SCORE PER CRITERIA (sum per column until last customer)</td>
+                        <td>{{ $csf_data->sum('criteria_quality_of_goods') }}</td>
+                    </tr>
+                    <tr>
+                        <td class="text-center" colspan="6">AVERAGE PER CRITERIA (average per column until last customer)</td>
+                        
+                    </tr>
                 </tbody>
             </table>
         </div>
