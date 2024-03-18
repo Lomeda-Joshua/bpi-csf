@@ -66,24 +66,24 @@
                                 <br>
 
                                 <label for="time"><span class="fw-semibold" style="font-weight:700">Time/</span>Oras :</label>
-                                <input type="time" class="form-control" name="csf_time" id="csf_time" value="" aria-describedby="time" />
+                                <input type="time" class="form-control" name="csf_time" id="csf_time" value="" aria-describedby="time"/>
                                 
                                 <br>
 
                                 <label for="date"><span class="fw-semibold" style="font-weight:700">Date/</span>Petsa :</label>
-                                <input type="date" class="form-control" id="csf_date" name="csf_date" aria-describedby="date">
+                                <input type="date" class="form-control" id="csf_date" name="csf_date" aria-describedby="date" />
                                 <br>
 
                                 <label for="name"><span class="fw-semibold" style="font-weight:700">Name/</span>Pangalan :</label>
-                                <input type="text" class="form-control" id="name" name="name" aria-describedby="emailHelp">
+                                <input type="text" class="form-control" id="name" name="name" aria-describedby="name" required />
                                 <br>
 
                                 <label for="age"><span class="fw-semibold" style="font-weight:700">Age/ Edad*</span></label>
-                                <input type="number" class="form-control" name="age" id="age" aria-describedby="age">
+                                <input type="number" class="form-control" name="age" id="age" aria-describedby="age" required />
                                 <br>
 
                                 <label for="gender"><span class="fw-semibold" style="font-weight:700">Gender/ kasarian*</span></label>
-                                <select class="form-control" name="gender" id="gender" aria-describedby="gender" >
+                                <select class="form-control" name="gender" id="gender" aria-describedby="gender" required />
                                     <option selected disabled>-- Select Gender --</option>
                                     <option value="1">Male</option>
                                     <option value="2">Female</option>
@@ -92,12 +92,12 @@
                                 <br>
 
                                 <label><span class="fw-semibold" style="font-weight:700">Contact details (e-mail address or contact no.)</label>
-                                <input type="text" class="form-control" id="contact_details" name="contact_details" aria-describedby="contactDetails">
+                                <input type="text" class="form-control" id="contact_details" name="contact_details" aria-describedby="contactDetails" required />
                                 <br>
 
                                 <label><span class="fw-semibold" style="font-weight:700">Select your classification</span>:</label><br>
 
-                                <input type="radio" name="individual_group" id="individual" value = "1">
+                                <input type="radio" name="individual_group" id="individual" value = "1"  />
                                 <label style="font-size:17px; font-weight:bold;" class="form-check-label" for="individual">Individual/ Indibidwal</label>
                                 <br>
                                 <input type="radio" name="individual_group" id="group" value = "2">
@@ -251,9 +251,9 @@
                                 <br>
                                 <label><span class="fw-semibold" style="font-weight:700">Other comments or suggestions on how we can further improve our goods/services?/ <i>Iba pang komento o mungkahi upang lalong mapaganda ang aming produkto at serbisyo?</i></span></label> <br>
                                 <label><span class="fw-semibold" style="font-weight:700">Put NONE if you don't have comments or suggestion/ <i>Ilagay WALA kung walang nais na ikomento o imungkahi.</i></span></label><br>
-                                <input type="text" class="form-control" id="comments_suggestions" name = "comments_suggestions" aria-describedby="comments">
+                                <input type="text" class="form-control" id="comments_suggestions" name="comments_suggestions" aria-describedby="comments">
                                 <br>
-                                <button type="submit" class="btn btn-primary me-2">Submit</button>
+                                <button type="submit" class="btn me-2" style="background-color: #fbae42 !important; color:white;">Submit</button>
             
                                 <br><br>
                                 <small>EFFECTIVITY DATE:</small>

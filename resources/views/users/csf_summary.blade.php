@@ -17,11 +17,9 @@
         {
             border: 1px solid black;
             padding:5px;
-            font-size:14px;
+            font-size:12px;
             
         }
-
-    
 
         .body-wrapper{
             padding:15px;
@@ -133,7 +131,7 @@
             <table class="table">
                 <thead>
                     <tr>
-                        <td class="text-center align-middle" rowspan="2">Control Number</td>
+                        <td class="text-center align-middle" rowspan="2" style="width:190px">Control Number</td>
                         <td class="text-center align-middle" rowspan="2"> Name of Customer/ Company (Last Name, First Name, Middle Initial)</td>
                         <td class="text-center align-middle" rowspan="2"> AGE GROUP (≤ 17/18-59/≥ 60)</td>
                         <td style="background-color:#8bb768; color:white;">Individual</td>
@@ -160,7 +158,7 @@
                 <tbody>
                     @foreach( $csf_data as $item )
                     <tr>
-                        <td>CSF-03-2024-211</td>
+                        <td>CSF-03-2024-00211</td>
                         <td>{{ $item->name }}</td>
                         <td>{{ $item->age  }}</td>
                         <td>{{ $item->individual_group == 1 ? "I" : "G"  }}</td>
@@ -171,38 +169,44 @@
                         <td>{{ $item->criteria_responsiveness  }}</td>
                         <td>{{ $item->criteria_overall_experience  }}</td>
                         <td>{{ $item->promoter_score  }}</td>
-                        <td>{{ $totalCriteria = $item->criteria_quality_of_goods + $item->criteria_courteousness + $item->criteria_responsiveness + $item->criteria_overall_experience + $item->promoter_score }} </td>
-                        <td>{{ $AdjectivalRating = $totalCriteria/5 }} </td>
+                        <td><input type="hidden" id="totalScore[]" value="{{ $totalScore = $item->criteria_quality_of_goods + $item->criteria_courteousness + $item->criteria_responsiveness + $item->criteria_overall_experience + $item->promoter_score }}" /> {{ $totalScore = $item->criteria_quality_of_goods + $item->criteria_courteousness + $item->criteria_responsiveness + $item->criteria_overall_experience + $item->promoter_score }}</td>
+
+                        <td>{{ $AdjectivalRating = $totalScore/5 }} </td>
 
                         <td> @switch( $AdjectivalRating )
 
-                                @case( 1 )
-                                    Very Dissatisfied
-                                @break
+                                    @case( 1 )
+                                        Very Dissatisfied
+                                    @break
 
-                                @case( 2 )
-                                    Dissatisfied
-                                @break
+                                    @case( 2 )
+                                        Dissatisfied
+                                    @break
 
-                                @case( 3 )
-                                    Neutral
-                                @break
+                                    @case( 3 )
+                                        Neutral
+                                    @break
 
-                                @case( 4 )
-                                    Satisfied
-                                @break
+                                    @case( 4 )
+                                        Satisfied
+                                    @break
 
-                                @case( 5 )
-                                    Very Satisfied
-                                @break
+                                    @case( 5 )
+                                        Very Satisfied
+                                    @break
 
-                            @endswitch    
+                              @endswitch    
                         </td>
                     </tr>   
                     @endforeach
                     <tr>
                         <td class="text-center" colspan="6">TOTAL SCORE PER CRITERIA (sum per column until last customer)</td>
                         <td>{{ $csf_data->sum('criteria_quality_of_goods') }}</td>
+                        <td>{{ $csf_data->sum('criteria_courteousness') }}</td>
+                        <td>{{ $csf_data->sum('criteria_responsiveness') }}</td>
+                        <td>{{ $csf_data->sum('criteria_overall_experience') }}</td>
+                        <td>{{ $csf_data->sum('promoter_score') }}</td>
+                        <td id="totalScorePerCustomer"></td>
                     </tr>
                     <tr>
                         <td class="text-center" colspan="6">AVERAGE PER CRITERIA (average per column until last customer)</td>
@@ -217,7 +221,19 @@
 </div>
 
     <script>
+        $(document).ready(function(){
 
+            let inputBox = $("input[id = 'totalScore[]']").map(function(){return $(this).val()}).get();
+            let sum = 0;
+
+            for (let i = 0; i < inputBox.length; i++ ){
+                sum =  parseInt(inputBox[i]) + sum;
+            }
+
+            $("#totalScorePerCustomer").text(sum);
+
+           
+        });
     </script>
 
 </body>
