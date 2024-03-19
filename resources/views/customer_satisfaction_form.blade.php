@@ -131,11 +131,11 @@
                                 <br>
                                 <br>
 
-                                <h5>Specific Type and Quantity of goods or services received/ Uri at dami ng mga bagay at serbisyong natanggap:* <br>(Ex. 1 pack of  seeds/ 3 Certificates of Accreditation or Permits)</h5>
+                                <h5><b>Specific Type and Quantity of goods or services received</b>/ Uri at dami ng mga bagay at serbisyong natanggap:* <br>(Ex. 1 pack of  seeds/ 3 Certificates of Accreditation or Permits)</h5>
                                 <input type="text" class="form-control" name="type_and_quantity" id="type_and_quantity" aria-describedby="typeOfQuantity">
                                 <br><br>
 
-                                <h5>Please check (✓) the appropriate column from 1 - 5, with 1 is being the lowest and 5 as the highest.</h5>
+                                <h5 style="font-style:11px"><b>Instructions: Please check (✓) the appropriate column from 1 - 5, with 1 is being the lowest and 5 as the highest.</b></h5>
                                 <h5><i>Lagyan ng (✓) and napiling "kolum" mula 1 - 5, 1 bilang pinakamababa at 5 bilang pinakamataas,*</i></h5>
                                 
                                 <div class="container-fluid ">
@@ -223,17 +223,23 @@
                                             </tr>
                                             <tr>
                                                 <td>
-                                                    <label><b>Promoter score</b></label>
+                                                    <label style="text-transform:uppercase"><b>Promoter score</b></label>
                                                 </td>
                                                 <td>
+                                                    <label style="font-size:13px"><b>(5) STRONGLY AGREE</b><br><i>LUBOS NA NASIYAHAN</i></label>
                                                 </td>
                                                 <td>
+                                                    <label style="font-size:13px"><b>(4) AGREE</b><br><i>SANG-AYON</i></label>
                                                 </td>
                                                 <td>
+                                                    <label style="font-size:13px"><b>(3) NEUTRAL</b></label>
                                                 </td>
                                                 <td>
+                                                    <label style="font-size:13px"><b>(2) DISAGREE</b><br><i>HINDI SANG-AYON</i></label>
                                                 </td>
-                                                
+                                                <td>
+                                                    <label style="font-size:13px"><b>(1) STRONGLY AGREE</b><br><i>LUBOS NA HINDI SANG-AYON</i></label>
+                                                </td>                                                
                                             </tr>
                                             <tr>
                                                 <td>
@@ -249,7 +255,8 @@
                                     </table>
                                 </div>
                                 <br>
-                                <label><span class="fw-semibold" style="font-weight:700">Other comments or suggestions on how we can further improve our goods/services?/ <i>Iba pang komento o mungkahi upang lalong mapaganda ang aming produkto at serbisyo?</i></span></label> <br>
+                                <label><span class="fw-semibold" style="font-weight:700"><b>6. Other comments or suggestions on how we can further improve our goods/services?</b>/ <br><i>Iba pang komento o mungkahi upang lalong mapaganda ang aming produkto at serbisyo?</i></span></label> <br>
+                                <br>
                                 <label><span class="fw-semibold" style="font-weight:700">Put NONE if you don't have comments or suggestion/ <i>Ilagay WALA kung walang nais na ikomento o imungkahi.</i></span></label><br>
                                 <input type="text" class="form-control" id="comments_suggestions" name="comments_suggestions" aria-describedby="comments">
                                 <br>
