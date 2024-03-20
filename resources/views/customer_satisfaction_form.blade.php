@@ -65,21 +65,30 @@
                                 </select>
                                 <br>
 
-                                <label for="time"><span class="fw-semibold" style="font-weight:700">Time/</span>Oras :</label>
-                                <input type="time" class="form-control" name="csf_time" id="csf_time" value="" aria-describedby="time"/>
-                                
-                                <br>
-
-                                <label for="date"><span class="fw-semibold" style="font-weight:700">Date/</span>Petsa :</label>
-                                <input type="date" class="form-control" id="csf_date" name="csf_date" aria-describedby="date" />
-                                <br>
-
                                 <label for="name"><span class="fw-semibold" style="font-weight:700">Name/</span>Pangalan :</label>
                                 <input type="text" class="form-control" id="name" name="name" aria-describedby="name" required />
                                 <br>
 
-                                <label for="age"><span class="fw-semibold" style="font-weight:700">Age/ Edad*</span></label>
-                                <input type="number" class="form-control" name="age" id="age" aria-describedby="age" required />
+                                <label for="age"><span class="fw-semibold" style="font-weight:700">Age/ Edad :</span></label>
+                                <br><br>
+
+                                <div class="row">
+                                    <div class="col-1">
+                                        <label style="font-size:17px; font-weight:bold;" class="form-check-label" for="age17">< 17</label>
+                                        <input type="radio" name="age" id="age17" value = "1"  />
+                                    </div>
+                                    
+                                    <div class="col-1">
+                                        <label style="font-size:17px; font-weight:bold;" class="form-check-label" for="age18">18-59</label>
+                                        <input type="radio" name="age" id="age18" value = "2">
+                                    </div>
+                                    
+                                    <div class="col-1">
+                                        <label style="font-size:17px; font-weight:bold;" class="form-check-label" for="age60">60 ></label>
+                                        <input type="radio" name="age" id="age60" value = "3">
+                                    </div>
+                                    
+                                </div>
                                 <br>
 
                                 <label for="gender"><span class="fw-semibold" style="font-weight:700">Gender/ kasarian*</span></label>
@@ -131,14 +140,14 @@
                                 <br>
                                 <br>
 
-                                <h5><b>Specific Type and Quantity of goods or services received</b>/ Uri at dami ng mga bagay at serbisyong natanggap:* <br>(Ex. 1 pack of  seeds/ 3 Certificates of Accreditation or Permits)</h5>
+                                <h5 style="font-size:17px"><b>Specific Type and Quantity of goods or services received</b>/ Uri at dami ng mga bagay at serbisyong natanggap:* <br>(Ex. 1 pack of  seeds/ 3 Certificates of Accreditation or Permits)</h5>
                                 <input type="text" class="form-control" name="type_and_quantity" id="type_and_quantity" aria-describedby="typeOfQuantity">
                                 <br><br>
 
-                                <h5 style="font-style:11px"><b>Instructions: Please check (✓) the appropriate column from 1 - 5, with 1 is being the lowest and 5 as the highest.</b></h5>
-                                <h5><i>Lagyan ng (✓) and napiling "kolum" mula 1 - 5, 1 bilang pinakamababa at 5 bilang pinakamataas,*</i></h5>
-                                
-                                <div class="container-fluid ">
+                                <h5 style="font-size:17px"><b>Instructions: Please check (✓) the appropriate column from 1 - 5, with 1 is being the lowest and 5 as the highest.</b></h5>
+                                <h5 style="font-size:17px"><i>Lagyan ng (✓) and napiling "kolum" mula 1 - 5, 1 bilang pinakamababa at 5 bilang pinakamataas,*</i></h5>
+                                <br>
+                                <div class="container-fluid">
                                     <table class="table mb-0 align-middle" style="width:100%">
                                         <thead class="text-center align-middle">
                                             <tr class="col">
@@ -253,6 +262,7 @@
                                             </tr>
                                         </tbody>
                                     </table>
+
                                 </div>
                                 <br>
                                 <label><span class="fw-semibold" style="font-weight:700"><b>6. Other comments or suggestions on how we can further improve our goods/services?</b>/ <br><i>Iba pang komento o mungkahi upang lalong mapaganda ang aming produkto at serbisyo?</i></span></label> <br>

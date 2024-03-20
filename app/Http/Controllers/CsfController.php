@@ -18,9 +18,12 @@ class CsfController extends Controller
     
     public function store(Request $request)
     {
+        date_default_timezone_set('Asia/Hong_Kong');
         $office_id = $request->input('office_id');
-        $csf_time = $request->input('csf_time');
-        $csf_date = $request->input('csf_date');
+
+        $csf_time = date('H:i:s');
+        $csf_date = date('Y-m-d');
+
         $name = $request->input('name');
         $age = $request->input('age');
         $gender = $request->input('gender');
@@ -36,9 +39,8 @@ class CsfController extends Controller
         $criteria_overall_experience = $request->input('criteria_overall_experience');
         $promoter_score = $request->input('promoter_score');
         $comments_suggestions = $request->input('comments_suggestions');
+    
         
-        
-
         customer_satisfaction::create([
             'csf_time' => $csf_time,
             'csf_date' => $csf_date,

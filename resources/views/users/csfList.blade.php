@@ -2,7 +2,6 @@
 
 @section('contents')
 
-
   <!-- Modal -->
   <div class="modal fade" id="csfFormWindow" tabindex="-1" aria-labelledby="csfFormWindow" aria-hidden="true" >
     <div class="modal-dialog">
@@ -24,18 +23,30 @@
 
 <div class="card">
     <div class="card-body">
-        <h2>Customer Satisfaction List</h2>
+        <h2>Customer Satisfaction Form List</h2>
         <br>
 
-        
+        <form action="{{route('print-summary-user')}}" method="post" >
+
+          @csrf
+          @method('post')
+
+        <label><b>Select Date range:</b></label>
+        <input style="width:250px" type="text" id="datefilter" name="datefilter" class="form-control" value="" autocomplete="false" />
+        <br>
 
         @if( !empty( count($csf) ) )
-            <a href='{{ route('print-summary-user') }}' type='button' class='btn btn-primary'>Print</a>
-        @else
-            <h5 class="text-danger">No CSF data yet</h5>
-        @endif
+            
+             
 
+              <button type="submit" class='btn btn-primary'>Print</button>
 
+        </form>
+          @else
+              <h5 class="text-danger">No CSF data yet</h5>
+          @endif
+      
+        <br>
         <table id="csf_table" class="striped" style="width:100%">
             <thead>
                 <tr style="background-color:gray; color:white;">
@@ -66,7 +77,16 @@
                             <p class="mb-0 fw-normal text-center">{{ $items->contact_details }}</p>
                           </td>
                           <td class="border-bottom-0">
-                            <p class="mb-0 fw-normal text-center">{{ $items->age }}</p>
+                            <p class="mb-0 fw-normal text-center">
+                              @if($items->age == 1)
+                                  {{"< 17"}}
+                              @elseif($items->age == 2)
+                                  {{"18 - 59"}}
+                              @elseif($items->age == 3)
+                                  {{"> 60"}}
+                              @endif
+                              
+                            </p>
                           </td>
                           <td class="border-bottom-0">
                             <p class="mb-0 fw-normal">{{ $items->csf_date }}</p>
@@ -90,8 +110,31 @@
 
 <script>
     $("document").ready(function(){
+        
         new DataTable('#csf_table');
-    })
+  
+    });
+
+    $(function() {
+
+          $('input[name="datefilter"]').daterangepicker({
+              autoUpdateInput: false,
+              locale: {
+                  cancelLabel: 'Clear'
+              }
+          });
+
+          $('input[name="datefilter"]').on('apply.daterangepicker', function(ev, picker) {
+              $(this).val(picker.startDate.format('MM/DD/YYYY') + ' - ' + picker.endDate.format('MM/DD/YYYY'));
+          });
+
+          $('input[name="datefilter"]').on('cancel.daterangepicker', function(ev, picker) {
+              $(this).val('');
+          });
+
+    });
+
+    
 </script>
 
 

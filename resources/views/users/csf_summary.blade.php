@@ -26,14 +26,21 @@
         }
     </style>
 
+
     <div class="body-wrapper">
 
         <div class="printable_area">
 
             <div class="content row" style = "margin-bottom:20px;">
-
                 <div class="col">
                     <table>
+                        
+                        <colgroup>
+                            <col style="background-color:yellow; width:200px">    
+                            <col style="width:400px">
+                        </colgroup> 
+                        
+
                         <tr>
                             <td><b>DIVISION/OFFICE/UNIT:</b></td>
                             <td class="text-center">{{ $office_user->office->office_name }}</td>                            
@@ -42,6 +49,15 @@
                             <td><b>SECTION/STATION:</b></td>
                             <td class="text-center">{{ $office_user->office->office_name }}</td>
                         </tr>
+                
+                    </table>
+                    <br>
+                    
+                    <table>
+                        <colgroup>
+                            <col style="background-color:yellow; width:200px;">    
+                            <col style="width:200px;">
+                        </colgroup>
                         <tr>
                             <td><b>NO. OF INDIVIDUAL: </b></td>
                             <td class ="text-center">{{ count($individual) }}</td>
@@ -54,10 +70,12 @@
                             <td><b>NO. OF FEMALE:</b></td>
                             <td class ="text-center">{{ count($female) }}</td>
                         </tr>
-                    </table> 
+                    </table>
+
+                    
                     <table style="margin-top:20px;">
                         <tr>
-                            <td colspan="4" class="text-center">Average Rating</td>
+                            <td colspan="4" style="background-color:yellow" class="text-center"><b>Average Rating</b></td>
                         </tr>
                         <tr>
                             <td>Adjectival Rating</td>
@@ -96,31 +114,44 @@
 
                 <div class="col">
                     <table>
+                        <colgroup>
+                            <col style="background-color:yellow; width:200px">    
+                            <col style="width:200px">
+                        </colgroup>
                         <tr>
-                            <td>PERIOD COVERED:</td>
-                            <td>{{ "Jauary 16 - February 15, 2024" }}</td>
+                            <td><b>PERIOD COVERED:</b></td>
+                            <td>{{ $startDate }}</td>
                        
                         </tr>
                         <tr>
-                            <td>Total number of customers</td>
+                            <td><b>Total number of customers</b></td>
                             <td>{{ count($csf_data) }}</td>
                            
                         </tr>
+                      
+                    </table> 
+                    <br>
+                    <table>
+                        <colgroup>
+                            <col style="background-color:yellow; width:200px">    
+                            <col style="width:200px">
+                        </colgroup>
                         <tr>
-                            <td>NO. OF GROUP:</td>
+                            <td><b>NO. OF GROUP:</b></td>
                             <td>{{ 4 }}</td>
                           
                         </tr>
                         <tr>
-                            <td>NO. OF GOVERNMENT ENTITY:</td>
+                            <td><b>NO. OF GOVERNMENT ENTITY:</b></td>
                             <td>{{ 29 }}</td>
                            
                         </tr>
                         <tr>
-                            <td>NO. OF PRIVATE ENTITY:</td>
+                            <td><b>NO. OF PRIVATE ENTITY:</b></td>
                             <td>{{1}}</td>
                         </tr>
-                    </table> 
+                    </table>
+
                 </div>
                 
             </div>
@@ -131,27 +162,27 @@
             <table class="table">
                 <thead>
                     <tr>
-                        <td class="text-center align-middle" rowspan="2" style="width:190px">Control Number</td>
-                        <td class="text-center align-middle" rowspan="2"> Name of Customer/ Company (Last Name, First Name, Middle Initial)</td>
-                        <td class="text-center align-middle" rowspan="2"> AGE GROUP (≤ 17/18-59/≥ 60)</td>
-                        <td style="background-color:#8bb768; color:white;">Individual</td>
-                        <td class="text-center" style="background-color:#8bb768; color:white;">Group</td>
-                        <td class="text-center align-middle" rowspan="2">Private (P) or Government (G)</td>
-                        <td class="text-center" colspan="5" style="background-color:#d3db3d;">Criteria</td>
+                        <td class="text-center align-middle" rowspan="2" style="width:190px"><b>Control Number</b></td>
+                        <td class="text-center align-middle" rowspan="2"><b>Name of Customer/ Company (Last Name, First Name, Middle Initial)</b></td>
+                        <td class="text-center align-middle" rowspan="2"><b>AGE GROUP (≤ 17/18-59/≥ 60)</b></td>
+                        <td style="background-color:#8bb768; color:white; text-align:center;">Individual</td>
+                        <td class="text-center" style="background-color:#8bb768; color:white; text-align:center;">Group</td>
+                        <td class="text-center align-middle" rowspan="2"><b>Private (P) or Government (G)</b></td>
+                        <td class="text-center" colspan="5" style="background-color:#d3db3d; color:white;"><b>Criteria</b></td>
                         <td class="text-center" colspan="3"></td>
                     </tr>
 
                     <tr>
-                        <td class="text-center align-middle">Individual (I) or Group (G)</td>
-                        <td class="text-center align-middle">Male (M) or Female (F)</td>
-                        <td class="text-center align-middle">1.  Quality of goods/services provided</td>
-                        <td class="text-center align-middle">2. Courteousness</td>
-                        <td class="text-center align-middle">3. Responsiveness</td>
-                        <td class="text-center align-middle">4. Over-all customer service provided</td>
-                        <td class="text-center align-middle">5. Promotability of BPI goods and services</td>
-                        <td class="text-center align-middle">TOTAL SCORE per customer</td>
-                        <td class="text-center align-middle">AVERAGE per customer</td>
-                        <td class="text-center align-middle">ADJECTIVAL RATING</td>
+                        <td class="text-center align-middle"><b>Individual (I) or Group (G)</b></td>
+                        <td class="text-center align-middle"><b>Male (M) or Female (F)</b></td>
+                        <td class="text-center align-middle"><b>1.  Quality of goods/services provided</b></td>
+                        <td class="text-center align-middle"><b>2. Courteousness</b></td>
+                        <td class="text-center align-middle"><b>3. Responsiveness</b></td>
+                        <td class="text-center align-middle"><b>4. Over-all customer service provided</b></td>
+                        <td class="text-center align-middle"><b>5. Promotability of BPI goods and services</b></td>
+                        <td class="text-center align-middle"><b>TOTAL SCORE per customer</b></td>
+                        <td class="text-center align-middle"><b>AVERAGE per customer</b></td>
+                        <td class="text-center align-middle"><b>ADJECTIVAL RATING</b></td>
                         
                     </tr>   
                 </thead>
