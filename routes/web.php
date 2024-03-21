@@ -47,6 +47,10 @@ Route::middleware(['auth', 'role:3'])->controller(SuperAdminController::class)->
         Route::post('/settings/personnel-list/add-new-user', 'saveNewPersonnel')->name('super.admin-store.new.user');
 
         Route::get('/print-summary', 'printSummary')->name('print-summary');
+
+        Route::get('/settings/set-control-number', 'control_number')->name('control.number');
+        Route::get('/settings/set-control-number/set-new-control-no', 'setNew_control_number')->name('set-control.number');
+        Route::post('/settings/set-control-number/set-new-control-no', 'store_control_number')->name('store-control.number');
     });
 });
 
@@ -67,8 +71,9 @@ Route::middleware(['auth', 'role:1'])->controller(UserController::class)->prefix
     Route::get('/settings/office-details', 'officeDetails');
     
     Route::put('/settings/profile/{id}', 'profile_update')->name('profile.update');
-
+    
     Route::post('/print-summary', 'printSummary')->name('print-summary-user');
+
 });
 
 

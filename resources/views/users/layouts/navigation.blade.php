@@ -46,7 +46,7 @@
                 </span>
                 <span class="hide-menu">Profile</span>
               </a>
-            </li>         
+            </li>            
           </ul>
         </nav>
         <!-- End Sidebar navigation -->

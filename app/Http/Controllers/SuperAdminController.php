@@ -176,4 +176,22 @@ class SuperAdminController extends Controller
 
         return view('super_admin.csf_summary', [ 'csf_data' => $csf_data]);
     }
+
+    public function control_number()
+    {
+
+        return view('super_admin.control_number.control_numbers');
+    }
+
+    public function setNew_control_number()
+    {
+        $selectOffice = Office::all();
+        return view('super_admin.control_number.create_control_number', [ 'selectOffice' => $selectOffice]);
+    }
+
+    public function store_control_number(Request $request)
+    {
+        dd($request);
+        return redirect(route('control.number'));
+    }
 }

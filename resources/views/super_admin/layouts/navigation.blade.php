@@ -63,6 +63,14 @@
                 <span class="hide-menu">Personnel List</span>
               </a>
             </li> 
+            <li class="sidebar-item">
+              <a class="sidebar-link" href="{{route('control.number')}}" aria-expanded="false">
+                <span>
+                  <i class="ti ti-number"></i>
+                </span>
+                <span class="hide-menu">Control Number</span>
+              </a>
+            </li> 
           </ul>
         </nav>
         <!-- End Sidebar navigation -->

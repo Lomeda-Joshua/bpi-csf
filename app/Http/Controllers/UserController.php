@@ -87,4 +87,5 @@ class UserController extends Controller
         return view('users.csf_summary', [ 'csf_data' => $csf_data, 'office_user' => $office_user, 'individual' => $individual, 'male' => $male, 'female' => $female, 'startDate' => $startDate, 'endDate' => $endDate ]);
     }
 
+
 }

@@ -55,7 +55,7 @@
                     @csrf
                     @method('post')
 
-                            <div style="">
+                            <div>
                                 <label for="office_id"><span class="fw-semibold" style="font-weight:700">Section where services is catered:</span></label>
                                 <select name="office_id" class="form-control" style="padding:10px;" required>
                                     <option selected disabled>-- Select section services catered --</option>
