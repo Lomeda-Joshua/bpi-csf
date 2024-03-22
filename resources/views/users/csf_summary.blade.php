@@ -191,7 +191,15 @@
                     <tr>
                         <td>CSF-03-2024-00211</td>
                         <td>{{ $item->name }}</td>
-                        <td>{{ $item->age  }}</td>
+                        <td>@php 
+                            if($item->age == 1  ){
+                                echo "< 17";
+                            }elseif($item->age == 2){
+                                echo "18 - 59";
+                            }elseif($item->age == 3){
+                                echo "> 60";
+                            }
+                        @endphp</td>
                         <td>{{ $item->individual_group == 1 ? "I" : "G"  }}</td>
                         <td>{{ $item->gender == 1 ? "Male" : "Female"   }}</td>
                         <td>{{ $item->private_government == 1 ? "Private" : "Government"  }}</td>
@@ -200,9 +208,12 @@
                         <td>{{ $item->criteria_responsiveness  }}</td>
                         <td>{{ $item->criteria_overall_experience  }}</td>
                         <td>{{ $item->promoter_score  }}</td>
-                        <td><input type="hidden" id="totalScore[]" value="{{ $totalScore = $item->criteria_quality_of_goods + $item->criteria_courteousness + $item->criteria_responsiveness + $item->criteria_overall_experience + $item->promoter_score }}" /> {{ $totalScore = $item->criteria_quality_of_goods + $item->criteria_courteousness + $item->criteria_responsiveness + $item->criteria_overall_experience + $item->promoter_score }}</td>
 
-                        <td>{{ $AdjectivalRating = $totalScore/5 }} </td>
+                        <td><input type="hidden" id="totalScore[]" value="{{ $totalScore = $item->criteria_quality_of_goods + $item->criteria_courteousness + $item->criteria_responsiveness + $item->criteria_overall_experience + $item->promoter_score }}" /> 
+
+                            {{ $totalScore = $item->criteria_quality_of_goods + $item->criteria_courteousness + $item->criteria_responsiveness + $item->criteria_overall_experience + $item->promoter_score }}</td>
+
+                        <td><input type="hidden" id="adjectivalScore[]" value="{{ $AdjectivalRating = $totalScore/5 }}" /> {{ $AdjectivalRating = $totalScore/5 }} </td>
 
                         <td> @switch( $AdjectivalRating )
 
@@ -238,6 +249,7 @@
                         <td>{{ $csf_data->sum('criteria_overall_experience') }}</td>
                         <td>{{ $csf_data->sum('promoter_score') }}</td>
                         <td id="totalScorePerCustomer"></td>
+                        <td id="AveragePerCustomer"></td>
                     </tr>
                     <tr>
                         <td class="text-center" colspan="6">AVERAGE PER CRITERIA (average per column until last customer)</td>
@@ -262,6 +274,17 @@
             }
 
             $("#totalScorePerCustomer").text(sum);
+
+
+            let inputAdjectival = $("input[id = 'adjectivalScore[]']").map(function(){return $(this).val()}).get();
+            let quotient = 0;
+
+            for (let i = 0; i < inputAdjectival.length; i++ ){
+                quotient =  parseFloat(inputAdjectival[i]) + quotient;
+            }
+
+            result = quotient / inputAdjectival.length
+            $("#AveragePerCustomer").text( result.toFixed(1));
 
            
         });
