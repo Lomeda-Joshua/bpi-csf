@@ -154,7 +154,17 @@
                           <p class="mb-0 fw-normal">{{ $items->office->office_name }}</p>
                           </td>
                           <td class="border-bottom-0">
-                          <p class="mb-0 fw-normal">{{ $items->age }}</p>
+
+                          <p class="mb-0 fw-normal">
+                            @if($items->age == 1) 
+                              {{ "< 17" }}
+                            @elseif($items->age == 2)
+                              {{ "18 - 59" }}
+                            @elseif($items->age == 3)
+                              {{ "60 >" }}
+                            @endif
+                          </p>
+
                           </td>
                           <td class="border-bottom-0">
                           <p class="mb-0 fw-normal">{{ $items->contact_details }}</p>
@@ -163,7 +173,7 @@
                           <p class="mb-0 fw-normal">{{ $items->csf_date }}</p>
                           </td>
                           <td class="border-bottom-0">
-                          <h6 class="fw-semibold mb-0 fs-4">{{ $items->csf_time }}</h6>
+                          <p class="mb-0 fw-normal">{{ $items->csf_time }}</p>
                           </td>
 
                           <td class="border-bottom-0">

@@ -114,7 +114,7 @@
                                 <br><br>
 
                             <div id = "group_selected" style="display:none;">
-                                <label><span class="fw-semibold" style="font-weight:700">If Group, name of your Agency or Association/<i>Kung Grupo, pangalan ng iyong Ahensya/ Asosasyon.<br> Put N/A if Individual/ Ilagay N/A kung ikaw indibidwal.</i>*</span></label><br><br>
+                                <label><span class="fw-semibold" style="font-weight:700">If Group, name of your Agency or Association/<i>Kung Grupo, pangalan ng iyong Ahensya/ Asosasyon.</i>*</span></label><br>
                                 <label class="form-check-label" for="nameOFAgency"><b>Name of Agency:</b></label>
                                 <input type="text" class="form-control" name="nameOFAgency" id="nameOFAgency" aria-describedby="nameOFAgency">
                                 <br>
@@ -293,8 +293,8 @@
     $('document').ready(function(){
 
         /* Set current date in ris-form for mysql input box */
-        let risDate = new Date().toISOString().substr(0, 10);
-        document.getElementById("csf_date").setAttribute("value", risDate);
+        /* let risDate = new Date().toISOString().substr(0, 10);
+        document.getElementById("csf_date").setAttribute("value", risDate); */
 
         
         let getTime = new Date();      

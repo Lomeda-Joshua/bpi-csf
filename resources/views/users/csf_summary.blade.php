@@ -18,7 +18,6 @@
             border: 1px solid black;
             padding:5px;
             font-size:12px;
-            
         }
 
         .body-wrapper{
@@ -210,12 +209,16 @@
                         <td>{{ $item->promoter_score  }}</td>
 
                         <td><input type="hidden" id="totalScore[]" value="{{ $totalScore = $item->criteria_quality_of_goods + $item->criteria_courteousness + $item->criteria_responsiveness + $item->criteria_overall_experience + $item->promoter_score }}" /> 
-
                             {{ $totalScore = $item->criteria_quality_of_goods + $item->criteria_courteousness + $item->criteria_responsiveness + $item->criteria_overall_experience + $item->promoter_score }}</td>
 
-                        <td><input type="hidden" id="adjectivalScore[]" value="{{ $AdjectivalRating = $totalScore/5 }}" /> {{ $AdjectivalRating = $totalScore/5 }} </td>
+                            @php
+                                $AdjectivalRating = $totalScore/5;
+                            @endphp
 
-                        <td> @switch( $AdjectivalRating )
+                        <td><input type="hidden" id="adjectivalScore[]" value="{{ $AdjectivalRating = $totalScore/5 }}" /> {{ $AdjectivalRating }} </td>
+
+                        <td> 
+                                @switch( $AdjectivalRating )
 
                                     @case( 1 )
                                         Very Dissatisfied
@@ -236,8 +239,7 @@
                                     @case( 5 )
                                         Very Satisfied
                                     @break
-
-                              @endswitch    
+                                @endswitch 
                         </td>
                     </tr>   
                     @endforeach
@@ -272,7 +274,6 @@
             for (let i = 0; i < inputBox.length; i++ ){
                 sum =  parseInt(inputBox[i]) + sum;
             }
-
             $("#totalScorePerCustomer").text(sum);
 
 
@@ -283,9 +284,10 @@
                 quotient =  parseFloat(inputAdjectival[i]) + quotient;
             }
 
-            result = quotient / inputAdjectival.length
-            $("#AveragePerCustomer").text( result.toFixed(1));
+            result = quotient / inputAdjectival.length;
+            $("#AveragePerCustomer").text( result.toFixed(1) );
 
+            console.log(result);
            
         });
     </script>
