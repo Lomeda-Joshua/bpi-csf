@@ -31,6 +31,15 @@
         <div class="printable_area">
 
             <div class="content row" style = "margin-bottom:20px;">
+
+
+                <div class="row">
+                    <div class="col"><img style="width:10%" src = "{{ asset('assets/images/logos/bpi_logo.png') }}" /></div>
+                    <div class="col"><h1>Department of Agriculture</h1></div>
+                    <div class="col"><h1>Bureau of Plant Industry</h1></div>
+                    <div class="col"><h3>Consolidated Summary of Customer Satisfaction Form</h3></div>
+                </div>
+
                 <div class="col">
                     <table>
                         
@@ -72,7 +81,7 @@
                     </table>
 
                     
-                    <table style="margin-top:20px;">
+                    <table style="margin-top:20px; width:500px; text-align:center;">
                         <tr>
                             <td colspan="4" style="background-color:yellow" class="text-center"><b>Average Rating</b></td>
                         </tr>
@@ -119,7 +128,7 @@
                         </colgroup>
                         <tr>
                             <td><b>PERIOD COVERED:</b></td>
-                            <td>{{ $startDate }}</td>
+                            <td style="width:280px; text-align:center">{{ $startDateText . "  -  " . $endDateText }}</td>
                        
                         </tr>
                         <tr>
@@ -137,17 +146,17 @@
                         </colgroup>
                         <tr>
                             <td><b>NO. OF GROUP:</b></td>
-                            <td>{{ 4 }}</td>
+                            <td>{{ count($group) }}</td>
                           
                         </tr>
                         <tr>
                             <td><b>NO. OF GOVERNMENT ENTITY:</b></td>
-                            <td>{{ 29 }}</td>
+                            <td>{{ count($government) }}</td>
                            
                         </tr>
                         <tr>
                             <td><b>NO. OF PRIVATE ENTITY:</b></td>
-                            <td>{{1}}</td>
+                            <td>{{ count($private) }}</td>
                         </tr>
                     </table>
 
@@ -190,6 +199,7 @@
                     <tr>
                         <td>CSF-03-2024-00211</td>
                         <td>{{ $item->name }}</td>
+
                         <td>@php 
                             if($item->age == 1  ){
                                 echo "< 17";
@@ -199,6 +209,7 @@
                                 echo "> 60";
                             }
                         @endphp</td>
+
                         <td>{{ $item->individual_group == 1 ? "I" : "G"  }}</td>
                         <td>{{ $item->gender == 1 ? "Male" : "Female"   }}</td>
                         <td>{{ $item->private_government == 1 ? "Private" : "Government"  }}</td>
@@ -209,22 +220,22 @@
                         <td>{{ $item->promoter_score  }}</td>
 
                         <td><input type="hidden" id="totalScore[]" value="{{ $totalScore = $item->criteria_quality_of_goods + $item->criteria_courteousness + $item->criteria_responsiveness + $item->criteria_overall_experience + $item->promoter_score }}" /> 
-                            {{ $totalScore = $item->criteria_quality_of_goods + $item->criteria_courteousness + $item->criteria_responsiveness + $item->criteria_overall_experience + $item->promoter_score }}</td>
 
-                            @php
-                                $AdjectivalRating = $totalScore/5;
-                            @endphp
+                            {{ $totalScore = $item->criteria_quality_of_goods + $item->criteria_courteousness + $item->criteria_responsiveness + $item->criteria_overall_experience + $item->promoter_score }}
 
-                        <td><input type="hidden" id="adjectivalScore[]" value="{{ $AdjectivalRating = $totalScore/5 }}" /> {{ $AdjectivalRating }} </td>
+                        </td>
+
+                        <td><input type="hidden" id="adjectivalScore[]" value="{{ $AdjectivalRating = $totalScore/5 }}" /> {{ $totalScore/5 }} </td>
 
                         <td> 
                                 @switch( $AdjectivalRating )
 
-                                    @case( 1 )
+                                    @case( range(1, 1.49, 0.01) )
                                         Very Dissatisfied
                                     @break
 
-                                    @case( 2 )
+                                    {{-- @case( range(1.50, 2.49, 0.01) ) --}}
+                                    @case( 2.2 )
                                         Dissatisfied
                                     @break
 
@@ -244,7 +255,8 @@
                     </tr>   
                     @endforeach
                     <tr>
-                        <td class="text-center" colspan="6">TOTAL SCORE PER CRITERIA (sum per column until last customer)</td>
+                        <td class="text-center" colspan="2">TOTAL SCORE PER CRITERIA (sum per column until last customer)</td>
+                        <td colspan="4"></td>
                         <td>{{ $csf_data->sum('criteria_quality_of_goods') }}</td>
                         <td>{{ $csf_data->sum('criteria_courteousness') }}</td>
                         <td>{{ $csf_data->sum('criteria_responsiveness') }}</td>
@@ -252,16 +264,18 @@
                         <td>{{ $csf_data->sum('promoter_score') }}</td>
                         <td id="totalScorePerCustomer"></td>
                         <td id="AveragePerCustomer"></td>
+                        <td id="AdjectivalRating">Hello</td>
                     </tr>
                     <tr>
-                        <td class="text-center" colspan="6">AVERAGE PER CRITERIA (average per column until last customer)</td>
-                        
+                        <td class="text-center" colspan="2">AVERAGE PER CRITERIA (average per column until last customer)</td>
+                        <td colspan="4"></td>
                     </tr>
                 </tbody>
             </table>
         </div>
     </div>
 
+    
 
 </div>
 
@@ -277,6 +291,7 @@
             $("#totalScorePerCustomer").text(sum);
 
 
+
             let inputAdjectival = $("input[id = 'adjectivalScore[]']").map(function(){return $(this).val()}).get();
             let quotient = 0;
 
@@ -285,11 +300,17 @@
             }
 
             result = quotient / inputAdjectival.length;
+            // $("#AveragePerCustomer").text( result.toFixed(1) );
             $("#AveragePerCustomer").text( result.toFixed(1) );
 
-            console.log(result);
-           
+
+
+            
+
+
         });
+
+
     </script>
 
 </body>

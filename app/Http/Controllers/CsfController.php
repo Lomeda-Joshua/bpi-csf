@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\customer_satisfaction;
 use App\Models\OFfice;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class CsfController extends Controller
 {
@@ -60,11 +61,12 @@ class CsfController extends Controller
             'promoter_score' => $promoter_score,
             'comments_suggestions' => $comments_suggestions,
             'office_id' => $office_id,
-            
         ]);
 
-        
-        return redirect(route('csf.index'))->with('message', 'success!');
+        Alert::success('Customer Satisfaction Form', 'Your response is recorded');
+
+        return redirect(route('csf.index'));
+        // return redirect(route('index.user'));
         
     }
 
