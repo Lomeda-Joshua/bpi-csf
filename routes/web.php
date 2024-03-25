@@ -73,7 +73,6 @@ Route::middleware(['auth', 'role:1'])->controller(UserController::class)->prefix
     Route::put('/settings/profile/{id}', 'profile_update')->name('profile.update');
     
     Route::post('/print-summary', 'printSummary')->name('print-summary-user');
-
 });
 
 

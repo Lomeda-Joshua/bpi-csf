@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class customer_satisfaction extends Model
 {
     use HasFactory;
-    use SoftDeletes;
+    use SoftDeletes;    
 
     protected $fillable = [
         'csf_time',

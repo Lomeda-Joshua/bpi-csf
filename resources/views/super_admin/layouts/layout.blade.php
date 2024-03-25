@@ -23,6 +23,8 @@
       <!--  Sidebar End -->
 </div>
 
+@include('sweetalert::alert', ['cdn' => "https://cdn.jsdelivr.net/npm/sweetalert2@9"])
+
 <!--  Main wrapper -->
 <div class="body-wrapper">
     @include('super_admin.layouts.header')

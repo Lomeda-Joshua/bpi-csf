@@ -11,6 +11,8 @@ use App\Models\User;
 use App\Models\customer_satisfaction;
 use App\Models\Office;
 
+use RealRashid\SweetAlert\Facades\Alert;
+
 
 class SuperAdminController extends Controller
 {
@@ -161,6 +163,7 @@ class SuperAdminController extends Controller
             'office_id' => $request->office_id
         ]);
 
+        Alert::success('Personnel created', 'New personnel created');
         return redirect( route('super.personnel') );
 
     }

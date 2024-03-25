@@ -13,14 +13,15 @@ use Illuminate\Support\Facades\Route;
 use App\Models\User;
 
 
+// Check for super admin count
+$role_super_admin_count = User::where('role_id', 'LIKE', '3%')->count();
 
-Route::middleware('guest')->group(function () {
-    $role_super_admin_count = User::where('role_id', 'LIKE', '3%')->count();
+Route::middleware('guest')->group(function () use ($role_super_admin_count) {
 
-    if ( $role_super_admin_count == 0 ) {
-        Route::get('super-admin/register', [RegisteredUserController::class, 'create'])->name('register');
-        Route::post('super-admin/register', [RegisteredUserController::class, 'store']);
-    }
+        if ( $role_super_admin_count == 0 ) {
+            Route::get('super-admin/register', [RegisteredUserController::class, 'create'])->name('register');
+            Route::post('super-admin/register', [RegisteredUserController::class, 'store']);
+        }
 
         Route::get('login', [AuthenticatedSessionController::class, 'create'])->name('login');
 
@@ -35,6 +36,7 @@ Route::middleware('guest')->group(function () {
         Route::post('reset-password', [NewPasswordController::class, 'store'])->name('password.store');
     
 });
+
 
 Route::middleware('auth')->group(function () {
     Route::get('verify-email', EmailVerificationPromptController::class)
