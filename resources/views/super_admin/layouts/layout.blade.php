@@ -23,7 +23,7 @@
       <!--  Sidebar End -->
 </div>
 
-@include('sweetalert::alert', ['cdn' => "https://cdn.jsdelivr.net/npm/sweetalert2@9"])
+{{-- @include('sweetalert::alert', ['cdn' => "https://cdn.jsdelivr.net/npm/sweetalert2@9"]) --}}
 
 <!--  Main wrapper -->
 <div class="body-wrapper">
@@ -32,9 +32,6 @@
 
         @yield('contents')
 
-        {{-- <div class="py-6 px-6 text-center">
-            <p class="mb-0 fs-4">Bureau of Plant Industry | Customer Satisfaction | Information & Computer Section. 2024</p>
-        </div> --}}
     </div>
 </div>
 <!--  End Main wrapper -->

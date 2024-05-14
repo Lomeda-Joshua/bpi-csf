@@ -303,11 +303,6 @@
             // $("#AveragePerCustomer").text( result.toFixed(1) );
             $("#AveragePerCustomer").text( result.toFixed(1) );
 
-
-
-            
-
-
         });
 
 

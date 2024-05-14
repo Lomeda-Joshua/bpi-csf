@@ -62,9 +62,7 @@
                 </div>
         
                 <div class="flex items-center justify-end mt-4"> 
-                    <x-primary-button class="ms-4">
-                        {{ __('Register') }}
-                    </x-primary-button>
+                    <button type="submit" class="btn btn-warning w-100 py-8 fs-4 mb-4 rounded-2">{{ __('Register') }}</button>
                 </div>
             </form>
 

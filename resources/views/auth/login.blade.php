@@ -58,7 +58,7 @@
                             @csrf
           
                               <div class="mb-3">
-                                <label for="email" class="form-label">Username</label>
+                                <label for="email" class="form-label">Email: </label>
                                 <input id="email" class="block mt-1 w-full form-control" type="email" name="email" :value="old('email')" required autofocus autocomplete="username">                    
                                 <x-input-error :messages="$errors->get('email')" class="mt-2" />
                               </div>
