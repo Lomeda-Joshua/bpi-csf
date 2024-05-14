@@ -5,7 +5,15 @@
 <div class="card">
     <div class="card-body">
         <h2>Customer Satisfaction List</h2>
-        <a href="{{ route('print-summary') }}" target="_blank" id="printSummary" class="btn btn-success m-1">Print summary</a>
+
+
+        @if( count($csf)  )
+
+            <a href="{{ route('print-summary') }}" target="_blank" id="printSummary" class="btn btn-success m-1">Print summary</a>
+
+        @endif
+
+        
         
         <table id="csf_table" class="table align-middle striped" style="width:100%">
             <thead>

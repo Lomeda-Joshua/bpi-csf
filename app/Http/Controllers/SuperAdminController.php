@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Hash;
 use App\Models\User;
 use App\Models\customer_satisfaction;
 use App\Models\Office;
+use App\Models\control_number;
 
 use RealRashid\SweetAlert\Facades\Alert;
 
@@ -36,7 +37,7 @@ class SuperAdminController extends Controller
      */
     public function csfList(){
         $csf = customer_satisfaction::paginate(10);
-
+        
         return view('super_admin.csfList', [ 'csf' => $csf]);
     }
 
@@ -61,7 +62,6 @@ class SuperAdminController extends Controller
             break;
         }
 
-        
         return view('super_admin.profile', [ 'role_name' => $role_name, 'user_data' => Auth::user() ]);
     }
 
@@ -156,7 +156,7 @@ class SuperAdminController extends Controller
             'office_id' => ['required']
         ]);
 
-        $user = User::create([
+        User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
@@ -180,11 +180,16 @@ class SuperAdminController extends Controller
         return view('super_admin.csf_summary', [ 'csf_data' => $csf_data]);
     }
 
+
+    /**
+     * Set new control number.
+     */
     public function control_number()
     {
-
-        return view('super_admin.control_number.control_numbers');
+        $control_number_data = control_number::with('section')->get();
+        return view('super_admin.control_number.control_numbers' , ['control_number' => $control_number_data]);
     }
+
 
     public function setNew_control_number()
     {
@@ -192,9 +197,19 @@ class SuperAdminController extends Controller
         return view('super_admin.control_number.create_control_number', [ 'selectOffice' => $selectOffice]);
     }
 
+
     public function store_control_number(Request $request)
     {
-        dd($request);
+        control_number::create([
+            'section_office' => $request->section_office,
+            'control_number_year' => $request->control_number_year,
+            'control_number_month' => $request->control_number_month,
+            'control_number_count' => $request->control_number_count
+        ]);
+
+        Alert::success('Control number', 'Section control number set!');
         return redirect(route('control.number'));
     }
+
+
 }

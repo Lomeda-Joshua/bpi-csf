@@ -10,17 +10,27 @@
         @method('post')
 
         <div class="mb-3">    
-          <label for="control_number" class="form-label">Choose the section to set:</label>
-            <select id="section_set" name="section_set" class="form-control" style="padding:10px;" required>
-                <option selected disabled>-- Select section to set control number --</option>
+          <label for="section_office" class="form-label">Choose the section to set:</label>
+            <select id="section_office" name="section_office" class="form-control" style="padding:10px;" required>
+                <option selected disabled>-- Section to set control number --</option>
                 @foreach( $selectOffice as $item )
                 <option value="{{$item->id}}">{{ $item->office_name }}</option>
                 @endforeach
             </select>
             <br>
 
-           <label for="control_number" class="form-label">Set control number</label>
-           <input type="number" class="form-control" id="control_number" name="control_number" aria-describedby="control_number" required disabled  min="00000" max="99999" value="00000" placeholder="control format 00000" step="00000" />
+           <h5 class="form-label">Set control number</h5>
+
+           <label for="control_number_year" class="form-label">Set control number year : </label>
+           <input type="number" class="form-control" id="control_number_year" name="control_number_year" aria-describedby="control_number" required min="0" max="9999" placeholder="control format year" step="00000" />
+
+           <label for="control_number_month" class="form-label">Set control number month : </label>
+          <input type="number" class="form-control" id="control_number_month" name="control_number_month" aria-describedby="control_number" required min="0" max="12" placeholder="control format month" step="00000" />
+
+           <label for="control_number_count" class="form-label">Set control number count : </label>
+           <input type="number" class="form-control" id="control_number_count" name="control_number_count" aria-describedby="control_number" required min="0" max="99999" placeholder="control format count" step="00000" />
+
+
             @error('control_number')
                 <p class="text-danger">{{ $message }}</p>
             @enderror

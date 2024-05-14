@@ -17,14 +17,14 @@
                 </tr>
             </thead>
             <tbody>
-                
+                @foreach($control_number as $data)
                 <tr>
-                    <td class="text-center"></td>
-                    <td class="text-center"></td>
-                    <td class="text-center"></td>                    
-                    <td class="text-center"></td>                    
+                    <td class="text-center">{{ 'ICS-CSF-' . $data->control_number_year."-". $data->control_number_month."-". $data->control_number_count }}</td>            
+                    <td class="text-center">{{ $data->section->office_name }}</td>
+                    <td class="text-center">{{ $data->created_at }}</td>
+                    <td class="text-center">{{ $data->updated_at }}</td>                    
                 </tr>
-                
+                @endforeach
             </tbody>
         </table>
 
