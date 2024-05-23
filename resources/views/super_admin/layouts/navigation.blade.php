@@ -32,7 +32,7 @@
                 <span>
                   <i class="ti ti-list"></i>
                 </span>
-                <span class="hide-menu">Customer Satisfaction List</span>
+                <span class="hide-menu" style="font-size:12px;">Customer Satisfaction Report</span>
               </a>
             </li>
             <li class="nav-small-cap">

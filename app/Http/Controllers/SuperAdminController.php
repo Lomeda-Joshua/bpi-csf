@@ -36,9 +36,11 @@ class SuperAdminController extends Controller
      * Display the CSF Lists.
      */
     public function csfList(){
+
         $csf = customer_satisfaction::paginate(10);
+        $office = Office::with('customer_satisfaction')->get();
         
-        return view('super_admin.csfList', [ 'csf' => $csf]);
+        return view('super_admin.csfList', [ 'csf' => $csf, 'office' => $office ]);
     }
 
 
@@ -72,12 +74,12 @@ class SuperAdminController extends Controller
     public function officeDetails()
     {
         $office = Office::with('customer_satisfaction')->paginate(10);
-        
+
         return view('super_admin.office.officeDetails', [ 'office' => $office]);
     }
      
     /**
-     * Create or add new offices.
+     * Creat or add new offices.
      */
     public function office_create()
     {
