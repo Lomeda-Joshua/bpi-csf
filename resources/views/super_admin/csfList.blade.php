@@ -39,16 +39,13 @@
 
 <div class="card" style="overflow-x:auto; width:1400px;">
     <div class="card-body">
-
             <h2>BPI (OVERALL) CSF SUBMISSION PER MONTH</h2>
-
-            <h2>2023 Analysis</h2>
-
+            <h2><span id = "year_copyright"></span> Analysis</h2>
             <h4>Deadline of submission: <span style="font-weight:bold;">Every 25th of the month</span></h4>
 
             <div class="csf_submiision_per_month">
 
-                <div class="">
+                <div class="panelTable">
                     <table id="Overall_submission">
                         <tr>
                             <td colspan="4" style="background-color:yellow" class="text-center"><b>Average Rating</b></td>
@@ -88,7 +85,7 @@
                     </table> 
                 </div>
 
-                <div class="">
+                <div class="panelTable">
                     <h4>Color Reference:</h4>
                     <table id="Overall_submission">
                         <tr>
@@ -133,9 +130,11 @@
                 </tr>
             </thead>
             <tbody>
+
+                @foreach( $office as $data )
                 <tr>
-                    <td></td>
-                    <td></td>
+                    <td><b>{{$data->office_name}}</b></td>
+                    <td>{{ count($data->customer_satisfaction) }}</td>
                     <td></td>
                     <td></td>
                     <td></td>
@@ -152,6 +151,7 @@
                     <td></td>
                     <td></td>
                 </tr>
+                @endforeach
             </tbody>
             <tfoot>
                 <tr>
@@ -217,6 +217,7 @@
     </div>
 </div>
 
+{{-- Feedback --}}
 <div class="card" style="overflow-x:auto; width:1400px;">
     <h3><b>*** Feedback ***</b></h3>
     <h3>Positive and Negative Feedbacks</h3>
@@ -255,7 +256,7 @@
     </table>
 </div>
 
-
+{{-- Reasons for No submission --}}
 <div class="card" style="overflow-x:auto; width:1400px;">
     <h3><b>*** Reasons for No submission ***</b></h3>
     <h3>Positive and Negative Feedbacks</h3>
@@ -281,12 +282,20 @@
             </tr>
         </thead>
         <tbody>
-         
+            @foreach( $office as $data)
+                <tr>
+                    <td><b>{{ $data->office_name }}</b></td>
+                    
+                    @if($data)
+                        <td colspan="13"><b>No such data</b></td>
+                    @endif
+                </tr>
+            @endforeach
         </tbody>
     </table>
 </div>
 
-
+{{-- Number of Customers --}}
 <div class="card" style="overflow-x:auto; width:1400px;">
     <h3><b>*** Number of customers ***</b></h3>
     <h3>Positive and Negative Feedbacks</h3>
@@ -312,12 +321,20 @@
             </tr>
         </thead>
         <tbody>
-         
+            @foreach( $office as $data)
+                <tr>
+                    <td><b>{{ $data->office_name }}</b></td>
+                    
+                    @if($data)
+                        <td colspan="13"><b>No such data</b></td>
+                    @endif
+                </tr>
+            @endforeach
         </tbody>
     </table>
 </div>
 
-
+{{-- Age group --}}
 <div class="card" style="overflow-x:auto; width:1400px;">
     <h3><b>*** Age group ***</b></h3>
     <h3>Positive and Negative Feedbacks</h3>
@@ -343,12 +360,20 @@
             </tr>
         </thead>
         <tbody>
-         
+            @foreach( $office as $data)
+                <tr>
+                    <td><b>{{ $data->office_name }}</b></td>
+                    
+                    @if($data)
+                        <td colspan="13"><b>No such data</b></td>
+                    @endif
+                </tr>
+            @endforeach
         </tbody>
     </table>
 </div>
 
-
+{{-- CRITERIA --}}
 <div class="card" style="overflow-x:auto; width:1400px;">
     <h3><b>*** Criteria ***</b></h3>
     <h3>Positive and Negative Feedbacks</h3>
@@ -374,7 +399,22 @@
             </tr>
         </thead>
         <tbody>
-         
+
+            @php $result = count($office) @endphp
+            @foreach( $office as $data)
+                <tr>
+                    <td><b>{{ $data->office_name }}</b></td>
+                    @if( $result == 0 )
+                        <td colspan="13"><b>No such data</b></td>
+                    @else
+                        {{-- <td colspan="13"> {{ $data->customer_satisfaction->csf_date }} </td> --}}
+                        <td colspan="13"> @foreach( $data->customer_satisfaction as $info )
+                                            {{ $info->comments_suggestions }}
+                                        @endforeach
+                        </td>
+                    @endif
+                </tr>
+            @endforeach
         </tbody>
     </table>
 </div>
@@ -402,6 +442,12 @@
             }
         }
     });
+
+
+    const date = new Date();
+    document.getElementById("year_copyright").innerHTML = date.getFullYear();
+    
+
 
 </script>
 

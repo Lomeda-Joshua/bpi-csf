@@ -39,8 +39,25 @@ class SuperAdminController extends Controller
 
         $csf = customer_satisfaction::paginate(10);
         $office = Office::with('customer_satisfaction')->get();
+
+        $firstDay = 01;
+        $cutoffDay = 16;
+        $lastDay = date('t');
+        $currentYear = date('Y');
+
+        for($i = 0; $i < 12; $i++){
+            $startingDate = $currentYear . '-' . $i + 1 . '-' . $firstDay;
+            $endingDate = $currentYear . '-' . $i + 1 . '-' . $cutoffDay;
+
+            $monthRange = customer_satisfaction::whereBetween('csf_date', [$startingDate, $endingDate])->get();
+            
+            
+            
+            
+        }
         
-        return view('super_admin.csfList', [ 'csf' => $csf, 'office' => $office ]);
+        
+        return view('super_admin.csfList', [ 'csf' => $csf, 'office' => $office,  'monthRange' => $monthRange ]);
     }
 
 
@@ -78,6 +95,7 @@ class SuperAdminController extends Controller
         return view('super_admin.office.officeDetails', [ 'office' => $office]);
     }
      
+
     /**
      * Creat or add new offices.
      */
@@ -85,6 +103,7 @@ class SuperAdminController extends Controller
     {
         return view('super_admin.office.office_create');
     }
+
 
     /**
      * Create or add new offices.
@@ -105,6 +124,7 @@ class SuperAdminController extends Controller
         return redirect( route('super.office') );
     }
     
+
     /**
      * Edit view of the selected office.
      */
@@ -112,6 +132,7 @@ class SuperAdminController extends Controller
     {
         return view('super_admin.office.office_edit', [ 'office' => $id]);
     }
+
 
     /**
      * Save edit view of the selected office.
@@ -137,6 +158,7 @@ class SuperAdminController extends Controller
         $personnels = User::with('office')->get();
         return view('super_admin.personnelList', [ 'personnels' => $personnels]);
     }
+
 
     /**
      * Display the add of new user.
