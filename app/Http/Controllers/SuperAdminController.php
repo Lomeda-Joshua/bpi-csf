@@ -51,9 +51,6 @@ class SuperAdminController extends Controller
 
             $monthRange = customer_satisfaction::whereBetween('csf_date', [$startingDate, $endingDate])->get();
             
-            
-            
-            
         }
         
         

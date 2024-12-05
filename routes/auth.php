@@ -13,7 +13,6 @@ use Illuminate\Support\Facades\Route;
 use App\Models\User;
 
 
-
 $role_super_admin_count = User::where('role_id', 'LIKE', '3%')->count();
 
 Route::middleware('guest')->group(function () use ($role_super_admin_count) {
