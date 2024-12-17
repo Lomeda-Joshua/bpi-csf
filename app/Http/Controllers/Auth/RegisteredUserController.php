@@ -12,6 +12,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use Illuminate\View\View;
+use Illuminate\Support\Facades\DB;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class RegisteredUserController extends Controller
 {
@@ -20,8 +22,34 @@ class RegisteredUserController extends Controller
      */
     public function create(): View
     {
+
+        $superAdminCount = DB::table('Users')->select('role_id')->where('role_id', 3)->count();
+
         return view('auth.register');
+
+        // if( isset(auth()->user()->role_id) ) {
+        //     $role_id = auth()->user()->role_id;
+
+        //     if($superAdminCount == 1){
+        //         return view('auth.login', [ 'role_verify' => $role_id ]);
+        //     }else{
+        //         return view('auth.login', [ 'role_verify' => $role_id ]);
+        //     }
+
+        // }elseif( $superAdminCount == 0 ){
+
+        //     return view('auth.register');
+
+        // }else{
+        //     $role_id = auth()->user()->role_id;
+        //     return view('auth.login', [ 'role_verify' => $role_id ]);
+        // }
+
+
+
     }
+
+
 
     /**
      * Handle an incoming registration request.
@@ -36,41 +64,39 @@ class RegisteredUserController extends Controller
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
 
-        if(){
 
-        }else{
-            
-        }
+            $user = User::create([
+                'name' => $request->name,
+                'email' => $request->email,
+                'password' => Hash::make($request->password),
+            ]);
 
-        $user = User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
-        ]);
+            event(new Registered($user));
 
-        event(new Registered($user));
+            Auth::login($user);
+    
+            $user = $request->user();
+    
+            switch($user->role_id){
+                case 1:
+                    return redirect()->intended(RouteServiceProvider::USER_HOME);
+                break;
+    
+                case 2:
+                    return redirect()->intended(RouteServiceProvider::ADMIN_HOME);
+                break;
+    
+                case 3:
+                    return redirect()->intended(RouteServiceProvider::SUPER_ADMIN_HOME);
+                break;
+    
+                default:    
+                    return redirect('/');
+                     
+            }
+  
 
-        Auth::login($user);
 
-        $user = $request->user();
-
-        switch($user->role_id){
-            case 1:
-                return redirect()->intended(RouteServiceProvider::USER_HOME);
-            break;
-
-            case 2:
-                return redirect()->intended(RouteServiceProvider::ADMIN_HOME);
-            break;
-
-            case 3:
-                return redirect()->intended(RouteServiceProvider::SUPER_ADMIN_HOME);
-            break;
-
-            default:    
-                return redirect('/');
-                 
-        }
 
     }
 }

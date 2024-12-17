@@ -12,10 +12,7 @@ use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Middleware\superAdminCheckCount;
 
 
-Route::get('/', function () {
-    $auth_id = Auth::user();
-    return view('auth.login', [ 'auth_id' => $auth_id] );
-});
+Route::get('/', [RegisteredUserController::class, 'create']);
 
 
 Route::get('super-admin/register', [RegisteredUserController::class, 'create'])->name('register');

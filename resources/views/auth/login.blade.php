@@ -13,6 +13,7 @@
 
 <body>
 
+  @include('sweetalert::alert')
 
   <!--  Body Wrapper -->
   <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
@@ -29,56 +30,84 @@
                 </div>
                 <h5 class="text-center"><b>Customer Satisfaction Application</b></h5>
 
-                @if (Route::has('login'))
                 
-                    @auth
-                    
-                        @switch($auth_id->role_id)
 
-                        @case(1)
-                          <br>
-                          <a href="{{ route('index.user') }}" class="btn btn-primary w-100 py-8 fs-4 mb-4 rounded-2" >To dashboard</a>
-                        @break
+                    @if (Route::has('login'))
 
-                        @case(2)
-                          <br>
-                          <a href="{{ route('index.admin') }}" class="btn btn-primary w-100 py-8 fs-4 mb-4 rounded-2" >To dashboard</a>
-                        @break
+                                  @if( isset($role_verify) or $role_verify != 0 )
 
-                        @case(3)
-                          <br>
-                          <a href="{{ route('index.super-admin') }}" class="btn btn-primary w-100 py-8 fs-4 mb-4 rounded-2" >To dashboard</a>
-                        @break
+                                      @auth
 
-                        @endswitch
-                        
+                                          @switch($role_verify)
+
+                                            @case(1)
+                                              <br>
+                                              <a href="{{ route('index.user') }}" class="btn btn-primary w-100 py-8 fs-4 mb-4 rounded-2" >To dashboard</a>
+                                            @break
+
+                                            @case(2)
+                                              <br>
+                                              <a href="{{ route('index.admin') }}" class="btn btn-primary w-100 py-8 fs-4 mb-4 rounded-2" >To dashboard</a>
+                                            @break
+
+                                            @case(3)
+                                              <br>
+                                              <a href="{{ route('index.super-admin') }}" class="btn btn-primary w-100 py-8 fs-4 mb-4 rounded-2" >To dashboard</a>
+                                            @break
+
+                                          @endswitch
+
+                                      
+                                
+                                  @else
+                                        
+                                            <p class="text-center"><b>Login</b></p>
+                                            <form method="POST" action="{{ route('login') }}">
+                                              @csrf
+                            
+                                                <div class="mb-3">
+                                                  <label for="email" class="form-label">Email: </label>
+                                                  <input id="email" class="block mt-1 w-full form-control" type="email" name="email" :value="old('email')" required autofocus autocomplete="username">                    
+                                                  <x-input-error :messages="$errors->get('email')" class="mt-2" />
+                                                </div>
+                            
+                                                <div class="mb-4">
+                                                  <label for="password" class="form-label">Password</label>
+                                                  <input id="password" class="block mt-1 w-full form-control" type="password" name="password" required autocomplete="current-password">
+                                                  <x-input-error :messages="$errors->get('password')" class="mt-2" />
+                                                </div>
+                            
+                                                <button type="submit" class="btn btn-primary w-100 py-8 fs-4 mb-4 rounded-2">{{ __('Log in') }}</button>
+                                            </form>
+                                            @endauth
+                                  @endif
+                                  
+
                     @else
-                        <p class="text-center"><b>Login</b></p>
-                          <form method="POST" action="{{ route('login') }}">
-                            @csrf
-          
-                              <div class="mb-3">
-                                <label for="email" class="form-label">Email: </label>
-                                <input id="email" class="block mt-1 w-full form-control" type="email" name="email" :value="old('email')" required autofocus autocomplete="username">                    
-                                <x-input-error :messages="$errors->get('email')" class="mt-2" />
-                              </div>
-          
-                              <div class="mb-4">
-                                <label for="password" class="form-label">Password</label>
-                                <input id="password" class="block mt-1 w-full form-control" type="password" name="password" required autocomplete="current-password">
-                                <x-input-error :messages="$errors->get('password')" class="mt-2" />
-                              </div>
-          
-                              <button type="submit" class="btn btn-primary w-100 py-8 fs-4 mb-4 rounded-2">{{ __('Log in') }}</button>
-                          </form>
-                    @endauth
+
+
+                                <p class="text-center"><b>Login</b></p>
+                                <form method="POST" action="{{ route('login') }}">
+                                  @csrf
                 
-                @endif
-
-
-
+                                    <div class="mb-3">
+                                      <label for="email" class="form-label">Email: </label>
+                                      <input id="email" class="block mt-1 w-full form-control" type="email" name="email" :value="old('email')" required autofocus autocomplete="username">                    
+                                      <x-input-error :messages="$errors->get('email')" class="mt-2" />
+                                    </div>
                 
+                                    <div class="mb-4">
+                                      <label for="password" class="form-label">Password</label>
+                                      <input id="password" class="block mt-1 w-full form-control" type="password" name="password" required autocomplete="current-password">
+                                      <x-input-error :messages="$errors->get('password')" class="mt-2" />
+                                    </div>
+                
+                                    <button type="submit" class="btn btn-primary w-100 py-8 fs-4 mb-4 rounded-2">{{ __('Log in') }}</button>
+                                </form>
 
+
+                    @endif
+                
               </div>
             </div>
           </div>
