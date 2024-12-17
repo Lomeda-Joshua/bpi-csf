@@ -7,20 +7,11 @@ use App\Http\Controllers\Auth\EmailVerificationPromptController;
 use App\Http\Controllers\Auth\NewPasswordController;
 use App\Http\Controllers\Auth\PasswordController;
 use App\Http\Controllers\Auth\PasswordResetLinkController;
-use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\Auth\VerifyEmailController;
 use Illuminate\Support\Facades\Route;
-use App\Models\User;
 
 
-$role_super_admin_count = User::where('role_id', 'LIKE', '3%')->count();
-
-Route::middleware('guest')->group(function () use ($role_super_admin_count) {
-
-        if ( $role_super_admin_count == 0 ) {
-            Route::get('super-admin/register', [RegisteredUserController::class, 'create'])->name('register');
-            Route::post('super-admin/register', [RegisteredUserController::class, 'store']);
-        }
+Route::middleware('guest')->group(function () {
 
         Route::get('login', [AuthenticatedSessionController::class, 'create'])->name('login');
 

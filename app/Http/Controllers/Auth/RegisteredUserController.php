@@ -36,6 +36,12 @@ class RegisteredUserController extends Controller
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
 
+        if(){
+
+        }else{
+            
+        }
+
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
@@ -65,5 +71,6 @@ class RegisteredUserController extends Controller
                 return redirect('/');
                  
         }
+
     }
 }

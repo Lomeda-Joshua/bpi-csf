@@ -6,8 +6,10 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\SuperAdminController;
-
 use App\Http\Controllers\CsfController;
+use App\Http\Controllers\Auth\RegisteredUserController;
+
+use App\Http\Middleware\superAdminCheckCount;
 
 
 Route::get('/', function () {
@@ -16,10 +18,14 @@ Route::get('/', function () {
 });
 
 
+Route::get('super-admin/register', [RegisteredUserController::class, 'create'])->name('register');
+Route::post('super-admin/register', [RegisteredUserController::class, 'store']);
+
 Route::get('/customer-satisfaction-form', [ CsfController::class, 'index'])->name('csf.index');
 Route::post('/customer-satisfaction-form/submitted', [ CsfController::class, 'store'])->name('csf.store');
 
-Route::middleware(['auth', 'role:3'])->controller(SuperAdminController::class)->group(function(){
+
+Route::middleware(['auth'])->controller(SuperAdminController::class)->group(function(){
     Route::prefix('/super-admin')->group(function(){
         Route::get('/dashboard', 'index')->name('index.super-admin');
         Route::get('/customer-satisfaction-list', 'csfList')->name('super.list');
@@ -40,10 +46,11 @@ Route::middleware(['auth', 'role:3'])->controller(SuperAdminController::class)->
         Route::get('/settings/set-control-number/set-new-control-no', 'setNew_control_number')->name('set-control.number');
         Route::post('/settings/set-control-number/set-new-control-no', 'store_control_number')->name('store-control.number');
     });
+
 });
 
 
-Route::middleware(['auth', 'role:2'])->controller(AdminController::class)->prefix('/admin')->group(function(){
+Route::middleware(['auth'])->controller(AdminController::class)->prefix('/admin')->group(function(){
     Route::get('/dashboard', 'index')->name('index.admin');
     Route::get('/customer-satisfaction-list', 'csfList');
     Route::get('/settings/profile', 'profile');
@@ -52,7 +59,7 @@ Route::middleware(['auth', 'role:2'])->controller(AdminController::class)->prefi
 });
 
 
-Route::middleware(['auth', 'role:1'])->controller(UserController::class)->prefix('/user')->group(function(){
+Route::middleware(['auth'])->controller(UserController::class)->prefix('/user')->group(function(){
     Route::get('/dashboard', 'index')->name('index.user');
     Route::get('/customer-satisfaction-list', 'csfList');
     Route::get('/settings/profile', 'profile')->name('user.profile');
