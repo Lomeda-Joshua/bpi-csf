@@ -16,7 +16,6 @@
     </head>
     <body class="font-sans antialiased">
 
-        @include('sweetalert::alert')
         @include('sweetalert::alert', ['cdn' => "https://cdn.jsdelivr.net/npm/sweetalert2@9"])
 
         <div class="min-h-screen bg-gray-100 dark:bg-gray-900">

@@ -23,11 +23,11 @@ class RegisteredUserController extends Controller
     public function create(): View
     {
 
-        $superAdminCount = DB::table('Users')->select('role_id')->where('role_id', 3)->count();
+            $auth_id = Auth::user();
+            
+            return view('auth.register');
 
-        return view('auth.register');
-
-        // if( isset(auth()->user()->role_id) ) {
+        // if(  ) {
         //     $role_id = auth()->user()->role_id;
 
         //     if($superAdminCount == 1){
@@ -65,6 +65,11 @@ class RegisteredUserController extends Controller
         ]);
 
 
+        $superAdminCount = DB::table('Users')->select('role_id')->where('role_id', 3)->count();
+        $userCount = DB::table('Users')->get()->count();
+
+        if( $userCount <= 0  ){
+
             $user = User::create([
                 'name' => $request->name,
                 'email' => $request->email,
@@ -91,11 +96,17 @@ class RegisteredUserController extends Controller
                 break;
     
                 default:    
+                Alert::alert('Title', 'Message', 'Type');
                     return redirect('/');
                      
             }
-  
 
+        }elseif( $superAdminCount <= 0 ){
+
+            Alert::info('Notice!', 'Kindly assign a super admin account!');
+            return redirect('/');
+            
+        }
 
 
     }

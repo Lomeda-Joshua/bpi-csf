@@ -8,11 +8,15 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\SuperAdminController;
 use App\Http\Controllers\CsfController;
 use App\Http\Controllers\Auth\RegisteredUserController;
+use RealRashid\SweetAlert\Facades\Alert;
 
-use App\Http\Middleware\superAdminCheckCount;
 
+Route::get('/', function () {
 
-Route::get('/', [RegisteredUserController::class, 'create']);
+    $auth_id = Auth::user();
+
+    return view('auth.login', [ 'auth_id' => $auth_id ] );
+});
 
 
 Route::get('super-admin/register', [RegisteredUserController::class, 'create'])->name('register');
