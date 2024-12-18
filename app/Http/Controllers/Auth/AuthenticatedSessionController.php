@@ -17,7 +17,7 @@ class AuthenticatedSessionController extends Controller
      */
     public function create(): View
     {
-
+ 
         return view('auth.login');
     }
 
@@ -26,6 +26,7 @@ class AuthenticatedSessionController extends Controller
      */
     public function store(LoginRequest $request): RedirectResponse
     {
+
         $request->authenticate();
 
         $request->session()->regenerate();
@@ -33,10 +34,26 @@ class AuthenticatedSessionController extends Controller
         // Get the authenticated user
         $user = $request->user();
 
-        return redirect()->intended(RouteServiceProvider::SUPER_ADMIN_HOME);
+
+        switch($user->role_id){
+            case 1:
+                // return redirect()->intended(RouteServiceProvider::USER_HOME);
+                return redirect('/user/dashboard');
+            break;
+
+            case 2:
+                // return redirect()->intended(RouteServiceProvider::ADMIN_HOME);
+                return redirect('/admin/dashboard');
+            break;
+
+            case 3:
+                // return redirect()->intended(RouteServiceProvider::SUPER_ADMIN_HOME);
+                return redirect('/super-admin/dashboard');
+            break;
+        }
+
+        
     }
-
-
 
     /**
      * Destroy an authenticated session.

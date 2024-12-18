@@ -35,33 +35,33 @@
 
                     @if (Route::has('login'))
 
+                        
+                      
+                              @auth
                                   @if( $auth_id )
 
-                                            @auth
+                                            @switch($auth_id->role_id)
 
-                                                @switch($auth_id->role_verify)
+                                              @case(1)
+                                                <br>
+                                                <a href="{{ route('index.user') }}" class="btn btn-primary w-100 py-8 fs-4 mb-4 rounded-2" >To dashboard</a>
+                                              @break
 
-                                                  @case(1)
-                                                    <br>
-                                                    <a href="{{ route('index.user') }}" class="btn btn-primary w-100 py-8 fs-4 mb-4 rounded-2" >To dashboard</a>
-                                                  @break
+                                              @case(2)
+                                                <br>
+                                                <a href="{{ route('index.admin') }}" class="btn btn-primary w-100 py-8 fs-4 mb-4 rounded-2" >To dashboard</a>
+                                              @break
 
-                                                  @case(2)
-                                                    <br>
-                                                    <a href="{{ route('index.admin') }}" class="btn btn-primary w-100 py-8 fs-4 mb-4 rounded-2" >To dashboard</a>
-                                                  @break
+                                              @case(3)
+                                                <br>
+                                                <a href="{{ route('index.super-admin') }}" class="btn btn-primary w-100 py-8 fs-4 mb-4 rounded-2" >To dashboard</a>
+                                              @break
 
-                                                  @case(3)
-                                                    <br>
-                                                    <a href="{{ route('index.super-admin') }}" class="btn btn-primary w-100 py-8 fs-4 mb-4 rounded-2" >To dashboard</a>
-                                                  @break
-
-                                                @endswitch
-                                      
-                                       
-                                            @endauth
+                                            @endswitch
+                    
                                   @endif
-
+                  
+                                @else
                    
                                         
                                     <p class="text-center"><b>Login</b></p>
@@ -82,9 +82,9 @@
                     
                                         <button type="submit" class="btn btn-primary w-100 py-8 fs-4 mb-4 rounded-2">{{ __('Log in') }}</button>
                                     </form>
-                                    
-
+                            @endauth   
                     @endif
+                    
 
               </div>
             </div>

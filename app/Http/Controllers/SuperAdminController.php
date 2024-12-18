@@ -52,6 +52,8 @@ class SuperAdminController extends Controller
             $monthRange = customer_satisfaction::whereBetween('csf_date', [$startingDate, $endingDate])->get();
             
         }
+
+        dd();
         
         
         return view('super_admin.csfList', [ 'csf' => $csf, 'office' => $office,  'monthRange' => $monthRange ]);
@@ -118,6 +120,7 @@ class SuperAdminController extends Controller
             'office_name' =>  $office_name_input
         ]);
 
+        Alert::success('Success', 'Added new office section');
         return redirect( route('super.office') );
     }
     
@@ -142,6 +145,7 @@ class SuperAdminController extends Controller
 
         $id->update($request->all());
         
+        Alert::success('Success', 'Edit made on selected office section');
         return redirect(route('super.office'));
     }
 

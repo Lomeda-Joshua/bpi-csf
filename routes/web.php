@@ -8,14 +8,13 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\SuperAdminController;
 use App\Http\Controllers\CsfController;
 use App\Http\Controllers\Auth\RegisteredUserController;
-use RealRashid\SweetAlert\Facades\Alert;
 
 
 Route::get('/', function () {
 
     $auth_id = Auth::user();
-
     return view('auth.login', [ 'auth_id' => $auth_id ] );
+
 });
 
 
@@ -26,7 +25,7 @@ Route::get('/customer-satisfaction-form', [ CsfController::class, 'index'])->nam
 Route::post('/customer-satisfaction-form/submitted', [ CsfController::class, 'store'])->name('csf.store');
 
 
-Route::middleware(['auth'])->controller(SuperAdminController::class)->group(function(){
+Route::middleware(['auth', 'role:3'])->controller(SuperAdminController::class)->group(function(){
     Route::prefix('/super-admin')->group(function(){
         Route::get('/dashboard', 'index')->name('index.super-admin');
         Route::get('/customer-satisfaction-list', 'csfList')->name('super.list');
@@ -51,7 +50,7 @@ Route::middleware(['auth'])->controller(SuperAdminController::class)->group(func
 });
 
 
-Route::middleware(['auth'])->controller(AdminController::class)->prefix('/admin')->group(function(){
+Route::middleware(['auth', 'role:2'])->controller(AdminController::class)->prefix('/admin')->group(function(){
     Route::get('/dashboard', 'index')->name('index.admin');
     Route::get('/customer-satisfaction-list', 'csfList');
     Route::get('/settings/profile', 'profile');
@@ -60,7 +59,7 @@ Route::middleware(['auth'])->controller(AdminController::class)->prefix('/admin'
 });
 
 
-Route::middleware(['auth'])->controller(UserController::class)->prefix('/user')->group(function(){
+Route::middleware(['auth', 'role:1'])->controller(UserController::class)->prefix('/user')->group(function(){
     Route::get('/dashboard', 'index')->name('index.user');
     Route::get('/customer-satisfaction-list', 'csfList');
     Route::get('/settings/profile', 'profile')->name('user.profile');

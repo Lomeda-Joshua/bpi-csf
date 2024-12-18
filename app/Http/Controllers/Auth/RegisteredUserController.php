@@ -96,14 +96,14 @@ class RegisteredUserController extends Controller
                 break;
     
                 default:    
-                Alert::alert('Title', 'Message', 'Type');
-                    return redirect('/');
+                Alert::success('Success', 'Kindly set this account as super admin in settings');
+                return redirect('/');
                      
             }
 
         }elseif( $superAdminCount <= 0 ){
 
-            Alert::info('Notice!', 'Kindly assign a super admin account!');
+            Alert::info('Notice!', 'Kindly assign a super admin account! Contact administrator');
             return redirect('/');
             
         }
