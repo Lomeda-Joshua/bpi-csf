@@ -37,8 +37,16 @@ class SuperAdminController extends Controller
      */
     public function csfList(){
 
-        $csf = customer_satisfaction::paginate(10);
+        $csf = customer_satisfaction::get();
         $office = Office::with('customer_satisfaction')->get();
+        $office_count = Office::with('customer_satisfaction')->select('office_id')->distinct()->count();
+        $arraySample = array();
+
+
+        for($i = 1; $i < $office_count; $i++){
+            $arraySample[] = customer_satisfaction::select('name')->where('office_id', $i)->get();
+        }
+
 
         $firstDay = 01;
         $cutoffDay = 16;
@@ -50,13 +58,10 @@ class SuperAdminController extends Controller
             $endingDate = $currentYear . '-' . $i + 1 . '-' . $cutoffDay;
 
             $monthRange = customer_satisfaction::whereBetween('csf_date', [$startingDate, $endingDate])->get();
-            
         }
 
-        dd();
         
-        
-        return view('super_admin.csfList', [ 'csf' => $csf, 'office' => $office,  'monthRange' => $monthRange ]);
+        return view('super_admin.csfList', [ 'csf' => $csf, 'office' => $office, 'monthRange' => $monthRange ]);
     }
 
 

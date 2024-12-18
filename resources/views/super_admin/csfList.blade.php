@@ -204,7 +204,7 @@
             </tr>
             @foreach( $office as $data )
             <tr>
-                <td>{{ $data->office_name }}</td>
+                <td>{{ $data->office_name ? $data->office_name : 'No records yet!' }}</td>
                 <td></td>
             </tr>
             @endforeach
