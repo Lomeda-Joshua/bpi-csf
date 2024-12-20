@@ -2,27 +2,6 @@
 
 @section('contents')
 
-
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        ...
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-
 <div class="row">
 
   <div class="col-sm-6 col-xl-3">
@@ -151,10 +130,17 @@
                 </tr>
                 </thead>
                 <tbody>
+                  
 
-                  @if()
+                  @if( $csf->count() == 0 )
 
-                    @foreach( $csf as $items)
+                  <tr>
+                    <td class="border-bottom-0 text-center" colspan='8'><h6 class="fw-semibold mb-0"><span style="color:red; font-size:16px;">No Data record yet!</span></h6></td>
+                  </tr>    
+
+                  @else
+
+                      @foreach( $csf as $items)
                       <tr>
                           <td class="border-bottom-0"><h6 class="fw-semibold mb-0">{{ $items->id }}</h6></td>
                           <td class="border-bottom-0">
@@ -174,19 +160,20 @@
                           <p class="mb-0 fw-normal">{{ date('F d, Y', strtotime($items->csf_date)) }}</p>
                           </td>
                           <td class="border-bottom-0">
-                          <h6 class="fw-semibold mb-0 fs-4">{{ $items->csf_time }}</h6>
+                          <h6 class="fw-semibold mb-0 fs-4">{{ date('h:i a', strtotime($items->csf_time)) }}</h6>
                           </td>
 
                           <td class="border-bottom-0">
                             <div class="d-flex align-items-center gap-2">
-                                <button class="badge bg-success rounded-3 fw-semibold" data-bs-toggle="modal" data-bs-target="#exampleModal">View</button>
+                                <button class="badge bg-success rounded-3 fw-semibold" data-bs-toggle="modal"  data-bs-target="#exampleModal">View</button>
                             </div>
                           </td>
 
                       </tr>    
                       @endforeach   
+                      
 
-                  @else
+                  @endif
                                   
                 </tbody>
             </table>
@@ -194,4 +181,25 @@
     </div>
 </div>
 
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Data information</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+</script>
+
 @endsection
+
