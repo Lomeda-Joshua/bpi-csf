@@ -152,38 +152,42 @@
                 </thead>
                 <tbody>
 
+                  @if()
 
                     @foreach( $csf as $items)
-                    <tr>
-                        <td class="border-bottom-0"><h6 class="fw-semibold mb-0">{{ $items->id }}</h6></td>
-                        <td class="border-bottom-0">
-                            <h6 class="fw-semibold mb-1">{{ $items->name }}</h6>
-                            <span class="fw-normal">{{ $items->internal_external == 2 ? "External customer" : "Internal customer" }}</span>                          
-                        </td>
-                        <td class="border-bottom-0">
-                        <p class="mb-0 fw-normal">{{ $items->office->office_name }}</p>
-                        </td>
-                        <td class="border-bottom-0">
-                        <p class="mb-0 fw-normal">{{ $items->age }}</p>
-                        </td>
-                        <td class="border-bottom-0">
-                        <p class="mb-0 fw-normal">{{ $items->contact_details }}</p>
-                        </td>
-                        <td class="border-bottom-0">
-                        <p class="mb-0 fw-normal">{{ $items->csf_date }}</p>
-                        </td>
-                        <td class="border-bottom-0">
-                        <h6 class="fw-semibold mb-0 fs-4">{{ $items->csf_time }}</h6>
-                        </td>
+                      <tr>
+                          <td class="border-bottom-0"><h6 class="fw-semibold mb-0">{{ $items->id }}</h6></td>
+                          <td class="border-bottom-0">
+                              <h6 class="fw-semibold mb-1">{{ $items->name }}</h6>
+                              <span class="fw-normal">{{ $items->internal_external == 2 ? "External customer" : "Internal customer" }}</span>                          
+                          </td>
+                          <td class="border-bottom-0">
+                          <p class="mb-0 fw-normal">{{ $items->office->office_name }}</p>
+                          </td>
+                          <td class="border-bottom-0">
+                          <p class="mb-0 fw-normal">{{ $items->age }}</p>
+                          </td>
+                          <td class="border-bottom-0">
+                          <p class="mb-0 fw-normal">{{ $items->contact_details }}</p>
+                          </td>
+                          <td class="border-bottom-0">
+                          <p class="mb-0 fw-normal">{{ date('F d, Y', strtotime($items->csf_date)) }}</p>
+                          </td>
+                          <td class="border-bottom-0">
+                          <h6 class="fw-semibold mb-0 fs-4">{{ $items->csf_time }}</h6>
+                          </td>
 
-                        <td class="border-bottom-0">
-                          <div class="d-flex align-items-center gap-2">
-                              <button class="badge bg-success rounded-3 fw-semibold" data-bs-toggle="modal" data-bs-target="#exampleModal">View</button>
-                          </div>
-                        </td>
+                          <td class="border-bottom-0">
+                            <div class="d-flex align-items-center gap-2">
+                                <button class="badge bg-success rounded-3 fw-semibold" data-bs-toggle="modal" data-bs-target="#exampleModal">View</button>
+                            </div>
+                          </td>
 
-                    </tr>    
-                    @endforeach                 
+                      </tr>    
+                      @endforeach   
+
+                  @else
+                                  
                 </tbody>
             </table>
         </div>

@@ -43,10 +43,12 @@ class SuperAdminController extends Controller
         $arraySample = array();
 
 
-        for($i = 1; $i < $office_count; $i++){
+        for($i = 1; $i <= $office_count; $i++){
             $arraySample[] = customer_satisfaction::select('name')->where('office_id', $i)->get();
         }
 
+
+  
 
         $firstDay = 01;
         $cutoffDay = 16;
@@ -60,8 +62,9 @@ class SuperAdminController extends Controller
             $monthRange = customer_satisfaction::whereBetween('csf_date', [$startingDate, $endingDate])->get();
         }
 
+
         
-        return view('super_admin.csfList', [ 'csf' => $csf, 'office' => $office, 'monthRange' => $monthRange ]);
+        return view('super_admin.csfList', [ 'csf' => $csf, 'office' => $office, 'monthRange' => $monthRange, 'arrays' => $arraySample ]);
     }
 
 

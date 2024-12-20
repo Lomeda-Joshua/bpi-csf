@@ -41,8 +41,8 @@
                     @endswitch
                 </td>
                 <td class="text-center">{{ $item->office->office_name ?? "Super admin role"  }}</td>
-                <td class="text-center">{{ $item->created_at  }}</td>
-                <td class="text-center">{{ $item->updated_at  }}</td>
+                <td class="text-center">{{ date('F d, Y', strtotime($item->created_at))  }}</td>
+                <td class="text-center">{{ date('F d, Y', strtotime($item->updated_at))  }}</td>
             </tr>
             @endforeach
         </tbody>

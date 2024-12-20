@@ -197,17 +197,24 @@
         </table>
 
 
+
+
         <table id="Overall_submission">
             <tr>
                 <td style="background-color:orange; color:white;">Operating Units</td>
                 <td>AVERAGE per office</td>
             </tr>
-            @foreach( $office as $data )
-            <tr>
-                <td>{{ $data->office_name ? $data->office_name : 'No records yet!' }}</td>
-                <td></td>
-            </tr>
+
+            @foreach( $arrays as $data )
+                <tr>
+                    @foreach($data as $item)
+                    
+                        <td>   {{ $item->name }}</td>
+                    @endforeach
+
+                </tr>
             @endforeach
+
         </table>
 
 
