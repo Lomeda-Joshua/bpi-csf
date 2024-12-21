@@ -241,7 +241,13 @@ class SuperAdminController extends Controller
 
 
     public function getIdForModal(Request $request){
-        return true;
+        
+        $data_id = $request->id;
+        $csf_retrieved_data = customer_satisfaction::where('id',$data_id)->first();
+        $toJsonFormat = json_encode($csf_retrieved_data);
+        
+        return $toJsonFormat;
+      
     }
 
 

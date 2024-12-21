@@ -4,6 +4,29 @@
 
   <style>
 
+      .csf_info{
+        padding:10px;
+      }
+
+      .name_title{
+        font-size:20px;
+        font-weight:600;
+      }
+
+      .header_title{
+        font-weight:bold !important;
+        font-size:15px !important;
+      }
+
+      .table_info_csf td{
+        padding:10px;
+      }
+
+      #viewModalLabel{
+        display: inline-block;
+        margin-right: 5px;
+      }
+
       .container_label{
         display: flex;
         flex-direction: row;
@@ -248,17 +271,30 @@
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="viewModalLabel">Customer Satisafaction form of: </h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <div class="container">
+                        <h1 class="modal-title fs-5" id="viewModalLabel">Customer Satisafaction form of: </h1><span class="name_title"></span>
+                    </div>
+                    
+                    {{-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> --}}
                 </div>
                 <div class="modal-body">
 
-                  <div class="container">
-                    <div class="row">
-                      <div class="col-4">One</div>
-                      <div class="col-4">Two</div>
-                      <div class="col-4">Three</div>
-                    </div>
+                  <div class="container csf_info">
+
+                    <table class="table_info_csf">
+                        <tr>
+                            <td style="width:250px;"><label class="header_title">Name/Pangalan:</label> <span class="name"></span></td>
+                            <td><span class="header_title">Age/Edad:</span> <span class="age"></span></td>
+                            <td><span class="header_title">Gender/Kasarian:</span> <span class="gender"></span></td>
+                            <td><span class="header_title">Contact details:</span> <span class="contact"></span></td>
+                        </tr>
+                        <tr>
+                            <td><span class="header_title">Classification:</span> <span class="individual_group"></span></td>
+                            <td><span class="header_title">Customer type:</span> <span class="internal_external"></span></td>
+                            <td><span class="header_title">Type of goods:</span> <span class="types_of_goods_received"></span></td>
+                        </tr>
+                    </table>
+
                   </div>
            
                   <table class="table mb-0 align-middle" style="width:100%; overflow-x:auto;">
@@ -314,7 +350,6 @@
                                   <input type="radio" name="criteria_quality_of_goods" value = "1">
                                   <span class="checkmark"></span>
                                 </label>   
-
                             </td>
 
                         </tr>
@@ -400,35 +435,89 @@
         </div>
     </div>
 
+
+
+
+
+
 <script>
     $(document).ready(function(){
 
       $.ajaxSetup({
         headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            'X-CSRF-Token': '{{ csrf_token() }}'
         }
       });
 
 
-
       $(".btnCSF").click(function(){
         let id =  $(this).attr("data-id");
-        
-        $.ajax({
-          url: "{{ url('super-admin/dashboard', '') }}" + "/" + id,
-          method: "POST",
-          success: function(result){
-              console.log(result);
-          }
 
+            $.ajax({
+            url: "{{ route('dashboard.getId', '') }}" + "/" + id,
+            method: "POST",
+            success: function(result){
+
+                let result_test = JSON.parse(result);
+ 
+
+                $('.name_title').text(result_test.name);
+
+                $('.name').text(result_test.name);
+                
+                switch(result_test.age){
+                    case 1:
+                        $('.age').text("< 17 (under 17 years old)");
+                    break;
+                    case 2:
+                        $('.age').text("18 - 59");
+                    break;
+                    case 3:
+                        $('.age').text("> 60 (60 years old and over)");
+                    break;    
+                }   
+                
+                switch(result_test.gender){
+                    case 1:
+                        $('.gender').text('Male');
+                    break;
+                    case 2:
+                        $('.gender').text('Female');
+                    break;
+                }
+
+                $('.contact').text(result_test.contact_details);
+
+                switch(result_test.individual_group){
+                    case 1:
+                        $('.individual_group').text('Individual');
+                    break;
+                    case 2:
+                        $('.individual_group').text('Group');
+                    break;
+                }
+
+                switch(result_test.internal_external){
+                    case 1:
+                        $('.internal_external').text('Internal');
+                    break;
+                    case 2:
+                        $('.internal_external').text('External');
+                    break;
+                }
+
+                $('.types_of_goods_received').text(types_of_goods_services);
+
+                
+               
+            }
+
+            });
         });
 
-
-      });
-
-
-
     });
+
+
 </script>
 
 

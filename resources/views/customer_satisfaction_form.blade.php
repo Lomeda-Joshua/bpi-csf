@@ -55,7 +55,7 @@
                                 <div class="row">
                                     <div class="col-1">
                                         <label style="font-size:17px; font-weight:bold;" class="form-check-label" for="age17">< 17</label>
-                                        <input type="radio" name="age" id="age17" value = "1"  />
+                                        <input type="radio" name="age" id="age17" value = "1" required />
                                     </div>
                                     
                                     <div class="col-1">
@@ -67,8 +67,8 @@
                                         <label style="font-size:17px; font-weight:bold;" class="form-check-label" for="age60">60 ></label>
                                         <input type="radio" name="age" id="age60" value = "3">
                                     </div>
-                                    
                                 </div>
+
                                 <br>
 
                                 <label for="gender"><span class="fw-semibold" style="font-weight:700">Gender/ kasarian*</span></label>
@@ -86,7 +86,7 @@
 
                                 <label><span class="fw-semibold" style="font-weight:700">Select your classification</span>:</label><br>
 
-                                <input type="radio" name="individual_group" id="individual" value = "1"  />
+                                <input type="radio" name="individual_group" id="individual" value = "1"  required/>
                                 <label style="font-size:17px; font-weight:bold;" class="form-check-label" for="individual">Individual/ Indibidwal</label>
                                 <br>
                                 <input type="radio" name="individual_group" id="group" value = "2">
@@ -112,7 +112,7 @@
 
                                 
                                 <label><b>Please choose your answer/ Piliin ang iyong sagot:*</b></label><br>
-                                <input type="radio" name="internal_external" id="external" value = "1">
+                                <input type="radio" name="internal_external" id="external" value = "1" required>
                                 <label class="form-check-label" for="external">External Customer</label>
                                 <br>
                                 <input type="radio" name="internal_external" id="internal" value = "2">
@@ -289,7 +289,6 @@
             }else{
                 group_box.css('display','none');
             }
-            
         });
 
         

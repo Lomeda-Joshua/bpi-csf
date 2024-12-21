@@ -66,8 +66,6 @@ class CsfController extends Controller
         Alert::success('Customer Satisfaction Form', 'Your response is recorded');
 
         return redirect(route('csf.index'));
-        // return redirect(route('index.user'));
-        
     }
 
 
