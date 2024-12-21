@@ -236,7 +236,20 @@
                                         <p class="mb-0 fw-normal">{{ $items->office->office_name }}</p>
                                     </td>
                                     <td class="border-bottom-0">
-                                        <p class="mb-0 fw-normal">{{ $items->age }}</p>
+                                        <p class="mb-0 fw-normal">
+                                            @switch($items->age)
+                                                @case(1)
+                                                    < 17 (Under 17 years old')
+                                                @break
+                                                @case(2) 
+                                                    18 - 59
+                                                @break
+                                                @case(3)
+                                                    60 > (60 years old and over) 
+                                                @break
+                                            @endswitch
+                                            
+                                        </p>
                                     </td>
                                     <td class="border-bottom-0">
                                         <p class="mb-0 fw-normal">{{ $items->contact_details }}</p>
