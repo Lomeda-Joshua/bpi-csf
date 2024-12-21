@@ -14,8 +14,10 @@
                 <th class="text-center p-1">Name</th>
                 <th class="text-center">Role</th>
                 <th class="text-center">Office</th>
+                <th class="text-center">User email account</th>
                 <th class="text-center">Created at</th>
                 <th class="text-center">Updated at</th>
+                <th class="text-center">Actions:</th>
             </tr>
         </thead>
         <tbody>
@@ -41,8 +43,10 @@
                     @endswitch
                 </td>
                 <td class="text-center">{{ $item->office->office_name ?? "Super admin role"  }}</td>
+                <td class="text-center">{{ $item->email }}</td>
                 <td class="text-center">{{ date('F d, Y', strtotime($item->created_at))  }}</td>
                 <td class="text-center">{{ date('F d, Y', strtotime($item->updated_at))  }}</td>
+                <td class="text-center"><button class="btn btn-success m-1">Edit</button><button class="btn btn-danger m-1">Delete</button></td>
             </tr>
             @endforeach
         </tbody>

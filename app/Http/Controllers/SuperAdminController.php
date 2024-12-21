@@ -47,9 +47,6 @@ class SuperAdminController extends Controller
             $arraySample[] = customer_satisfaction::select('name')->where('office_id', $i)->get();
         }
 
-
-  
-
         $firstDay = 01;
         $cutoffDay = 16;
         $lastDay = date('t');
@@ -63,7 +60,6 @@ class SuperAdminController extends Controller
         }
 
 
-        
         return view('super_admin.csfList', [ 'csf' => $csf, 'office' => $office, 'monthRange' => $monthRange, 'arrays' => $arraySample ]);
     }
 
@@ -98,7 +94,6 @@ class SuperAdminController extends Controller
     public function officeDetails()
     {
         $office = Office::with('customer_satisfaction')->paginate(10);
-
         return view('super_admin.office.officeDetails', [ 'office' => $office]);
     }
      
@@ -242,6 +237,11 @@ class SuperAdminController extends Controller
 
         Alert::success('Control number', 'Section control number set!');
         return redirect(route('control.number'));
+    }
+
+
+    public function getIdForModal(Request $request){
+        return true;
     }
 
 

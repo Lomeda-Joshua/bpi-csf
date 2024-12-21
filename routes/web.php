@@ -11,7 +11,6 @@ use App\Http\Controllers\Auth\RegisteredUserController;
 
 
 Route::get('/', function () {
-
     $auth_id = Auth::user();
     return view('auth.login', [ 'auth_id' => $auth_id ] );
 
@@ -28,6 +27,8 @@ Route::post('/customer-satisfaction-form/submitted', [ CsfController::class, 'st
 Route::middleware(['auth', 'role:3'])->controller(SuperAdminController::class)->group(function(){
     Route::prefix('/super-admin')->group(function(){
         Route::get('/dashboard', 'index')->name('index.super-admin');
+        Route::post('/dashboard/{id}', 'getIdForModal')->name('dashboard.getId');
+
         Route::get('/customer-satisfaction-list', 'csfList')->name('super.list');
         Route::get('/settings/profile', 'profile')->name('super.profile');
         Route::get('/settings/office-details', 'officeDetails')->name('super.office');
@@ -64,11 +65,12 @@ Route::middleware(['auth', 'role:1'])->controller(UserController::class)->prefix
     Route::get('/customer-satisfaction-list', 'csfList');
     Route::get('/settings/profile', 'profile')->name('user.profile');
     Route::get('/settings/office-details', 'officeDetails');
-    
-    Route::put('/settings/profile/{id}', 'profile_update')->name('profile.update');
-    
+
+    Route::put('/settings/profile/{id}', 'profile_update')->name('profile.update');    
     Route::post('/print-summary', 'printSummary')->name('print-summary-user');
 });
+
+
 
 
 require __DIR__.'/auth.php';

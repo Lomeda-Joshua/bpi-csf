@@ -18,11 +18,11 @@
       <br><br>
 
       <p class="mb-0"><b>Date Created : </b></p>
-      {{ $user_data->created_at }}
+      {{ date('F d, Y ', strtotime($user_data->created_at)) }}
       <br><br>
 
       <p class="mb-0"><b>Date Updated :</b></p>
-        {{ $user_data->updated_at }}
+        {{ date('F d, Y', strtotime($user_data->updated_at)) }}
       <br><br>
 
       
