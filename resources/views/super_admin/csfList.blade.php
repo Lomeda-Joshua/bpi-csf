@@ -119,9 +119,9 @@
                     <th class="text-center block-data">Jan 16 - Feb 15</th>
                     <th class="text-center block-data">Feb 16 - March 15</th>
                     <th class="text-center block-data">Mar 16 - Apr 15</th>
-                    <th class="text-center block-data">April 16 - May 15</th>
-                    <th class="text-center block-data">May 16 - June 15</th>
-                    <th class="text-center block-data">June 16- July 15</th>
+                    <th class="text-center block-data">Apr 16 - May 15</th>
+                    <th class="text-center block-data">May 16 - Jun 15</th>
+                    <th class="text-center block-data">Jun 16- Jul 15</th>
                     <th class="text-center block-data">Jul 16 - Aug 15</th>
                     <th class="text-center block-data">Aug 16 - Sept 15</th>
                     <th class="text-center block-data">Sept 16 - Oct 15</th>
@@ -131,6 +131,8 @@
                 </tr>
             </thead>
             <tbody>
+
+
 
                 @foreach( $office as $data )
                 <tr>
@@ -154,6 +156,24 @@
                 </tr>
                 @endforeach
             </tbody>
+
+       
+
+            <script>
+                $("document").ready(function(){
+
+                    let x = @json($json_format);
+                    let a = JSON.parse(x);
+ 
+                    a.forEach(myFunction);
+
+                    function myFunction(item){
+                        console.log(item.types_of_goods_services);
+                    }
+
+                });
+            </script>
+
             <tfoot>
                 <tr>
                     <td style="text-align:center">TOTAL <b>(sum per column)</b></td>
@@ -205,13 +225,14 @@
                 <td>AVERAGE per office</td>
             </tr>
 
-            @foreach( $arrays as $data )
-                <tr>
-                    @foreach($data as $item)
-                    
-                        <td>   {{ $item->name }}</td>
-                    @endforeach
+          
 
+            @foreach( $office as $data )
+                <tr>
+                    <td>
+                        {{ $data->office_name }}
+                    </td>
+                    
                 </tr>
             @endforeach
 
@@ -429,6 +450,8 @@
 
 
 <script>
+    
+
     const ctx = document.getElementById('myChart');
     new Chart(ctx, {
         type: 'bar',

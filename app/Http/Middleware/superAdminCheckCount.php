@@ -26,6 +26,7 @@ class superAdminCheckCount
             return redirect('login');
             
         }
+        
         return $next($request);
      
     }
