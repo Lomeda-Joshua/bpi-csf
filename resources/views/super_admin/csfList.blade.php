@@ -135,44 +135,20 @@
 
 
                 @foreach( $office as $data )
-                <tr>
-                    <td><b>{{$data->office_name}}</b></td>
-                    <td>{{ count($data->customer_satisfaction) }}</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                <tr id="tableBow">
+                    <td id=""><b>{{$data->office_name}}</b></td>
+                    <td id="">{{ count($data->customer_satisfaction) }}</td>
+                    <td id=""></td>
+                    <td id=""></td>
+                    <td id=""></td>
+                    <td id=""></td>
+                    <td id=""></td>
+                    <td id="novdec"></td>
+                    <td id="dec"></td>
+            
                 </tr>
                 @endforeach
             </tbody>
-
-       
-
-            <script>
-                $("document").ready(function(){
-
-                    let x = @json($json_format);
-                    let a = JSON.parse(x);
- 
-                    a.forEach(myFunction);
-
-                    function myFunction(item){
-                        console.log(item.types_of_goods_services);
-                    }
-
-                });
-            </script>
 
             <tfoot>
                 <tr>
@@ -391,7 +367,19 @@
         <tbody>
             @foreach( $office as $data)
                 <tr>
-                    <td><b>{{ $data->office_name }}</b></td>
+                    <td id="Jan"><b>{{ $data->office_name }}</b></td>
+                    <td id="JanFeb"></td>
+                    <td id="FebMar"></td>
+                    <td id="MarApr"></td>
+                    <td id="AprMay"></td>
+                    <td id="MayJun"></td>
+                    <td id="JunJul"></td>
+                    <td id="JulAug"></td>
+                    <td id="AugSept"></td>
+                    <td id="SeptOct"></td>
+                    <td id="OctNov"></td>
+                    <td id="NovDec"></td>
+                    <td id="Dec"></td>
                     
                     @if($data)
                         <td colspan="13"><b>No such data</b></td>
@@ -450,21 +438,57 @@
 
 
 <script>
-    
+
+    $("document").ready(function(){
+        let x = @json($json_format);
+        let a = JSON.parse(x);
+
+
+        let f = JSON.parse(@json($json_table));
+
+        console.log(f);
+
+
+
+        // console.log(a);
+
+        let koala = a.map(micro);
+
+        function micro(item){
+            return item.name.length;
+        }
+
+        let dateVal = "#tableBow";
+        let decemberVal = "#december";
+
+        
+        $("#csf_table" + " " + decemberVal).append(koala);
+
+
+
+
+    });
+
+</script>
+
+<script>
+
 
     const ctx = document.getElementById('myChart');
     new Chart(ctx, {
         type: 'bar',
+
         data: {
             labels: [
                 'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'
             ],
             datasets: [{
-            label: 'BPI CSF ANALYSIS PER OPERATING UNITS',
+            label: 'Total CSF gathered for this month',
             data: [12, 19, 3, 5, 2, 3],
             borderWidth: 1
             }]
         },
+
         options: {
             scales: {
             y: {
@@ -477,6 +501,8 @@
 
     const date = new Date();
     document.getElementById("year_copyright").innerHTML = date.getFullYear();
+
+
     
 
 

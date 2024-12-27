@@ -40,6 +40,7 @@ class CsfController extends Controller
         $criteria_overall_experience = $request->input('criteria_overall_experience');
         $promoter_score = $request->input('promoter_score');
         $comments_suggestions = $request->input('comments_suggestions');
+        $monthIndicator = $request->input('monthIndicator');
     
         
         customer_satisfaction::create([
@@ -61,6 +62,7 @@ class CsfController extends Controller
             'promoter_score' => $promoter_score,
             'comments_suggestions' => $comments_suggestions,
             'office_id' => $office_id,
+            'monthIndicator' => $monthIndicator
         ]);
 
         Alert::success('Customer Satisfaction Form', 'Your response is recorded');

@@ -33,10 +33,15 @@ class customer_satisfaction extends Model
         'encoder_id',
         'office_id',
         'control_number',
+        'monthIndicator'
     ];
 
     public function office() : belongsTo
     {
         return $this->belongsto(Office::class, 'office_id' );
     }
+
+
+
+    
 }

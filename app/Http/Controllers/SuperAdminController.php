@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rules;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\DB;
 
 use App\Models\User;
 use App\Models\customer_satisfaction;
@@ -39,35 +40,56 @@ class SuperAdminController extends Controller
 
         $csf = customer_satisfaction::get();
         $office = Office::with('customer_satisfaction')->get();
+
         $office_count = Office::with('customer_satisfaction')->select('office_id')->distinct()->count();
-
-        $arraySample = array();
-
+        $arraysOffice = array();
 
         for($i = 1; $i <= $office_count; $i++){
-            $arraySample[] = customer_satisfaction::where('office_id', $i)->get();
+            $arraysOffice[] = Office::where('id', $i)->get();
         }
-        
 
-        $firstDay = 01;
-        $cutoffDay = 16;
-        $lastDay = date('t');
+
+        $cutOffDayWeek1 = 1;
+        $cutOfflastweek1 = 16;
+        $secondCutOffweek2 = 17;
+        $lastCutOffweek2 = 30;
         $currentYear = date('Y');
 
-
         for($i = 0; $i < 12; $i++){
-            $startingDate = $currentYear . '-' . $i + 1 . '-' . $firstDay;
-            $endingDate = $currentYear . '-' . $i + 1 . '-' . $cutoffDay;
+            $startingDate = $currentYear . '-' . $i + 1 . '-' . $cutOffDayWeek1;
+            $endingDate = $currentYear . '-' . $i + 1 . '-' . $cutOfflastweek1;
 
-            $monthRange = customer_satisfaction::whereBetween('csf_date', [$startingDate, $endingDate])->get();
+            $lastCutOffweek = $currentYear . '-' . $i + 1 . '-' . $secondCutOffweek2;
+            $finalCutOffweek = $currentYear . '-' . $i + 1 . '-' . $lastCutOffweek2;
+
+            $firstmonthRange = customer_satisfaction::whereBetween('csf_date', [$startingDate, $endingDate])->count();
+            $lastmonthRange = customer_satisfaction::whereBetween('csf_date', [$lastCutOffweek, $finalCutOffweek])->count();
         }
 
-        
+
+        $months = ["jan","feb","mar","apr","may","jun","jul","aug","sept","oct","nov","dec"];
+
+        // $csf_month = customer_satisfaction::where('office_id',)->get();
+        $monthReport = array();
+        $officeCollection = array();
+
+
+        for($i = 0; $i <= $office->count(); $i++){
+
+                $offices = Office::with('customer_satisfaction')->where('id', '<=', $i)->get();
+                $officeCollection = customer_satisfaction::where('office_id', '<=', $i)->distinct()->get();
+
+        }
+
+    
+
+      
 
         $json_format = $csf->toJson(JSON_PRETTY_PRINT);
 
+        $json_table = $officeCollection->toJson(JSON_PRETTY_PRINT);
 
-        return view('super_admin.csfList', [ 'csf' => $csf, 'office' => $office, 'monthRange' => $monthRange, 'arrays' => $arraySample, 'json_format' => $json_format ]);
+        return view('super_admin.csfList', [ 'csf' => $csf, 'office' => $office, 'monthRange' => $firstmonthRange, 'arrays' => $arraysOffice, 'json_format' => $json_format, 'json_table' => $json_table  ]);
     }
 
 

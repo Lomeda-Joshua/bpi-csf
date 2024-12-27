@@ -45,6 +45,8 @@
                                 </select>
                                 <br>
 
+                                <input class="monthIndicator" name="monthIndicator" type="number" value="">
+
                                 <label for="name"><span class="fw-semibold" style="font-weight:700">Name/</span>Pangalan :</label>
                                 <input type="text" class="form-control" id="name" name="name" aria-describedby="name" required />
                                 <br>
@@ -292,8 +294,12 @@
         });
 
         
+        const date = new Date();
+        const month = date.getMonth() + 1;        
+        $(".monthIndicator").attr('value', month);
 
     });
 </script>
+
 </body>
 </html>
