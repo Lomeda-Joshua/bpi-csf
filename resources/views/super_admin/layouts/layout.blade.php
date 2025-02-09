@@ -5,14 +5,14 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Customer Satisfaction Form | BPI</title>
+    <link rel="shortcut icon" type="image/png" href="{{ asset('images/logos/bpi_logo.png') }}" />
 
-    <link rel="shortcut icon" type="image/png" href="{{ asset('assets/images/logos/bpi_logo.png') }}" />
-    <link rel="stylesheet" href="{{asset('assets/css/styles.min.css')}}" />
     <link href="https://cdn.datatables.net/v/bs5/dt-2.0.1/datatables.min.css" rel="stylesheet">
-
     <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/moment/min/moment.min.js"></script>
+
+    @vite('resources/assets/css/styles.min.css')
 
 </head>
 
@@ -25,7 +25,7 @@
   data-sidebar-position="fixed" data-header-position="fixed">
       <!-- Sidebar Start -->
       <aside class="left-sidebar">
-        @include('super_admin.layouts.navigation')
+          @include('super_admin.layouts.navigation')
       </aside>
       <!--  Sidebar End -->
 </div>
@@ -34,24 +34,21 @@
 <div class="body-wrapper">
     @include('super_admin.layouts.header')
     <div class="container-fluid">
-
+        
         @yield('contents')
 
     </div>
 </div>
 <!--  End Main wrapper -->
 
-<script src="{{asset('assets/libs/jquery/dist/jquery.min.js')}}"></script>
-<script src="{{asset('assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js')}}"></script>
-<script src="{{asset('assets/js/sidebarmenu.js')}}"></script>
-<script src="{{asset('assets/js/app.min.js')}}"></script>
-{{-- <script src="{{asset('assets/libs/apexcharts/dist/apexcharts.min.js')}}"></script>      --}}
-<script src="{{asset('assets/libs/simplebar/dist/simplebar.js')}}"></script>
-<script src="{{asset('assets/js/dashboard.js')}}"></script>
-
+@vite('resources/assets/libs/jquery/dist/jquery.min.js')
+@vite('resources/assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js')
+@vite('resources/assets/js/sidebarmenu.js')
+@vite('resources/assets/js/app.min.js')
+@vite('resources/assets/libs/apexcharts/dist/apexcharts.min.js')
+@vite('resources/assets/libs/simplebar/dist/simplebar.js')
+@vite('resources/assets/js/dashboard.js')
 <script src="https://cdn.datatables.net/v/bs5/dt-2.0.1/datatables.min.js"></script>
-
-
 
 </body>
 

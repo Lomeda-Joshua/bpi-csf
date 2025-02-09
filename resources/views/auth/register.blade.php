@@ -5,14 +5,15 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Customer Satisfaction Form | BPI</title>
-    <link rel="shortcut icon" type="image/png" href="{{ asset('assets/images/logos/bpi_logo.png') }}" />
-    <link rel="stylesheet" href="{{asset('assets/css/styles.min.css')}}" />
+    <link rel="shortcut icon" type="image/png" href="asset('images/logos/bpi_logo.png')" />
     <link href="https://cdn.datatables.net/v/bs5/dt-2.0.1/datatables.min.css" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+
+    @vite('resources/assets/css/styles.min.css')
   </head>
 
 <body>
-
+  
   @include('sweetalert::alert', ['cdn' => "https://cdn.jsdelivr.net/npm/sweetalert2@9"])
 
       <!--  Body Wrapper -->

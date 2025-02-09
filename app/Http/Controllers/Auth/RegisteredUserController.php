@@ -65,8 +65,8 @@ class RegisteredUserController extends Controller
         ]);
 
 
-        $superAdminCount = DB::table('Users')->select('role_id')->where('role_id', 3)->count();
-        $userCount = DB::table('Users')->get()->count();
+        $superAdminCount = DB::table('users')->select('role_id')->where('role_id', 3)->count();
+        $userCount = DB::table('users')->get()->count();
 
         if( $userCount <= 0  ){
 

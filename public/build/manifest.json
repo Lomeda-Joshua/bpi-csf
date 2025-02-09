@@ -1,6 +1,66 @@
 {
+  "resources/assets/css/icons/tabler-icons/fonts/tabler-icons.eot": {
+    "file": "assets/tabler-icons-D91Td7Em.eot",
+    "src": "resources/assets/css/icons/tabler-icons/fonts/tabler-icons.eot"
+  },
+  "resources/assets/css/icons/tabler-icons/fonts/tabler-icons.svg": {
+    "file": "assets/tabler-icons-DkKlmoMw.svg",
+    "src": "resources/assets/css/icons/tabler-icons/fonts/tabler-icons.svg"
+  },
+  "resources/assets/css/icons/tabler-icons/fonts/tabler-icons.ttf": {
+    "file": "assets/tabler-icons-Bj6HnZqC.ttf",
+    "src": "resources/assets/css/icons/tabler-icons/fonts/tabler-icons.ttf"
+  },
+  "resources/assets/css/icons/tabler-icons/fonts/tabler-icons.woff": {
+    "file": "assets/tabler-icons-5JjTyLEB.woff",
+    "src": "resources/assets/css/icons/tabler-icons/fonts/tabler-icons.woff"
+  },
+  "resources/assets/css/icons/tabler-icons/fonts/tabler-icons.woff2": {
+    "file": "assets/tabler-icons-CdTAjtqK.woff2",
+    "src": "resources/assets/css/icons/tabler-icons/fonts/tabler-icons.woff2"
+  },
+  "resources/assets/css/styles.min.css": {
+    "file": "assets/styles-D8uWreQU.css",
+    "src": "resources/assets/css/styles.min.css",
+    "isEntry": true
+  },
+  "resources/assets/js/app.min.js": {
+    "file": "assets/app.min-SGuLIMOD.js",
+    "src": "resources/assets/js/app.min.js",
+    "isEntry": true
+  },
+  "resources/assets/js/dashboard.js": {
+    "file": "assets/dashboard-B2bA0ceP.js",
+    "src": "resources/assets/js/dashboard.js",
+    "isEntry": true
+  },
+  "resources/assets/js/sidebarmenu.js": {
+    "file": "assets/sidebarmenu-Cqe42Uci.js",
+    "src": "resources/assets/js/sidebarmenu.js",
+    "isEntry": true
+  },
+  "resources/assets/libs/apexcharts/dist/apexcharts.min.js": {
+    "file": "assets/apexcharts.min-CcyqO19i.js",
+    "src": "resources/assets/libs/apexcharts/dist/apexcharts.min.js",
+    "isEntry": true
+  },
+  "resources/assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js": {
+    "file": "assets/bootstrap.bundle.min-BnYmbUj2.js",
+    "src": "resources/assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js",
+    "isEntry": true
+  },
+  "resources/assets/libs/jquery/dist/jquery.min.js": {
+    "file": "assets/jquery.min-B3p5-zax.js",
+    "src": "resources/assets/libs/jquery/dist/jquery.min.js",
+    "isEntry": true
+  },
+  "resources/assets/libs/simplebar/dist/simplebar.js": {
+    "file": "assets/simplebar-D5vw5oa7.js",
+    "src": "resources/assets/libs/simplebar/dist/simplebar.js",
+    "isEntry": true
+  },
   "resources/css/app.css": {
-    "file": "assets/app-Dykhhggy.css",
+    "file": "assets/app-DmyIpArJ.css",
     "src": "resources/css/app.css",
     "isEntry": true
   },

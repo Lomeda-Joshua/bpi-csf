@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\customer_satisfaction;
-use App\Models\OFfice;
+use App\Models\Office;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class CsfController extends Controller
@@ -12,7 +12,7 @@ class CsfController extends Controller
 
     public function index()
     {
-        $office_data = OFfice::all();
+        $office_data = Office::all();
         return view('customer_satisfaction_form', ['office_data' => $office_data] );
     }
 

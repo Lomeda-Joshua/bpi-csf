@@ -13,7 +13,6 @@ use App\Http\Controllers\Auth\RegisteredUserController;
 Route::get('/', function () {
     $auth_id = Auth::user();
     return view('auth.login', [ 'auth_id' => $auth_id ] );
-
 });
 
 
