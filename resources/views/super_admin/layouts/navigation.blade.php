@@ -1,7 +1,7 @@
       <!-- Sidebar scroll-->
       <div>
         <div class="brand-logo d-flex align-items-center justify-content-between">
-          <a href="./index.html" class="text-nowrap logo-img">
+          <a href="{{ route('index.super-admin') }}" class="text-nowrap logo-img">
             <img src="{{asset('images/logos/bpi_logo.png')}}" width="90" alt="" />
           </a>
           <div class="close-btn d-xl-none d-block sidebartoggler cursor-pointer" id="sidebarCollapse">
@@ -47,28 +47,22 @@
                 <span class="hide-menu">Profile</span>
               </a>
             </li>
+
             <li class="sidebar-item">
-              <a class="sidebar-link" href="{{route('super.office')}}" aria-expanded="false">
+              <a class="sidebar-link {{ request()->routeIs('super.control.number') || request()->routeIs('super.set-control.number') || request()->routeIs('super.store-control.number') || request()->routeIs('super.office.create')  ? 'active' : ' '  }}"  href="{{route('super.office')}}" aria-expanded="false">
                 <span>
                   <i class="ti ti-building-skyscraper"></i>
                 </span>
                 <span class="hide-menu">Office Details</span>
               </a>
             </li>
+
             <li class="sidebar-item">
               <a class="sidebar-link" href="{{route('super.personnel')}}" aria-expanded="false">
                 <span>
                   <i class="ti ti-user"></i>
                 </span>
                 <span class="hide-menu">Personnel List</span>
-              </a>
-            </li> 
-            <li class="sidebar-item">
-              <a class="sidebar-link" href="{{route('control.number')}}" aria-expanded="false">
-                <span>
-                  <i class="ti ti-number"></i>
-                </span>
-                <span class="hide-menu">Control Number</span>
               </a>
             </li> 
           </ul>

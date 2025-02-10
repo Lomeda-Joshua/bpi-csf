@@ -39,25 +39,32 @@ class SuperAdminController extends Controller
 
         $csf = customer_satisfaction::get();
         $office = Office::with('customer_satisfaction')->get();
-        $office_count = Office::with('customer_satisfaction')->select('office_id')->distinct()->count();
-        $arraySample = array();
 
+        $office_count = Office::with('customer_satisfaction')->select('office_id')->distinct()->count();
+
+        $arraySample = array();
 
         for($i = 1; $i <= $office_count; $i++){
             $arraySample[] = customer_satisfaction::select('name')->where('office_id', $i)->get();
         }
 
+
         $firstDay = 01;
         $cutoffDay = 16;
         $lastDay = date('t');
+        $getMonth = date('m');
         $currentYear = date('Y');
 
         for($i = 0; $i < 12; $i++){
             $startingDate = $currentYear . '-' . $i + 1 . '-' . $firstDay;
             $endingDate = $currentYear . '-' . $i + 1 . '-' . $cutoffDay;
 
-            $monthRange = customer_satisfaction::whereBetween('csf_date', [$startingDate, $endingDate])->get();
+            
         }
+
+        $monthRange = customer_satisfaction::whereBetween('csf_date', ['2025-02-01', '2025-02-16'])->get();
+
+        
 
 
         return view('super_admin.csfList', [ 'csf' => $csf, 'office' => $office, 'monthRange' => $monthRange, 'arrays' => $arraySample ]);
@@ -236,7 +243,7 @@ class SuperAdminController extends Controller
         ]);
 
         Alert::success('Control number', 'Section control number set!');
-        return redirect(route('control.number'));
+        return redirect(route('super.set-control.number'));
     }
 
 

@@ -8,10 +8,12 @@
     <link rel="shortcut icon" type="image/png" href="{{ asset('images/logos/bpi_logo.png') }}" />
 
     <link href="https://cdn.datatables.net/v/bs5/dt-2.0.1/datatables.min.css" rel="stylesheet">
+    
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
     <script src="https://code.jquery.com/jquery-3.7.1.slim.min.js" integrity="sha256-kmHvs0B+OpCW5GVHUNjv9rOmY0IvSIRcf7zGUDTDQM8=" crossorigin="anonymous"></script>
 
     @vite('resources/assets/css/styles.min.css')
+    @vite('resources/assets/libs/jquery/dist/jquery.min.js')
 </head>
 
 <body>
@@ -43,21 +45,15 @@
 <!--  Javascripts -->
 
 
-@vite('resources/assets/libs/jquery/dist/jquery.min.js')
+
+@vite('resources/assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js')
 @vite('resources/assets/js/sidebarmenu.js')
 @vite('resources/assets/js/app.min.js')
-@vite('resources/assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js')
-
-<script src="{{asset('assets/libs/apexcharts/dist/apexcharts.min.js')}}"></script>
-<script src="{{asset('assets/libs/simplebar/dist/simplebar.js')}}"></script>
-<script src="{{asset('assets/js/dashboard.js')}}"></script>
-
-
+@vite('resources/assets/libs/simplebar/dist/simplebar.js')
+@vite('resources/assets/js/dashboard.js')
 <script src="https://cdn.datatables.net/v/bs5/dt-2.0.1/datatables.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
-<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
-
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script> 
 
 </body>
 

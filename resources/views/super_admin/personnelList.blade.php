@@ -2,6 +2,8 @@
 
 @section('contents')
 
+@include('super_admin.modal.edit_user_profile')
+
 <div class="card">
     <div class="card-body">
       <h5 class="card-title fw-semibold mb-4">Authorized Personnel</h5>
@@ -39,14 +41,22 @@
                         {{ "Super admin" }}
                     @break
                     
-                    
                     @endswitch
                 </td>
+
+                
+
                 <td class="text-center">{{ $item->office->office_name ?? "Super admin role"  }}</td>
                 <td class="text-center">{{ $item->email }}</td>
                 <td class="text-center">{{ date('F d, Y', strtotime($item->created_at))  }}</td>
                 <td class="text-center">{{ date('F d, Y', strtotime($item->updated_at))  }}</td>
-                <td class="text-center"><button class="btn btn-success m-1">Edit</button><button class="btn btn-danger m-1">Delete</button></td>
+                <td class="text-center">
+                    
+                    <button data-bs-toggle="modal" data-bs-target="#personnel_modal" class="btn btn-success m-1">Edit</button>
+
+                    @if(auth()->user()->role_id != 3)
+                    <button class="btn btn-danger m-1">Delete</button></td>
+                    @endif
             </tr>
             @endforeach
         </tbody>

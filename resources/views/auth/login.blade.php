@@ -5,14 +5,22 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Customer Satisfaction Form | BPI</title>
-    <link rel="shortcut icon" type="image/png" href="{{ asset('resources/assets/images/logos/bpi_logo.png') }}" />
+    <link rel="shortcut icon" type="image/png" href="{{ asset('images/logos/bpi_logo.png') }}" />
     <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 
     @vite('resources/assets/css/styles.min.css')
 </head>
 
+<style>
+  .card-body{
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 15px 25px, rgba(0, 0, 0, 0.05) 0px 5px 10px !important;
+  }
+  
+</style>
+
 <body>
 
+  
   @include('sweetalert::alert', ['cdn' => "https://cdn.jsdelivr.net/npm/sweetalert2@9"])
   
   <!--  Body Wrapper -->
@@ -26,37 +34,35 @@
             <div class="card mb-0">
               <div class="card-body">
                 <div class="text-nowrap logo-img text-center d-block py-3 w-100">
-                  <img src="{{ asset('assets/images/logos/bpi_logo.png')}}" width="180" alt="">
+                  <img src="{{ asset('images/logos/bpi_logo.png')}}" width="180" alt="">
                 </div>
                 <h5 class="text-center"><b>Customer Satisfaction Application</b></h5>
 
 
 
                     @if (Route::has('login'))
-
-                        
                       
                               @auth
                                   @if( $auth_id )
 
-                                            @switch($auth_id->role_id)
+                                    @switch($auth_id->role_id)
 
-                                              @case(1)
-                                                <br>
-                                                <a href="{{ route('index.user') }}" class="btn btn-primary w-100 py-8 fs-4 mb-4 rounded-2" >To dashboard</a>
-                                              @break
+                                      @case(1)
+                                        <br>
+                                        <a href="{{ route('index.user') }}" class="btn btn-primary w-100 py-8 fs-4 mb-4 rounded-2" >To dashboard</a>
+                                      @break
 
-                                              @case(2)
-                                                <br>
-                                                <a href="{{ route('index.admin') }}" class="btn btn-primary w-100 py-8 fs-4 mb-4 rounded-2" >To dashboard</a>
-                                              @break
+                                      @case(2)
+                                        <br>
+                                        <a href="{{ route('index.admin') }}" class="btn btn-primary w-100 py-8 fs-4 mb-4 rounded-2" >To dashboard</a>
+                                      @break
 
-                                              @case(3)
-                                                <br>
-                                                <a href="{{ route('index.super-admin') }}" class="btn btn-primary w-100 py-8 fs-4 mb-4 rounded-2" >To dashboard</a>
-                                              @break
+                                      @case(3)
+                                        <br>
+                                        <a href="{{ route('index.super-admin') }}" class="btn btn-primary w-100 py-8 fs-4 mb-4 rounded-2" >To dashboard</a>
+                                      @break
 
-                                            @endswitch
+                                    @endswitch
                     
                                   @endif
                   

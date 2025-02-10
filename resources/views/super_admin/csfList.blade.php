@@ -132,10 +132,12 @@
             </thead>
             <tbody>
 
+                {{-- {{ count($data->customer_satisfaction) }} --}}
+
                 @foreach( $office as $data )
                 <tr>
                     <td><b>{{$data->office_name}}</b></td>
-                    <td>{{ count($data->customer_satisfaction) }}</td>
+                    <td></td>
                     <td></td>
                     <td></td>
                     <td></td>

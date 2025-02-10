@@ -6,6 +6,7 @@
     <div class="card-body">
 
       <a href="{{ route('super.office.create') }}" class="btn btn-primary m-1">Create new office</a>
+      <a href="{{ route('super.control.number') }}" class="btn btn-success m-1">Set control number</a>
 
       <table id="office_table" class="table align-middle striped" style="width:100%">
         <thead>

@@ -42,9 +42,9 @@ Route::middleware(['auth', 'role:3'])->controller(SuperAdminController::class)->
 
         Route::get('/print-summary', 'printSummary')->name('print-summary');
 
-        Route::get('/settings/set-control-number', 'control_number')->name('control.number');
-        Route::get('/settings/set-control-number/set-new-control-no', 'setNew_control_number')->name('set-control.number');
-        Route::post('/settings/set-control-number/set-new-control-no', 'store_control_number')->name('store-control.number');
+        Route::get('/settings/set-control-number', 'control_number')->name('super.control.number');
+        Route::get('/settings/set-control-number/set-new-control-no', 'setNew_control_number')->name('super.set-control.number');
+        Route::post('/settings/set-control-number/set-new-control-no', 'store_control_number')->name('super.store-control.number');
     });
 
 });

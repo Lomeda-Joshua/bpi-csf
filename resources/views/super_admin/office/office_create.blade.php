@@ -2,6 +2,7 @@
 
 @section('contents')
 
+<a href="{{ route('index.super-admin') }}" class="btn btn-danger">Return</a>
 <div class="card">
     <div class="card-body">
     <h3><b>Create new Office</b></h3><br>
@@ -19,6 +20,7 @@
             
         </div>
         <button type="submit" class="btn btn-primary">Create</button>
+       
       </form>
     </div>
   </div>
