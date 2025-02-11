@@ -2,8 +2,6 @@
 
 @section('contents')
 
-@include('super_admin.modal.edit_user_profile')
-
 <div class="card">
     <div class="card-body">
       <h5 class="card-title fw-semibold mb-4">Authorized Personnel</h5>
@@ -22,7 +20,12 @@
                 <th class="text-center">Actions:</th>
             </tr>
         </thead>
+
+        
         <tbody>
+
+            
+
             @foreach($personnels as $item)
             <tr>
                 <td class="text-center">{{ $item->name }}</td>
@@ -44,6 +47,7 @@
                     @endswitch
                 </td>
 
+
                 
 
                 <td class="text-center">{{ $item->office->office_name ?? "Super admin role"  }}</td>
@@ -55,14 +59,20 @@
                     <button data-bs-toggle="modal" data-bs-target="#personnel_modal" class="btn btn-success m-1">Edit</button>
 
                     @if(auth()->user()->role_id != 3)
-                    <button class="btn btn-danger m-1">Delete</button></td>
+                        <button class="btn btn-danger m-1">Delete</button>
                     @endif
+
+                </td>
             </tr>
             @endforeach
+
         </tbody>
     </table>
     </div>
 </div>
+
+
+@include('super_admin.modal.edit_user_profile')
 
 <script>
     $("document").ready(function(){

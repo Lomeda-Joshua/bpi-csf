@@ -58,7 +58,7 @@
             </li>
 
             <li class="sidebar-item">
-              <a class="sidebar-link" href="{{route('super.personnel')}}" aria-expanded="false">
+              <a class="sidebar-link {{ request()->routeIs('super.admin-add.new.user') ? 'active' : ' '  }}" href="{{route('super.personnel')}}" aria-expanded="false">
                 <span>
                   <i class="ti ti-user"></i>
                 </span>

@@ -2,6 +2,7 @@
 
 @section('contents')
 
+<a href="{{ route('super.personnel') }}" class="btn btn-danger">Return</a>
 <div class="card">
     <div class="card-body">
         <h5 class="card-title fw-semibold mb-4">Authorized Personnel</h5>

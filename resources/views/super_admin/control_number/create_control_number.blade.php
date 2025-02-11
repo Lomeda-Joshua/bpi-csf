@@ -8,7 +8,7 @@
     }
 </style>
 
-<a href="{{ route('super.office') }}" class="btn btn-danger">Back</a>
+<a href="{{ route('super.control.number') }}" class="btn btn-danger">Back</a>
 <div class="card">
     <div class="card-body">
     <h3><b>Create new Office</b></h3><br>

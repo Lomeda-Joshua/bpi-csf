@@ -2,7 +2,14 @@
 
 @section('contents')
 
-<a href="{{ route('index.super-admin') }}" class="btn btn-danger">Return</a>
+<style>
+  .card-body{
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 15px 25px, rgba(0, 0, 0, 0.05) 0px 5px 10px !important;
+  }
+  
+</style>
+
+<a href="{{ route('super.office') }}" class="btn btn-danger">Return</a>
 <div class="card">
     <div class="card-body">
     <h3><b>Create new Office</b></h3><br>

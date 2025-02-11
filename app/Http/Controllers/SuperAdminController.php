@@ -164,19 +164,22 @@ class SuperAdminController extends Controller
     /**
      * Display the List view for all personnels of sections.
      */
-    public function personnelList(){
+    public function PersonnelList(){
 
         $personnels = User::with('office')->get();
-        return view('super_admin.personnelList', [ 'personnels' => $personnels]);
+        $current_user = auth()->user()->role_id;
+
+        
+
+        return view('super_admin.personnel_list.personnelList', [ 'personnels' => $personnels]);
     }
 
 
     /**
-     * Display the add of new user.
+     * Display the add of personnel/new user.
      */
-    public function addNewPersonnel(){
-
-        return view('super_admin.create_new_profile', ['office' => Office::all()] );
+    public function AddNewPersonnel(){
+        return view('super_admin.personnel_list.create_new_profile', ['office' => Office::all()] );
     }
 
 
@@ -219,21 +222,21 @@ class SuperAdminController extends Controller
     /**
      * Set new control number.
      */
-    public function control_number()
+    public function ControlNumber()
     {
         $control_number_data = control_number::with('section')->get();
         return view('super_admin.control_number.control_numbers' , ['control_number' => $control_number_data]);
     }
 
 
-    public function setNew_control_number()
+    public function SetNewControlNumber()
     {
         $selectOffice = Office::all();
         return view('super_admin.control_number.create_control_number', [ 'selectOffice' => $selectOffice]);
     }
 
 
-    public function store_control_number(Request $request)
+    public function StoreControlNumber(Request $request)
     {
         control_number::create([
             'section_office' => $request->section_office,
