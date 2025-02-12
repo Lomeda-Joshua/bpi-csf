@@ -42,7 +42,8 @@ Route::middleware(['auth', 'role:3'])->controller(SuperAdminController::class)->
         // Add new authorized personnel
         Route::get('/settings/personnel-list', 'PersonnelList')->name('super.personnel');
         Route::get('/settings/personnel-list/add-new-user', 'AddNewPersonnel')->name('super.admin-add.new.user');
-        Route::post('/settings/personnel-list/add-new-user', 'saveNewPersonnel')->name('super.admin-store.new.user');
+        Route::post('/settings/personnel-list/add-new-user', 'SaveNewPersonnel')->name('super.admin-store.new.user');
+        Route::delete('/settings/personnel-list/delete-user/{id}', 'DeletePersonnel')->name('super.admin-delete.user');
 
         Route::get('/print-summary', 'printSummary')->name('print-summary');
 

@@ -11,6 +11,7 @@ use App\Models\User;
 use App\Models\customer_satisfaction;
 use App\Models\Office;
 use App\Models\control_number;
+use Illuminate\Support\Facades\Crypt;
 
 use RealRashid\SweetAlert\Facades\Alert;
 
@@ -169,8 +170,6 @@ class SuperAdminController extends Controller
         $personnels = User::with('office')->get();
         $current_user = auth()->user()->role_id;
 
-        
-
         return view('super_admin.personnel_list.personnelList', [ 'personnels' => $personnels]);
     }
 
@@ -186,7 +185,7 @@ class SuperAdminController extends Controller
     /**
      * Store the new user
      */
-    public function saveNewPersonnel(Request $request){
+    public function SaveNewPersonnel(Request $request){
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
@@ -203,16 +202,28 @@ class SuperAdminController extends Controller
 
         Alert::success('Personnel created', 'New personnel created');
         return redirect( route('super.personnel') );
-
     }
+
+
+    /**
+     * Delete user.
+     */
+    public function DeletePersonnel($id){
+        $decrypted_user = Crypt::decryptString($id);
+        $delete_user = User::find($decrypted_user);
+        $delete_user->delete();
+
+        Alert::success('Success', 'User deleted');
+        return redirect()->back();
+    }
+
 
 
 
     /**
      * Display the print summary.
      */
-    public function printSummary()
-    {
+    public function printSummary(){
         $csf_data = customer_satisfaction::get();
 
         return view('super_admin.csf_summary', [ 'csf_data' => $csf_data]);
@@ -222,22 +233,19 @@ class SuperAdminController extends Controller
     /**
      * Set new control number.
      */
-    public function ControlNumber()
-    {
+    public function ControlNumber(){
         $control_number_data = control_number::with('section')->get();
         return view('super_admin.control_number.control_numbers' , ['control_number' => $control_number_data]);
     }
 
 
-    public function SetNewControlNumber()
-    {
+    public function SetNewControlNumber(){
         $selectOffice = Office::all();
         return view('super_admin.control_number.create_control_number', [ 'selectOffice' => $selectOffice]);
     }
 
 
-    public function StoreControlNumber(Request $request)
-    {
+    public function StoreControlNumber(Request $request){
         control_number::create([
             'section_office' => $request->section_office,
             'control_number_year' => $request->control_number_year,
@@ -251,7 +259,6 @@ class SuperAdminController extends Controller
 
 
     public function getIdForModal(Request $request){
-        
         $data_id = $request->id;
         $csf_retrieved_data = customer_satisfaction::where('id',$data_id)->first();
         $toJsonFormat = json_encode($csf_retrieved_data);

@@ -7,6 +7,10 @@
       <h5 class="card-title fw-semibold mb-4">Authorized Personnel</h5>
 
       <a href="{{ route('super.admin-store.new.user') }}" id="new_user" class="btn btn-success m-1">Apply a new user</a>
+
+      @if(auth()->user()->role_id == 3)
+        <a id="restore_user" data-bs-toggle="modal" data-bs-target="#restore_deleted_modal" class="btn btn-danger m-1">Restore User</a>
+      @endif
  
       <table id="personnel_list" class="striped" style="width:100%">
         <thead>
@@ -24,7 +28,7 @@
         
         <tbody>
 
-            
+              
 
             @foreach($personnels as $item)
             <tr>
@@ -48,20 +52,26 @@
                 </td>
 
 
-                
+                    <td class="text-center">{{ $item->office->office_name ?? "Super admin role"  }}</td>
+                    <td class="text-center">{{ $item->email }}</td>
+                    <td class="text-center">{{ date('F d, Y', strtotime($item->created_at))  }}</td>
+                    <td class="text-center">{{ date('F d, Y', strtotime($item->updated_at))  }}</td>
+                    <td class="text-center">
 
-                <td class="text-center">{{ $item->office->office_name ?? "Super admin role"  }}</td>
-                <td class="text-center">{{ $item->email }}</td>
-                <td class="text-center">{{ date('F d, Y', strtotime($item->created_at))  }}</td>
-                <td class="text-center">{{ date('F d, Y', strtotime($item->updated_at))  }}</td>
-                <td class="text-center">
+                    @php
+            
+                        $encrypted_id = Crypt::encryptString($item->id);
                     
-                    <button data-bs-toggle="modal" data-bs-target="#personnel_modal" class="btn btn-success m-1">Edit</button>
-
-                    @if(auth()->user()->role_id != 3)
-                        <button class="btn btn-danger m-1">Delete</button>
-                    @endif
-
+                    @endphp
+                  
+                    <form method="POST" action="{{ route('super.admin-delete.user', $encrypted_id) }}">
+                        @csrf
+                        @method('DELETE')
+                            <a data-bs-toggle="modal" data-bs-target="#personnel_modal" class="btn btn-success m-1">Edit</a>
+                        @if($item->role_id != 3)
+                            <button type="submit" class="btn btn-danger m-1">Delete</button>
+                        @endif
+                    </form>
                 </td>
             </tr>
             @endforeach
@@ -73,6 +83,7 @@
 
 
 @include('super_admin.modal.edit_user_profile')
+@include('super_admin.modal.restore_delete')
 
 <script>
     $("document").ready(function(){
@@ -80,4 +91,6 @@
         new DataTable('#authorize_list');
     })
 </script>
+
+
 @endsection
