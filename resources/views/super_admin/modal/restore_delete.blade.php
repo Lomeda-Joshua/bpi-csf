@@ -80,7 +80,8 @@
     }
 
     .modal-title{
-        font-weight: bold;
+        font-weight: bold !important;
+        text-transform: uppercase !important;
     }
 
 </style>
@@ -94,7 +95,7 @@
 
                 <div class="modal-header bg-danger">
                     <div class="container">
-                        <h1 class="modal-title fs-5 text-white">Restore personnel  </h1>
+                        <h1 class="modal-title fs-5 text-white">Restore Personnel </h1>
                     </div>
                 </div>
 
@@ -137,12 +138,18 @@
 <script>
     $(document).ready(function(){
 
-        new DataTable('#restore_user_tbl',{
+        $('#restore_user_tbl').DataTable({
             searching: false,
-
-            $.ajax:{
-
+            serverSide: true,
+            deferRender: true,
+            ajax: {
+                url: "{{ route('super.admin-restore.user') }}",
+                type: "GET",
+                success: function(data){
+                    console.log(data);
+                }
             }
+
         });
 
 

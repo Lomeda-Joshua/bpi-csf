@@ -71,9 +71,7 @@
       font-size:15px;
     }
 
-    .input_class{
-        box-shadow: rgba(17, 17, 26, 0.1) 0px 1px 0px, rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 48px !important;
-    }
+
 
     .modal-header{
         background-color: #5d87ff;
@@ -93,7 +91,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <div class="container">
-                        <h1 class="modal-title fs-5 text-white">Edit personnel  </h1>
+                        <h1 class="modal-title fs-5 text-white">Edit personnel</h1>
                     </div>
                 
                 </div>
