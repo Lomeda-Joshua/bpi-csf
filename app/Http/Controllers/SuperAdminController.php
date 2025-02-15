@@ -218,22 +218,22 @@ class SuperAdminController extends Controller
     }
 
 
-    public function restorPersonnelSource(){
-        $deleted_users = User::onlyTrashed()->get();
 
-        $json_data = array();
 
-        foreach( $deleted_users as $item ){
-            $json_data[] = [
-                $item->name,
-                $item->office_id,
-                $item->role_id,
+
+    public function restorePersonnelSource(){
+        $query = User::withTrashed()->get();
+        $json_data = [];
+
+
+        foreach( $query as $item ){
+            $json_data = [
+                'name' => $item->name,
             ];
         }
 
 
-        return response()->json($json_data);
-        
+        return response()->json($json_data);   
     }
 
 

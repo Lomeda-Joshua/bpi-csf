@@ -87,7 +87,6 @@
 </style>
 
 
-
 <!-- Modal -->
     <div class="modal fade" id="restore_deleted_modal" tabindex="-1" aria-labelledby="viewModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-xl">
@@ -103,28 +102,19 @@
 
                   <div class="container">
 
-                    <table id="restore_user_tbl" class="table text-nowrap mb-0 align-middle" style="width:100%;">
+                    <table id="restore_user_tbl" class="table display text-nowrap mb-0 align-middle" style="width:100%;">
                         <thead class="text-dark fs-4">
                             <tr>
-                                <th class="border-bottom-0">
-                                    <h6 class="fw-semibold mb-0">Action</h6>
-                                </th> 
-                                <th class="border-bottom-0">
-                                    <h6 class="fw-semibold mb-0">Account Username</h6>
-                                </th>
-                                <th class="border-bottom-0">
-                                    <h6 class="fw-semibold mb-0">Office</h6>
-                                </th>
-                                <th class="border-bottom-0">
-                                    <h6 class="fw-semibold mb-0">Role</h6>
-                                </th>
+                                <th class="border-bottom-0"><h6 class="fw-semibold mb-0">Account Username</h6></th>
                             </tr>
                         </thead>
-                        <tbody>
-                        </tbody>
+                        <tbody></tbody>
                     </table>
 
                   </div>
+
+                  <p>sample</p>
+                  <p id="hello"></p>
 
 
                 </div>
@@ -139,18 +129,32 @@
     $(document).ready(function(){
 
         $('#restore_user_tbl').DataTable({
-            searching: false,
+            processing: true,
             serverSide: true,
             deferRender: true,
+            searching: false,
+
             ajax: {
                 url: "{{ route('super.admin-restore.user') }}",
                 type: "GET",
+
                 success: function(data){
+                    $('#hello').text(data.name);
                     console.log(data);
+                },
+
+                error: function(xhr, status, error){
+                    console.log(xhr);
                 }
-            }
+            },
+
+            columns: [
+                { data: 'name' }
+            ]
+
 
         });
+
 
 
     });

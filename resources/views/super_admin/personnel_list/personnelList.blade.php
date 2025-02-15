@@ -87,9 +87,12 @@
 
 <script>
     $("document").ready(function(){
-        new DataTable('#personnel_list');
-        new DataTable('#authorize_list');
-    })
+
+        new DataTable('#personnel_list', {
+            searching: false
+        });
+
+    });
 </script>
 
 

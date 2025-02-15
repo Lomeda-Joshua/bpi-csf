@@ -39,11 +39,6 @@
     "src": "resources/assets/js/sidebarmenu.js",
     "isEntry": true
   },
-  "resources/assets/libs/apexcharts/dist/apexcharts.min.js": {
-    "file": "assets/apexcharts.min-CcyqO19i.js",
-    "src": "resources/assets/libs/apexcharts/dist/apexcharts.min.js",
-    "isEntry": true
-  },
   "resources/assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js": {
     "file": "assets/bootstrap.bundle.min-BnYmbUj2.js",
     "src": "resources/assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js",
