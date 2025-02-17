@@ -12,9 +12,6 @@
 
 <body>  
   
-
-
-
     <div class="printable_area">
         <div class="content">
             
@@ -29,6 +26,7 @@
                 </tr>
             </table>  
 
+            
         </div>
 
         <table class="table">
@@ -99,11 +97,13 @@
                 @endforeach
             </tbody>
         </table>
+
+        
     </div>
 
-    <script>
+<script>
 
-    </script>
+</script>
 
 </body>
 

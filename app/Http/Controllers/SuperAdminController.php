@@ -14,6 +14,7 @@ use App\Models\control_number;
 use Illuminate\Support\Facades\Crypt;
 
 use RealRashid\SweetAlert\Facades\Alert;
+use Illuminate\Support\Facades\DB;
 
 
 class SuperAdminController extends Controller
@@ -36,39 +37,56 @@ class SuperAdminController extends Controller
     /**
      * Display the CSF Lists.
      */
-    public function csfList(){
+    public function csfListSummary(){
 
         $csf = customer_satisfaction::get();
         $office = Office::with('customer_satisfaction')->get();
 
-        $office_count = Office::with('customer_satisfaction')->select('office_id')->distinct()->count();
-
-        $arraySample = array();
-
-        for($i = 1; $i <= $office_count; $i++){
-            $arraySample[] = customer_satisfaction::select('name')->where('office_id', $i)->get();
-        }
+        $office_count = Office::with('customer_satisfaction')->select('office_id')->distinct()->count();        
 
 
-        $firstDay = 01;
-        $cutoffDay = 16;
+        $months = [
+            'january',
+            'february',
+            'march',
+            'april',
+            'may',
+            'june',
+            'july',
+            'august',
+            'september',
+            'october',
+            'november',
+            'december'
+        ];
+
+
+        $fullMonthName = date('F');
+        $firstDay = 1;
+        $cutoffDay = 15;
         $lastDay = date('t');
         $getMonth = date('m');
         $currentYear = date('Y');
 
-        for($i = 0; $i < 12; $i++){
-            $startingDate = $currentYear . '-' . $i + 1 . '-' . $firstDay;
-            $endingDate = $currentYear . '-' . $i + 1 . '-' . $cutoffDay;
 
+        for($i = 0; $i <= 11; $i++){
+            $startingDate = $currentYear . '-' . $i + 1 . '-' . $firstDay; 
+            $cutOffDate = $currentYear . '-' . $i + 1 . '-' . $cutoffDay;
+
+            $arrayStart[$i] = [ $months[$i] => $startingDate  ];
+            $arrayEnd[$i] = [ $months[$i] => $cutOffDate  ];
+
+            // $monthRange[] = DB::table('customer_satisfactions')->whereBetween('csf_date', [ $arrayStart[$i][$months[$i]], $arrayEnd[$i][$months[$i]] ])->get(); 
             
+            $monthRange[] = customer_satisfaction::with('Office')->whereBetween('csf_date', [ $arrayStart[$i][$months[$i]], $arrayEnd[$i][$months[$i]] ])->get();
+
+            $exampleJoin = DB::table('offices')->rightJoin('customer_satisfactions', 'offices.id', 'customer_satisfactions.office_id')->whereBetween('csf_date', [ $arrayStart[$i][$months[$i]], $arrayEnd[$i][$months[$i]] ])->get();
         }
 
-        $monthRange = customer_satisfaction::whereBetween('csf_date', ['2025-02-01', '2025-02-16'])->get();
-
+    
         
 
-
-        return view('super_admin.csfList', [ 'csf' => $csf, 'office' => $office, 'monthRange' => $monthRange, 'arrays' => $arraySample ]);
+        return view('super_admin.csfListSummary', [ 'csf' => $csf, 'office' => $office, 'exampleJoin' => $exampleJoin ], compact('monthRange'));
     }
 
 

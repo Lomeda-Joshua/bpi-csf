@@ -28,7 +28,7 @@ Route::middleware(['auth', 'role:3'])->controller(SuperAdminController::class)->
         Route::get('/dashboard', 'index')->name('index.super-admin');
         Route::post('/dashboard/{id}', 'getIdForModal')->name('dashboard.getId');
 
-        Route::get('/customer-satisfaction-list', 'csfList')->name('super.list');
+        Route::get('/customer-satisfaction-list/summary', 'csfListSummary')->name('super.list');
         Route::get('/settings/profile', 'profile')->name('super.profile');
 
         // Add and delete Office details

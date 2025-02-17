@@ -40,6 +40,12 @@
 
 <div class="card" style="overflow-x:auto; width:1400px;">
     <div class="card-body">
+
+        
+        
+            
+
+
             <h2>BPI (OVERALL) CSF SUBMISSION PER MONTH</h2>
             <h2><span id = "year_copyright"></span> Analysis</h2>
             <h4>Deadline of submission: <span style="font-weight:bold;">Every 25th of the month</span></h4>
@@ -103,7 +109,37 @@
             
         </div>
 
+        {{-- {{ $monthRange[1] }} --}}
 
+        {{-- @foreach( $monthRange as $item)
+                {{ $item }}
+        @endforeach --}}
+
+
+        
+
+
+        @foreach($monthRange as $item)
+
+            @foreach($item as $data)
+                <h1>{{ $data->Office }}</h1>
+            @endforeach
+
+        @endforeach
+
+        @for($i = 0; $i < count($monthRange); $i++)
+        @endfor
+        
+        
+
+         {{-- @foreach($monthRange as $item)
+
+            {{ $item[1]->name_of_agency }} <br>
+
+         @endforeach --}}
+
+
+    
                 
         <table id="csf_table" class="table align-middle striped">
             <thead>
@@ -132,30 +168,16 @@
             </thead>
             <tbody>
 
-                {{-- {{ count($data->customer_satisfaction) }} --}}
-
-                @foreach( $office as $data )
+                @foreach( $office as $office_data )
                 <tr>
-                    <td><b>{{$data->office_name}}</b></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+
+                    <td><b>{{$office_data->office_name}}</b></td>
+                    <td>{{ count($office_data->customer_satisfaction) }}</td>
+                    
                 </tr>
                 @endforeach
             </tbody>
+            
             <tfoot>
                 <tr>
                     <td style="text-align:center">TOTAL <b>(sum per column)</b></td>
@@ -200,20 +222,20 @@
 
 
 
-
         <table id="Overall_submission">
             <tr>
                 <td style="background-color:orange; color:white;">Operating Units</td>
-                <td>AVERAGE per office</td>
+                <td style="background-color:#0096FF; color:white;">AVERAGE per office</td>
             </tr>
 
-            @foreach( $arrays as $data )
+            @foreach( $office as $offices )
                 <tr>
-                    @foreach($data as $item)
-                    
-                        <td>   {{ $item->name }}</td>
-                    @endforeach
-
+                    <td>
+                        {{ $offices->office_name }}
+                    </td>
+                    <td>
+                        {{ count($offices->customer_satisfaction) }}
+                    </td>
                 </tr>
             @endforeach
 
@@ -221,10 +243,11 @@
 
 
         <div>
-            <canvas id="myChart"></canvas>
+            <canvas id="summaryChart"></canvas>
         </div>
 
     </div>
+
 </div>
 
 {{-- Feedback --}}
@@ -411,27 +434,39 @@
         <tbody>
 
             @php $result = count($office) @endphp
+
             @foreach( $office as $data)
                 <tr>
                     <td><b>{{ $data->office_name }}</b></td>
+
                     @if( $result == 0 )
                         <td colspan="13"><b>No such data</b></td>
                     @else
-                        {{-- <td colspan="13"> {{ $data->customer_satisfaction->csf_date }} </td> --}}
-                        <td colspan="13"> @foreach( $data->customer_satisfaction as $info )
-                                            {{ $info->comments_suggestions }}
-                                        @endforeach
-                        </td>
+                        @foreach( $data->customer_satisfaction as $info )
+                            @if( !$info->comments_suggestions)
+                                <td>  
+                                        'no data'
+                                </td>
+                            @else   
+                                <td>
+                                    {{ $info->comments_suggestions }}
+                                </td>                                
+                            @endif
+                        @endforeach
                     @endif
                 </tr>
             @endforeach
+
         </tbody>
     </table>
 </div>
 
 
 <script>
-    const ctx = document.getElementById('myChart');
+
+
+
+    const ctx = document.getElementById('summaryChart');
     new Chart(ctx, {
         type: 'bar',
         data: {

@@ -12,6 +12,7 @@
         <a id="restore_user" data-bs-toggle="modal" data-bs-target="#restore_deleted_modal" class="btn btn-danger m-1">Restore User</a>
       @endif
  
+      
       <table id="personnel_list" class="striped" style="width:100%">
         <thead>
             <tr style="background-color:gray; color:white;">
@@ -78,6 +79,8 @@
 
         </tbody>
     </table>
+
+
     </div>
 </div>
 
