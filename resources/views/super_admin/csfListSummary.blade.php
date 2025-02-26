@@ -41,10 +41,6 @@
 <div class="card" style="overflow-x:auto; width:1400px;">
     <div class="card-body">
 
-        
-        
-            
-
 
             <h2>BPI (OVERALL) CSF SUBMISSION PER MONTH</h2>
             <h2><span id = "year_copyright"></span> Analysis</h2>
@@ -111,35 +107,17 @@
 
         {{-- {{ $monthRange[1] }} --}}
 
-        {{-- @foreach( $monthRange as $item)
-                {{ $item }}
+        {{-- {{ dd($monthRange) }} --}}
+
+        {{-- <h1>hello</h1>
+        @foreach( $monthRange as $item)
+                <h1>{{ count($item) }}</h1>
+
         @endforeach --}}
 
-
-        
-
-
-        @foreach($monthRange as $item)
-
-            @foreach($item as $data)
-                <h1>{{ $data->Office }}</h1>
-            @endforeach
-
-        @endforeach
-
-        @for($i = 0; $i < count($monthRange); $i++)
-        @endfor
-        
-        
-
-         {{-- @foreach($monthRange as $item)
-
-            {{ $item[1]->name_of_agency }} <br>
-
-         @endforeach --}}
+        {{ dd($exampleJoin) }}
 
 
-    
                 
         <table id="csf_table" class="table align-middle striped">
             <thead>
@@ -166,16 +144,18 @@
                     <th class="text-center block-data">Dec 16 - Dec 31</th>
                 </tr>
             </thead>
+
             <tbody>
 
-                @foreach( $office as $office_data )
+                
                 <tr>
-
-                    <td><b>{{$office_data->office_name}}</b></td>
-                    <td>{{ count($office_data->customer_satisfaction) }}</td>
-                    
+                    <td>Science section</td>
+                    @foreach( $monthRange as $item )
+                        <td><b>{{ count($item) }}</b></td>
+                    @endforeach    
                 </tr>
-                @endforeach
+                
+
             </tbody>
             
             <tfoot>

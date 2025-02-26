@@ -40,9 +40,16 @@ class SuperAdminController extends Controller
     public function csfListSummary(){
 
         $csf = customer_satisfaction::get();
+
         $office = Office::with('customer_satisfaction')->get();
 
-        $office_count = Office::with('customer_satisfaction')->select('office_id')->distinct()->count();        
+        $office_count = Office::with('customer_satisfaction')->select('office_id')->distinct()->count();    
+
+
+        
+        $exampleJoin = DB::table('offices')->rightJoin('customer_satisfactions', 'offices.id', '=', 'customer_satisfactions.office_id')->get();
+            
+        dd($exampleJoin);
 
 
         $months = [
@@ -73,21 +80,25 @@ class SuperAdminController extends Controller
             $startingDate = $currentYear . '-' . $i + 1 . '-' . $firstDay; 
             $cutOffDate = $currentYear . '-' . $i + 1 . '-' . $cutoffDay;
 
-            $arrayStart[$i] = [ $months[$i] => $startingDate  ];
-            $arrayEnd[$i] = [ $months[$i] => $cutOffDate  ];
+            $arrayStart[] = [ $months[$i] => $startingDate  ];
+            $arrayEnd[] = [ $months[$i] => $cutOffDate  ];
 
             // $monthRange[] = DB::table('customer_satisfactions')->whereBetween('csf_date', [ $arrayStart[$i][$months[$i]], $arrayEnd[$i][$months[$i]] ])->get(); 
             
+            // $monthRange[] = customer_satisfaction::with('Office')->whereBetween('csf_date', [ $arrayStart[$i][$months[$i]], $arrayEnd[$i][$months[$i]] ])->get();
             $monthRange[] = customer_satisfaction::with('Office')->whereBetween('csf_date', [ $arrayStart[$i][$months[$i]], $arrayEnd[$i][$months[$i]] ])->get();
 
-            $exampleJoin = DB::table('offices')->rightJoin('customer_satisfactions', 'offices.id', 'customer_satisfactions.office_id')->whereBetween('csf_date', [ $arrayStart[$i][$months[$i]], $arrayEnd[$i][$months[$i]] ])->get();
+
+            $exampleJoin = DB::table('offices')->rightJoin('customer_satisfactions', 'offices.id', '=', 'customer_satisfactions.office_id')->whereBetween('csf_date', [ $arrayStart[$i][$months[$i]], $arrayEnd[$i][$months[$i]] ] )->select('offices.*', 'customer_satisfactions.*')->get();
+
+            dd($exampleJoin);
         }
 
-    
-        
 
-        return view('super_admin.csfListSummary', [ 'csf' => $csf, 'office' => $office, 'exampleJoin' => $exampleJoin ], compact('monthRange'));
+        return view('super_admin.csfListSummary', [ 'csf' => $csf, 'office' => $office,  ], compact('monthRange', 'exampleJoin'));
     }
+
+
 
 
     /**
@@ -149,7 +160,7 @@ class SuperAdminController extends Controller
             'office_name' =>  $office_name_input
         ]);
 
-        Alert::success('Success', 'Added new office section');
+        Alert::success('Success', 'Added new office section');                        
         return redirect( route('super.office') );
     }
     
@@ -161,7 +172,7 @@ class SuperAdminController extends Controller
     {
         return view('super_admin.office.office_edit', [ 'office' => $id]);
     }
-
+                        
 
     /**
      * Save edit view of the selected office.
@@ -234,7 +245,7 @@ class SuperAdminController extends Controller
         Alert::success('Success', 'User deleted');
         return redirect()->back();
     }
-
+                        
 
 
 
@@ -298,7 +309,7 @@ class SuperAdminController extends Controller
     public function getIdForModal(Request $request){
         $data_id = $request->id;
         $csf_retrieved_data = customer_satisfaction::where('id',$data_id)->first();
-        $toJsonFormat = json_encode($csf_retrieved_data);
+        $toJsonFormat = json_encode($csf_retrieved_data);                                                                                                                        
         
         return $toJsonFormat;
       
@@ -306,3 +317,4 @@ class SuperAdminController extends Controller
 
 
 }
+                        
