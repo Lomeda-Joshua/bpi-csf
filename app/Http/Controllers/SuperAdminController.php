@@ -39,19 +39,14 @@ class SuperAdminController extends Controller
      */
     public function csfListSummary(){
 
+        // $csf = customer_satisfaction::get();
         $csf = customer_satisfaction::get();
 
         $office = Office::with('customer_satisfaction')->get();
-
         $office_count = Office::with('customer_satisfaction')->select('office_id')->distinct()->count();    
-
+        $exampleJoin = DB::table('offices')->rightJoin('customer_satisfactions', 'offices.id', '=', 'customer_satisfactions.office_id')->groupBy('offices.office_name');
 
         
-        $exampleJoin = DB::table('offices')->rightJoin('customer_satisfactions', 'offices.id', '=', 'customer_satisfactions.office_id')->get();
-            
-        dd($exampleJoin);
-
-
         $months = [
             'january',
             'february',
@@ -67,7 +62,7 @@ class SuperAdminController extends Controller
             'december'
         ];
 
-
+      
         $fullMonthName = date('F');
         $firstDay = 1;
         $cutoffDay = 15;
@@ -76,6 +71,8 @@ class SuperAdminController extends Controller
         $currentYear = date('Y');
 
 
+        $exampleJoin = [];
+
         for($i = 0; $i <= 11; $i++){
             $startingDate = $currentYear . '-' . $i + 1 . '-' . $firstDay; 
             $cutOffDate = $currentYear . '-' . $i + 1 . '-' . $cutoffDay;
@@ -83,19 +80,22 @@ class SuperAdminController extends Controller
             $arrayStart[] = [ $months[$i] => $startingDate  ];
             $arrayEnd[] = [ $months[$i] => $cutOffDate  ];
 
-            // $monthRange[] = DB::table('customer_satisfactions')->whereBetween('csf_date', [ $arrayStart[$i][$months[$i]], $arrayEnd[$i][$months[$i]] ])->get(); 
-            
+            // $monthRange[] = DB::table('customer_satisfactions')->whereBetween('csf_date', [ $arrayStart[$i][$months[$i]], $arrayEnd[$i][$months[$i]] ])->get();     
             // $monthRange[] = customer_satisfaction::with('Office')->whereBetween('csf_date', [ $arrayStart[$i][$months[$i]], $arrayEnd[$i][$months[$i]] ])->get();
-            $monthRange[] = customer_satisfaction::with('Office')->whereBetween('csf_date', [ $arrayStart[$i][$months[$i]], $arrayEnd[$i][$months[$i]] ])->get();
 
+            $monthRange = customer_satisfaction::with('Office')->whereBetween('csf_date', [ '2025-2-1', '2025-2-28' ])->get();
 
-            $exampleJoin = DB::table('offices')->rightJoin('customer_satisfactions', 'offices.id', '=', 'customer_satisfactions.office_id')->whereBetween('csf_date', [ $arrayStart[$i][$months[$i]], $arrayEnd[$i][$months[$i]] ] )->select('offices.*', 'customer_satisfactions.*')->get();
+        
+            $exampleJoin[] = DB::table('offices')->rightJoin('customer_satisfactions', 'offices.id', '=', 'customer_satisfactions.office_id')->whereBetween('csf_date', [ $arrayStart[$i][$months[$i]], $arrayEnd[$i][$months[$i]] ] )->select('offices.*', 'customer_satisfactions.*')->get();
 
-            dd($exampleJoin);
+            
         }
 
+        
+        
 
-        return view('super_admin.csfListSummary', [ 'csf' => $csf, 'office' => $office,  ], compact('monthRange', 'exampleJoin'));
+
+        return view('super_admin.csfListSummary', ['csf' => $csf, 'office' => $office ], compact('monthRange', 'exampleJoin'));
     }
 
 

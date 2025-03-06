@@ -105,19 +105,30 @@
             
         </div>
 
-        {{-- {{ $monthRange[1] }} --}}
+        test data here <br>
 
-        {{-- {{ dd($monthRange) }} --}}
+        {{-- {{ dd($exampleJoin) }} --}}
 
-        {{-- <h1>hello</h1>
-        @foreach( $monthRange as $item)
-                <h1>{{ count($item) }}</h1>
+       
+        
+        {{-- @foreach($exampleJoin as $item) --}}
 
-        @endforeach --}}
+                {{-- {{ $item }} <br> --}}
 
-        {{ dd($exampleJoin) }}
+               {{-- @foreach( $item as $key => $value )
+                    {{ ($key) }}->{{ $value->office_name  }} <br> 
+                    {{ var_dump( $value->office_name ) }} <br> 
+                @endforeach --}}
 
+{{--                             
+                @foreach( $item as $value )
+                    {{ var_dump( $value ) }} <br>
+                @endforeach
+           
+            
+        @endforeach
 
+         --}}
                 
         <table id="csf_table" class="table align-middle striped">
             <thead>
@@ -147,14 +158,7 @@
 
             <tbody>
 
-                
-                <tr>
-                    <td>Science section</td>
-                    @foreach( $monthRange as $item )
-                        <td><b>{{ count($item) }}</b></td>
-                    @endforeach    
-                </tr>
-                
+            
 
             </tbody>
             
@@ -219,6 +223,7 @@
                 </tr>
             @endforeach
 
+
         </table>
 
 
@@ -229,6 +234,7 @@
     </div>
 
 </div>
+
 
 {{-- Feedback --}}
 <div class="card" style="overflow-x:auto; width:1400px;">
@@ -256,15 +262,35 @@
             </tr>
         </thead>
         <tbody>
-            @foreach( $office as $data)
+
+    
+            @foreach( $office as $office_data)
+
                 <tr>
-                    <td><b>{{ $data->office_name }}</b></td>
-                    
-                    @if($data)
-                        <td colspan="13"><b>No such data</b></td>
+                    <td><b>{{ $office_data->office_name }}</b></td>
+
+                    @if( isset($office_data->customer_satisfaction) )
+
+                        @foreach($office_data->customer_satisfaction as $tem_data)
+
+
+                            <td>{{ $tem_data->comments_suggestions }}</td>
+                        
+                            
+                        @endforeach
+
+                    @else
+
+                        <td><b>No such data</b></td>
+
                     @endif
+                    
+                  
+                   
+
                 </tr>
             @endforeach
+
         </tbody>
     </table>
 </div>
@@ -444,6 +470,8 @@
 
 <script>
 
+    let arraySummary = [];
+    arraySummary.push()
 
 
     const ctx = document.getElementById('summaryChart');
@@ -454,7 +482,7 @@
                 'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'
             ],
             datasets: [{
-            label: 'BPI CSF ANALYSIS PER OPERATING UNITS',
+            label: 'BPI CSF ANALYSIS OVERALL TOTAL',
             data: [12, 19, 3, 5, 2, 3],
             borderWidth: 1
             }]
