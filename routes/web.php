@@ -1,11 +1,12 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
 use Illuminate\Support\Facades\Auth;
+
+use App\Http\Controllers\SuperAdminController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\UserController;
-use App\Http\Controllers\SuperAdminController;
+
 use App\Http\Controllers\CsfController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 
@@ -46,7 +47,7 @@ Route::middleware(['auth', 'role:3'])->controller(SuperAdminController::class)->
         Route::delete('/settings/personnel-list/delete-user/{id}', 'DeletePersonnel')->name('super.admin-delete.user');
         Route::get('/settings/personnel-list/restore/source', 'restorePersonnelSource')->name('super.admin-restore.user');
 
-
+        // Print Summary of csf lists
         Route::get('/print-summary', 'printSummary')->name('print-summary');
 
         // Add and set control number to an office for csf

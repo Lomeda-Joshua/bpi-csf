@@ -11,6 +11,7 @@ use App\Models\User;
 use App\Models\customer_satisfaction;
 use App\Models\Office;
 use App\Models\control_number;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Crypt;
 
 use RealRashid\SweetAlert\Facades\Alert;
@@ -35,11 +36,10 @@ class SuperAdminController extends Controller
 
     
     /**
-     * Display the CSF Lists.
+     * Display the CSF Summary.
      */
     public function csfListSummary(){
 
-        // $csf = customer_satisfaction::get();
         $csf = customer_satisfaction::get();
 
         $office = Office::with('customer_satisfaction')->get();
@@ -86,16 +86,24 @@ class SuperAdminController extends Controller
             $monthRange = customer_satisfaction::with('Office')->whereBetween('csf_date', [ '2025-2-1', '2025-2-28' ])->get();
 
         
-            $exampleJoin[] = DB::table('offices')->rightJoin('customer_satisfactions', 'offices.id', '=', 'customer_satisfactions.office_id')->whereBetween('csf_date', [ $arrayStart[$i][$months[$i]], $arrayEnd[$i][$months[$i]] ] )->select('offices.*', 'customer_satisfactions.*')->get();
+            $exampleJSON[] = DB::table('offices')->rightJoin('customer_satisfactions', 'offices.id', '=', 'customer_satisfactions.office_id')->whereBetween('csf_date', [ $arrayStart[$i][$months[$i]], $arrayEnd[$i][$months[$i]] ] )->select('offices.*', 'customer_satisfactions.*')->get();     
 
+
+            $overallCSFCount[] = DB::table('offices')->rightJoin('customer_satisfactions', 'offices.id', '=', 'customer_satisfactions.office_id')->whereBetween('csf_date', [ $arrayStart[$i][$months[$i]], $arrayEnd[$i][$months[$i]] ] )->select('offices.*', 'customer_satisfactions.*')->count(); 
             
+ 
         }
 
-        
+
         
 
-
-        return view('super_admin.csfListSummary', ['csf' => $csf, 'office' => $office ], compact('monthRange', 'exampleJoin'));
+        return view('super_admin.csfListSummary', [
+            'csf' => $csf, 
+            'office' => $office, 
+            'monthRange' => $monthRange, 
+            'exampleJSON' => $exampleJSON,
+            'overallCSFCount' => $overallCSFCount
+        ]);
     }
 
 
@@ -125,11 +133,11 @@ class SuperAdminController extends Controller
     }
 
 
+    
     /**
      * Display the List view for all offices.
      */
-    public function officeDetails()
-    {
+    public function officeDetails(){
         $office = Office::with('customer_satisfaction')->paginate(10);
         return view('super_admin.office.officeDetails', [ 'office' => $office]);
     }
@@ -138,8 +146,7 @@ class SuperAdminController extends Controller
     /**
      * Creat or add new offices.
      */
-    public function office_create()
-    {
+    public function office_create(){
         return view('super_admin.office.office_create');
     }
 
@@ -147,8 +154,7 @@ class SuperAdminController extends Controller
     /**
      * Create or add new offices.
      */
-    public function office_store(Request $request)
-    {
+    public function office_store(Request $request){
         $validated = $request->validate([
             'office_name' => 'required',
         ]);
@@ -312,7 +318,6 @@ class SuperAdminController extends Controller
         $toJsonFormat = json_encode($csf_retrieved_data);                                                                                                                        
         
         return $toJsonFormat;
-      
     }
 
 

@@ -105,11 +105,10 @@
             
         </div>
 
-        test data here <br>
 
+
+        
         {{-- {{ dd($exampleJoin) }} --}}
-
-       
         
         {{-- @foreach($exampleJoin as $item) --}}
 
@@ -120,15 +119,17 @@
                     {{ var_dump( $value->office_name ) }} <br> 
                 @endforeach --}}
 
-{{--                             
-                @foreach( $item as $value )
-                    {{ var_dump( $value ) }} <br>
-                @endforeach
-           
-            
-        @endforeach
+        {{--                             
+            @foreach( $item as $value )
+                {{ var_dump( $value ) }} <br>
+            @endforeach
+        
+        
+            @endforeach
+        --}}
 
-         --}}
+
+
                 
         <table id="csf_table" class="table align-middle striped">
             <thead>
@@ -470,8 +471,10 @@
 
 <script>
 
-    let arraySummary = [];
-    arraySummary.push()
+    
+
+
+    let arraySummary = @json($overallCSFCount);
 
 
     const ctx = document.getElementById('summaryChart');
@@ -483,7 +486,7 @@
             ],
             datasets: [{
             label: 'BPI CSF ANALYSIS OVERALL TOTAL',
-            data: [12, 19, 3, 5, 2, 3],
+            data: arraySummary,
             borderWidth: 1
             }]
         },
