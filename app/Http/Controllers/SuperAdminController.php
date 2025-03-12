@@ -90,8 +90,7 @@ class SuperAdminController extends Controller
 
 
             $overallCSFCount[] = DB::table('offices')->rightJoin('customer_satisfactions', 'offices.id', '=', 'customer_satisfactions.office_id')->whereBetween('csf_date', [ $arrayStart[$i][$months[$i]], $arrayEnd[$i][$months[$i]] ] )->select('offices.*', 'customer_satisfactions.*')->count(); 
-            
- 
+    
         }
 
 

@@ -1,6 +1,8 @@
+    <!-- Sidebar Start -->
+    <aside class="left-sidebar">
       <!-- Sidebar scroll-->
       <div>
-        <div class="brand-logo d-flex align-items-center justify-content-between">
+        <div class="brand-logo d-flex align-items-center justify-content-between" style="margin-top:30px;">
           <a href="{{ route('index.super-admin') }}" class="text-nowrap logo-img">
             <img src="{{asset('images/logos/bpi_logo.png')}}" width="90" alt="" />
           </a>
@@ -69,4 +71,5 @@
         </nav>
         <!-- End Sidebar navigation -->
       </div>
-      <!-- End Sidebar scroll-->
+    </aside>
+    <!-- End Sidebar scroll-->
