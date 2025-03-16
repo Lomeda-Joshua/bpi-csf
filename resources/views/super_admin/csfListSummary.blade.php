@@ -157,9 +157,13 @@
                 </tr>
             </thead>
 
-            <tbody>
 
-            
+            <tbody>
+                @foreach($office as $office_data ) 
+                <tr>
+                        <td>{{ $office_data->office_name  }}</td>
+                </tr>
+                @endforeach
 
             </tbody>
             
