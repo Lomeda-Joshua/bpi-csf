@@ -19,6 +19,36 @@
 
 @include('sweetalert::alert', ['cdn' => "https://cdn.jsdelivr.net/npm/sweetalert2@9"])
 
+
+<style>
+    @media (min-width: 1200px) {
+        #main-wrapper[data-layout=vertical][data-header-position=fixed] .app-header {
+            width: calc(100% - 30px) !important;
+        }
+    }
+
+    @media (min-width: 1200px) {
+        #main-wrapper[data-layout=vertical][data-sidebartype=full] .body-wrapper {
+            margin-left: 0px !important;
+        }
+    }
+</style>
+
+
+<style>
+    @media (min-width: 1200px) {
+        #main-wrapper[data-layout=vertical][data-header-position=fixed] .app-header {
+            width: calc(100% - 30px) !important;
+        }
+    }
+
+    @media (min-width: 1200px) {
+        #main-wrapper[data-layout=vertical][data-sidebartype=full] .body-wrapper {
+            margin-left: 0px !important;
+        }
+    }
+</style>
+
 <!--  Body Wrapper -->
 <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
 data-sidebar-position="fixed" data-header-position="fixed">
