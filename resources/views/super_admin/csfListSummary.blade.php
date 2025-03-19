@@ -35,6 +35,15 @@
         grid-template-columns: auto auto;
         column-gap:30px;
     }
+
+    .header_sub_table{
+        background-color : red;
+        padding: 10px;
+        color:white;
+        font-weight: 900;
+        text-align: center;
+        
+    }
 </style>
 
 
@@ -157,12 +166,20 @@
                 </tr>
             </thead>
 
-
             <tbody>
-                @foreach($office as $office_data ) 
-                <tr>
-                        <td>{{ $office_data->office_name  }}</td>
-                </tr>
+
+                @foreach($groupedData as $office => $months)
+                    <tr>
+                        <td>{{ $office }}</td>
+                        
+                        
+                            @foreach($months as $month => $total_forms)
+                            
+                                <td>Month: {{ $month }} - Forms Submitted: {{ $total_forms }}</td>
+                            
+                            @endforeach
+                        
+                    </tr>
                 @endforeach
 
             </tbody>
@@ -217,7 +234,7 @@
                 <td style="background-color:#0096FF; color:white;">AVERAGE per office</td>
             </tr>
 
-            @foreach( $office as $offices )
+            @foreach( $office_data as $offices )
                 <tr>
                     <td>
                         {{ $offices->office_name }}
@@ -243,11 +260,13 @@
 
 {{-- Feedback --}}
 <div class="card" style="overflow-x:auto; width:1400px;">
-    <h3><b>*** Feedback ***</b></h3>
+
+    <h3 class="header_sub_table"><b> Feedback </b></h3>
+
     <h3>Positive and Negative Feedbacks</h3>
     <h3>If any (in words: In tagalog or english)</h3>
 
-    <table id="csf_table" class="table align-middle striped">
+    <table id="" class="display">
         <thead>
             <tr>
                 <th>Operating Unit</th>
@@ -269,7 +288,7 @@
         <tbody>
 
     
-            @foreach( $office as $office_data)
+            {{-- @foreach( $office_data  as $office_data)
 
                 <tr>
                     <td><b>{{ $office_data->office_name }}</b></td>
@@ -294,19 +313,22 @@
                    
 
                 </tr>
-            @endforeach
+            @endforeach --}}
 
         </tbody>
     </table>
 </div>
 
+
 {{-- Reasons for No submission --}}
 <div class="card" style="overflow-x:auto; width:1400px;">
-    <h3><b>*** Reasons for No submission ***</b></h3>
+
+    <h3 class="header_sub_table"><b> Reasons for No submission </b></h3>
+
     <h3>Positive and Negative Feedbacks</h3>
     <h3>If any (in words: In tagalog or english)</h3>
 
-    <table id="csf_table" class="table align-middle striped">
+    <table id="" class="table align-middle striped">
         <thead>
             <tr>
                 <th>Operating Unit</th>
@@ -326,26 +348,21 @@
             </tr>
         </thead>
         <tbody>
-            @foreach( $office as $data)
-                <tr>
-                    <td><b>{{ $data->office_name }}</b></td>
-                    
-                    @if($data)
-                        <td colspan="13"><b>No such data</b></td>
-                    @endif
-                </tr>
-            @endforeach
+          
         </tbody>
     </table>
 </div>
 
 {{-- Number of Customers --}}
 <div class="card" style="overflow-x:auto; width:1400px;">
-    <h3><b>*** Number of customers ***</b></h3>
+    
+    <h3 class="header_sub_table"><b> Number of customers </b></h3>
+
+
     <h3>Positive and Negative Feedbacks</h3>
     <h3>If any (in words: In tagalog or english)</h3>
 
-    <table id="csf_table" class="table align-middle striped">
+    <table id="" class="table align-middle striped">
         <thead>
             <tr>
                 <th>Operating Unit</th>
@@ -365,26 +382,20 @@
             </tr>
         </thead>
         <tbody>
-            @foreach( $office as $data)
-                <tr>
-                    <td><b>{{ $data->office_name }}</b></td>
-                    
-                    @if($data)
-                        <td colspan="13"><b>No such data</b></td>
-                    @endif
-                </tr>
-            @endforeach
+          
         </tbody>
     </table>
 </div>
 
 {{-- Age group --}}
 <div class="card" style="overflow-x:auto; width:1400px;">
-    <h3><b>*** Age group ***</b></h3>
+
+    <h3 class="header_sub_table"><b> Age group  </b></h3>
+
     <h3>Positive and Negative Feedbacks</h3>
     <h3>If any (in words: In tagalog or english)</h3>
 
-    <table id="csf_table" class="table align-middle striped">
+    <table id="age-group_table" class="table align-middle striped ">
         <thead>
             <tr>
                 <th>Operating Unit</th>
@@ -404,69 +415,35 @@
             </tr>
         </thead>
         <tbody>
-            @foreach( $office as $data)
-                <tr>
-                    <td><b>{{ $data->office_name }}</b></td>
-                    
-                    @if($data)
-                        <td colspan="13"><b>No such data</b></td>
-                    @endif
-                </tr>
-            @endforeach
+            <tr>
+                <td>False</td>
+            </tr>
         </tbody>
     </table>
 </div>
 
 {{-- CRITERIA --}}
 <div class="card" style="overflow-x:auto; width:1400px;">
-    <h3><b>*** Criteria ***</b></h3>
+
+    <h3 class="header_sub_table"><b> Criteria </b></h3>
+
     <h3>Positive and Negative Feedbacks</h3>
     <h3>If any (in words: In tagalog or english)</h3>
 
-    <table id="csf_table" class="table align-middle striped">
+    <table id="" class="table align-middle striped">
         <thead>
             <tr>
                 <th>Operating Unit</th>
-                <th>Jan 1 - 15</th>
-                <th>Jan 16- Feb 15</th>
-                <th> Feb 16- March 15</th>
-                <th>Mar 16- Apr 15</th>
-                <th>April 16 - May 15</th>
-                <th>May 16- June 15</th>
-                <th>June 16-July 15</th>
-                <th>Jul 16- Aug 15</th>
-                <th>Aug 16-Sept 15</th>
-                <th>Sept 16-Sept 15</th>
-                <th>Oct 16-Nov 15</th>
-                <th>Nov 16-Dec 15</th>
-                <th>Dec 16-Dec 30</th>
+                <th>Feedback</th>
+                <th>Number</th>   
+                <th>Date Submitted</th>
             </tr>
         </thead>
         <tbody>
 
-            @php $result = count($office) @endphp
-
-            @foreach( $office as $data)
-                <tr>
-                    <td><b>{{ $data->office_name }}</b></td>
-
-                    @if( $result == 0 )
-                        <td colspan="13"><b>No such data</b></td>
-                    @else
-                        @foreach( $data->customer_satisfaction as $info )
-                            @if( !$info->comments_suggestions)
-                                <td>  
-                                        'no data'
-                                </td>
-                            @else   
-                                <td>
-                                    {{ $info->comments_suggestions }}
-                                </td>                                
-                            @endif
-                        @endforeach
-                    @endif
-                </tr>
-            @endforeach
+            <tr>
+                <td>Hello</td>
+            </tr>
 
         </tbody>
     </table>
@@ -476,6 +453,23 @@
 <script>
 
     
+  
+    $("document").ready(function(){
+
+        new DataTable('#criteria_table', {
+            searching: true
+        });    
+
+
+        new DataTable('#age-group_table', {
+            searching: true
+        });    
+
+        
+
+    });
+
+
 
 
     let arraySummary = @json($overallCSFCount);
@@ -483,32 +477,32 @@
 
     const ctx = document.getElementById('summaryChart');
     new Chart(ctx, {
-        type: 'bar',
-        data: {
-            labels: [
-                'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'
-            ],
-            datasets: [{
-            label: 'BPI CSF ANALYSIS OVERALL TOTAL',
-            data: arraySummary,
-            borderWidth: 1
-            }]
-        },
-        options: {
-            scales: {
-            y: {
-                beginAtZero: true
+            type: 'bar',
+            data: {
+                labels: [
+                    'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'
+                ],
+                datasets: [{
+                label: 'BPI CSF ANALYSIS OVERALL TOTAL',
+                data: arraySummary,
+                borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                y: {
+                    beginAtZero: true
+                }
+                }
             }
-            }
-        }
     });
 
 
     const date = new Date();
     document.getElementById("year_copyright").innerHTML = date.getFullYear();
-    
 
 
+  
 </script>
 
 

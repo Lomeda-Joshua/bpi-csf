@@ -11,8 +11,9 @@
     <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/moment/min/moment.min.js"></script>
-    
+
     @vite('resources/assets/css/styles.min.css')
+
 </head>
 
 <body>
@@ -50,34 +51,35 @@
 </style>
 
 <!--  Body Wrapper -->
-<div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
-data-sidebar-position="fixed" data-header-position="fixed">
 
-<!-- Sidebar Start -->
-<aside class="left-sidebar">
-    @include('super_admin.layouts.navigation')
-</aside>
-<!--  Sidebar End -->
 
 <!--  Main wrapper -->
-<div class="body-wrapper">    
+<div class="body-wrapper">
+    
     @include('super_admin.layouts.header')
+
+    <!-- Sidebar Start -->
+    <aside class="left-sidebar">
+        @include('super_admin.layouts.navigation')
+    </aside>
+    <!--  Sidebar End -->
+
     <div class="container-fluid">        
         @yield('contents')    
+    </div>
+
+    <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full" data-sidebar-position="fixed" data-header-position="fixed">
     </div>
 
 </div>
 <!--  End Main wrapper -->
 
-</div>
 
 
 @vite('resources/assets/libs/jquery/dist/jquery.min.js')
 @vite('resources/assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js')
 @vite('resources/assets/js/sidebarmenu.js')
-
 @vite('resources/assets/js/app.min.js')
-
 @vite('resources/assets/libs/simplebar/dist/simplebar.js')
 @vite('resources/assets/js/dashboard.js')
 <script src="https://cdn.datatables.net/v/bs5/dt-2.0.1/datatables.min.js"></script>
