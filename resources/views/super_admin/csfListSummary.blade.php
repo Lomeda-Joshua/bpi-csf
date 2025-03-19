@@ -395,7 +395,7 @@
     <h3>Positive and Negative Feedbacks</h3>
     <h3>If any (in words: In tagalog or english)</h3>
 
-    <table id="age-group_table" class="table align-middle striped ">
+    <table id="age_group_table" class="table align-middle striped ">
         <thead>
             <tr>
                 <th>Operating Unit</th>
@@ -430,7 +430,7 @@
     <h3>Positive and Negative Feedbacks</h3>
     <h3>If any (in words: In tagalog or english)</h3>
 
-    <table id="" class="table align-middle striped">
+    <table id="criteria_table" class="table align-middle striped">
         <thead>
             <tr>
                 <th>Operating Unit</th>
@@ -461,15 +461,13 @@
         });    
 
 
-        new DataTable('#age-group_table', {
+        new DataTable('#age_group_table', {
             searching: true
         });    
 
         
 
     });
-
-
 
 
     let arraySummary = @json($overallCSFCount);

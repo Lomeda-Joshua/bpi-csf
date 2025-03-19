@@ -176,8 +176,7 @@ class SuperAdminController extends Controller
     /**
      * Edit view of the selected office.
      */
-    public function office_edit(Office $id)
-    {
+    public function office_edit(Office $id){
         return view('super_admin.office.office_edit', [ 'office' => $id]);
     }
                         
@@ -185,8 +184,7 @@ class SuperAdminController extends Controller
     /**
      * Save edit view of the selected office.
      */
-    public function office_edit_save(Request $request, Office $id)
-    {
+    public function office_edit_save(Request $request, Office $id){
         $validated = $request->validate([
             'office_name' => 'required',
         ]);
