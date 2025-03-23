@@ -103,9 +103,13 @@
             <h5 class="card-title fw-semibold mb-4">Recent CSF received by all the section</h5>
 
             <div class="table-responsive">
-                <table class="table text-nowrap mb-0 align-middle">
+
+                <table id="table_csf" class="table text-nowrap mb-0 align-middle">
                     <thead class="text-dark fs-4">
                         <tr>
+                            <th class="border-bottom-0">
+                                <h6 class="fw-semibold mb-0">Actions</h6>
+                            </th>
                             <th class="border-bottom-0">
                                 <h6 class="fw-semibold mb-0">Id</h6>
                             </th>
@@ -127,9 +131,7 @@
                             <th class="border-bottom-0">
                                 <h6 class="fw-semibold mb-0">Time</h6>
                             </th>
-                            <th class="border-bottom-0">
-                                <h6 class="fw-semibold mb-0">Actions</h6>
-                            </th>
+                            
                         </tr>
                     </thead>
                     <tbody>
@@ -145,6 +147,12 @@
                         @else
                             @foreach ($csf as $items)
                                 <tr>
+                                    <td class="border-bottom-0">
+                                        <div class="d-flex align-items-center gap-2">
+                                            <button class="badge bg-success rounded-3 fw-semibold btnCSF" data-bs-toggle="modal"
+                                                data-bs-target="#viewModal" data-id="{{$items->id}}" >View</button>
+                                        </div>
+                                    </td>
                                     <td class="border-bottom-0">
                                         <h6 class="fw-semibold mb-0">{{ $items->id }}</h6>
                                     </td>
@@ -182,14 +190,6 @@
                                         <h6 class="fw-semibold mb-0 fs-4">{{ date('h:i a', strtotime($items->csf_time)) }}
                                         </h6>
                                     </td>
-
-                                    <td class="border-bottom-0">
-                                        <div class="d-flex align-items-center gap-2">
-                                            <button class="badge bg-success rounded-3 fw-semibold btnCSF" data-bs-toggle="modal"
-                                                data-bs-target="#viewModal" data-id="{{$items->id}}" >View</button>
-                                        </div>
-                                    </td>
-
                                 </tr>
                             @endforeach
                         @endif
@@ -208,15 +208,15 @@
 <script>
     $(document).ready(function(){
 
-      $.ajaxSetup({
-        headers: {
-            'X-CSRF-Token': '{{ csrf_token() }}'
-        }
-      });
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-Token': '{{ csrf_token() }}'
+            }
+        });
 
 
-      $(".btnCSF").click(function(){
-        let id =  $(this).attr("data-id");
+        $(".btnCSF").click(function(){
+            let id =  $(this).attr("data-id");
 
             $.ajax({
             url: "{{ route('dashboard.getId', '') }}" + "/" + id,
@@ -279,6 +279,14 @@
 
             });
         });
+
+
+        new DataTable('#table_csf', {
+            searching: false
+        });
+
+    
+
 
     });
 

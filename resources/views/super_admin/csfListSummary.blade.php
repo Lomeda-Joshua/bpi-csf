@@ -47,13 +47,13 @@
 </style>
 
 
-<div class="card" style="overflow-x:auto; width:1400px;">
+<div class="card" style="width:1400px;">
     <div class="card-body">
 
 
-            <h2>BPI (OVERALL) CSF SUBMISSION PER MONTH</h2>
-            <h2><span id = "year_copyright"></span> Analysis</h2>
-            <h4>Deadline of submission: <span style="font-weight:bold;">Every 25th of the month</span></h4>
+            <h2 style="text-align: center; background-color:#0096FF; padding:10px; color:white;">BPI (OVERALL) CSF SUBMISSION PER MONTH</h2>
+            <h2 style="text-align: center;"><span id = "year_copyright"></span> Analysis</h2>
+            <h4 style="color:red;">Deadline of submission: <span style="font-weight:bold;">Every 25th of the month</span></h4>
 
             <div class="csf_submiision_per_month">
 
@@ -113,73 +113,53 @@
                 </div>
             
         </div>
-
-
-
-        
-        {{-- {{ dd($exampleJoin) }} --}}
-        
-        {{-- @foreach($exampleJoin as $item) --}}
-
-                {{-- {{ $item }} <br> --}}
-
-               {{-- @foreach( $item as $key => $value )
-                    {{ ($key) }}->{{ $value->office_name  }} <br> 
-                    {{ var_dump( $value->office_name ) }} <br> 
-                @endforeach --}}
-
-        {{--                             
-            @foreach( $item as $value )
-                {{ var_dump( $value ) }} <br>
-            @endforeach
-        
-        
-            @endforeach
-        --}}
-
-
-
                 
         <table id="csf_table" class="table align-middle striped">
             <thead>
                 <tr style="background-color:gray; color:white;" rowspan="2">
                     <th class="text-center" rowspan="2" style="width:190px;">NAME OF OPERATING UNITS</th>
-                    <th class="text-center" colspan="13">PERIOD FOR EVALUATION</th>
+                    <th class="text-center" colspan="12">PERIOD FOR EVALUATION</th>
                     <th rowspan="2">TOTAL</th>
                     <th rowspan="2">AVERAGE PER OFFICE</th>
                     <th rowspan="2">ADJECTIVAL RATING</th>
                 </tr>
                 <tr>
-                    <th class="text-center block-data">Jan 1 - Jan 15</th>
-                    <th class="text-center block-data">Jan 16 - Feb 15</th>
-                    <th class="text-center block-data">Feb 16 - March 15</th>
-                    <th class="text-center block-data">Mar 16 - Apr 15</th>
-                    <th class="text-center block-data">April 16 - May 15</th>
-                    <th class="text-center block-data">May 16 - June 15</th>
-                    <th class="text-center block-data">June 16- July 15</th>
-                    <th class="text-center block-data">Jul 16 - Aug 15</th>
-                    <th class="text-center block-data">Aug 16 - Sept 15</th>
-                    <th class="text-center block-data">Sept 16 - Oct 15</th>
-                    <th class="text-center block-data">Oct 16 - Nov 15</th>
-                    <th class="text-center block-data">Nov 16 - Dec 15</th>
-                    <th class="text-center block-data">Dec 16 - Dec 31</th>
+                    <th class="text-center block-data">January</th>
+                    <th class="text-center block-data">February</th>
+                    <th class="text-center block-data">March</th>
+                    <th class="text-center block-data">April</th>
+                    <th class="text-center block-data">May</th>
+                    <th class="text-center block-data">June</th>
+                    <th class="text-center block-data">July </th>
+                    <th class="text-center block-data">August</th>
+                    <th class="text-center block-data">September</th>
+                    <th class="text-center block-data">October</th>
+                    <th class="text-center block-data">Novomber</th>
+                    <th class="text-center block-data">December</th>
                 </tr>
             </thead>
 
             <tbody>
 
-                @foreach($groupedData as $office => $months)
-                    <tr>
-                        <td>{{ $office }}</td>
-                        
-                        
-                            @foreach($months as $month => $total_forms)
-                            
-                                <td>Month: {{ $month }} - Forms Submitted: {{ $total_forms }}</td>
-                            
-                            @endforeach
-                        
-                    </tr>
+                @php
+                    // Group data by office_name
+                    $groupedData = $monthlyCSFCount->groupBy('office_name');
+                @endphp
+
+                @foreach($groupedData as $office => $data)
+                <tr class="dataRow">
+                                    <td>{{ $office }}</td>
+                        @foreach(range(1, 12) as $month)
+                                @php
+                                    // Find the data for the current month, default to 0 if missing
+                                    $monthData = $data->firstWhere('month', $month);
+                                @endphp
+                                    <td class="num" style="font-weight:bold; text-align:center;">{{ $monthData ? $monthData->total_forms : 0 }}</td>
+                        @endforeach
+                        <td class="rowSum" style="font-weight:bold; text-align:center;">0</td>
+                        <td class="rowAverage" style="font-weight:bold; text-align:center;">0</td>
+                        <td class="adjectivalRating" style="font-weight:bold; text-align:center;"></td>
+                </tr>
                 @endforeach
 
             </tbody>
@@ -202,11 +182,10 @@
                     <td></td>
                     <td></td>
                     <td></td>
-                    <td></td>
+                    
                 </tr>
                 <tr>
                     <td style="text-align:center">AVERAGE (per column)</td>
-                    <td></td>
                     <td></td>
                     <td></td>
                     <td></td>
@@ -234,16 +213,7 @@
                 <td style="background-color:#0096FF; color:white;">AVERAGE per office</td>
             </tr>
 
-            @foreach( $office_data as $offices )
-                <tr>
-                    <td>
-                        {{ $offices->office_name }}
-                    </td>
-                    <td>
-                        {{ count($offices->customer_satisfaction) }}
-                    </td>
-                </tr>
-            @endforeach
+            
 
 
         </table>
@@ -266,57 +236,80 @@
     <h3>Positive and Negative Feedbacks</h3>
     <h3>If any (in words: In tagalog or english)</h3>
 
-    <table id="" class="display">
+    <table id="csf_table" class="table align-middle striped">
         <thead>
+            <tr style="background-color:gray; color:white;" rowspan="2">
+                <th class="text-center" rowspan="2" style="width:190px;">NAME OF OPERATING UNITS</th>
+                <th class="text-center" colspan="13">PERIOD FOR EVALUATION</th>
+                <th rowspan="2">TOTAL</th>
+                <th rowspan="2">AVERAGE PER OFFICE</th>
+                <th rowspan="2">ADJECTIVAL RATING</th>
+            </tr>
             <tr>
-                <th>Operating Unit</th>
-                <th>Jan 1 - 15</th>
-                <th>Jan 16- Feb 15</th>
-                <th> Feb 16- March 15</th>
-                <th>Mar 16- Apr 15</th>
-                <th>April 16 - May 15</th>
-                <th>May 16- June 15</th>
-                <th>June 16-July 15</th>
-                <th>Jul 16- Aug 15</th>
-                <th>Aug 16-Sept 15</th>
-                <th>Sept 16-Sept 15</th>
-                <th>Oct 16-Nov 15</th>
-                <th>Nov 16-Dec 15</th>
-                <th>Dec 16-Dec 30</th>
+                <th class="text-center block-data">Jan 1 - Jan 15</th>
+                <th class="text-center block-data">Jan 16 - Feb 15</th>
+                <th class="text-center block-data">Feb 16 - March 15</th>
+                <th class="text-center block-data">Mar 16 - Apr 15</th>
+                <th class="text-center block-data">April 16 - May 15</th>
+                <th class="text-center block-data">May 16 - June 15</th>
+                <th class="text-center block-data">June 16- July 15</th>
+                <th class="text-center block-data">Jul 16 - Aug 15</th>
+                <th class="text-center block-data">Aug 16 - Sept 15</th>
+                <th class="text-center block-data">Sept 16 - Oct 15</th>
+                <th class="text-center block-data">Oct 16 - Nov 15</th>
+                <th class="text-center block-data">Nov 16 - Dec 15</th>
+                <th class="text-center block-data">Dec 16 - Dec 31</th>
             </tr>
         </thead>
+
         <tbody>
 
-    
-            {{-- @foreach( $office_data  as $office_data)
-
-                <tr>
-                    <td><b>{{ $office_data->office_name }}</b></td>
-
-                    @if( isset($office_data->customer_satisfaction) )
-
-                        @foreach($office_data->customer_satisfaction as $tem_data)
-
-
-                            <td>{{ $tem_data->comments_suggestions }}</td>
-                        
-                            
-                        @endforeach
-
-                    @else
-
-                        <td><b>No such data</b></td>
-
-                    @endif
-                    
-                  
-                   
-
-                </tr>
-            @endforeach --}}
+          
 
         </tbody>
+        
+        <tfoot>
+            <tr>
+                <td style="text-align:center">TOTAL <b>(sum per column)</b></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td style="text-align:center">AVERAGE (per column)</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+        </tfoot>
     </table>
+
 </div>
 
 
@@ -399,19 +392,7 @@
         <thead>
             <tr>
                 <th>Operating Unit</th>
-                <th>Jan 1 - 15</th>
-                <th>Jan 16- Feb 15</th>
-                <th> Feb 16- March 15</th>
-                <th>Mar 16- Apr 15</th>
-                <th>April 16 - May 15</th>
-                <th>May 16- June 15</th>
-                <th>June 16-July 15</th>
-                <th>Jul 16- Aug 15</th>
-                <th>Aug 16-Sept 15</th>
-                <th>Sept 16-Sept 15</th>
-                <th>Oct 16-Nov 15</th>
-                <th>Nov 16-Dec 15</th>
-                <th>Dec 16-Dec 30</th>
+              
             </tr>
         </thead>
         <tbody>
@@ -454,35 +435,34 @@
 
     
   
-    $("document").ready(function(){
+$("document").ready(function(){
 
         new DataTable('#criteria_table', {
-            searching: true
+            searching: false
         });    
-
 
         new DataTable('#age_group_table', {
-            searching: true
+            searching: false
         });    
 
-        
-
-    });
 
 
-    let arraySummary = @json($overallCSFCount);
+        let arraySummary = @json($office_count);
+    let officeCountArray = @json($office_count) || [];
+
+    // Extract labels properly
+    const officeNames = officeCountArray.map(office => office.office_name);
+    const officeNumbers = officeCountArray.map(office => office.customer_satisfaction_count);
 
 
     const ctx = document.getElementById('summaryChart');
     new Chart(ctx, {
             type: 'bar',
             data: {
-                labels: [
-                    'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'
-                ],
+                labels: officeNames,
                 datasets: [{
                 label: 'BPI CSF ANALYSIS OVERALL TOTAL',
-                data: arraySummary,
+                data: officeNumbers,
                 borderWidth: 1
                 }]
             },
@@ -500,7 +480,40 @@
     document.getElementById("year_copyright").innerHTML = date.getFullYear();
 
 
-  
+
+    function sumEachRow() {
+    let rows = document.querySelectorAll(".dataRow"); // Select all rows
+    
+        rows.forEach(row => {
+            let cells = row.querySelectorAll(".num");
+            let total = 0;
+
+            // Sum up all values in the row
+            cells.forEach(cell => {
+                total += parseFloat(cell.innerText) || 0; // Convert text to number, avoid NaN
+            });
+
+            // Compute the average AFTER summing up
+            let average = (total / 12).toFixed(2); // Ensures 2 decimal places
+
+            // Update sum and average columns
+            row.querySelector(".rowSum").innerText = total;
+            row.querySelector(".rowAverage").innerText = average;
+        });
+
+    }
+
+    // Run when page loads
+    window.onload = sumEachRow;
+
+});
+
+
+
+
+
+
+
 </script>
 
 

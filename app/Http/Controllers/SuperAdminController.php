@@ -34,20 +34,17 @@ class SuperAdminController extends Controller
     }
 
     
+
+
+
     /**
-     * Display the CSF Summary.
+     *  CSF Summary page general functions.
      */
     public function csfListSummary(){
 
         $csf = customer_satisfaction::get();
-
-        $office = Office::with('customer_satisfaction')->get();
-
-        $office_count = Office::with('customer_satisfaction')->select('office_id')->distinct()->count();    
-
-        $exampleJoin = DB::table('offices')->rightJoin('customer_satisfactions', 'offices.id', '=', 'customer_satisfactions.office_id')->groupBy('offices.office_name');
-
-
+        $officeCounts = Office::withCount('customer_satisfaction')->get();
+        
 
         $months = [
             'january',
@@ -69,8 +66,8 @@ class SuperAdminController extends Controller
         $cutoffDay = 15;
         $currentYear = date('Y');
 
-        for($i = 0; $i <= 11; $i++){
 
+        for($i = 0; $i <= 11; $i++){
             $startingDate = $currentYear . '-' . $i + 1 . '-' . $firstDay; 
             $cutOffDate = $currentYear . '-' . $i + 1 . '-' . $cutoffDay;
 
@@ -82,25 +79,44 @@ class SuperAdminController extends Controller
 
 
         $groupedData = [];
-        $monthlyCSFCount = DB::table('customer_satisfactions')
-            ->selectRaw('offices.office_name, MONTH(csf_date) as month, COUNT(*) as total_forms')
-            ->join('offices', 'offices.id', '=', 'customer_satisfactions.office_id')
-            ->whereYear('csf_date', $currentYear)
+        $months = range(1, 12); // List of all months
+
+        $monthlyCSFCount = DB::table('offices')
+            ->leftJoin('customer_satisfactions', function ($join) use ($currentYear) {
+                $join->on('offices.id', '=', 'customer_satisfactions.office_id')
+                    ->whereYear('customer_satisfactions.csf_date', $currentYear);
+            })
+            ->selectRaw('offices.office_name, MONTH(customer_satisfactions.csf_date) as month, COUNT(customer_satisfactions.id) as total_forms')
             ->groupBy('offices.office_name', 'month')
             ->orderBy('offices.office_name')
             ->orderBy('month')
-            ->get();
+        ->get();
 
             
+        // Fill missing months with zeroes
         foreach ($monthlyCSFCount as $data) {
-            $groupedData[$data->office_name][$data->month] = $data->total_forms;
+            $groupedData[$data->office_name][$data->month ?? 0] = $data->total_forms;
+        }
+
+        // Convert structured data back to a collection
+        $monthlyCSFCount = collect([]);
+        foreach ($groupedData as $office => $monthsData) {
+            foreach ($monthsData as $month => $totalForms) {
+                $monthlyCSFCount->push((object)[
+                    'office_name' => $office,
+                    'month' => $month,
+                    'total_forms' => $totalForms
+                ]);
+            }
         }
 
             
         
         // Return view to blade
         return view('super_admin.csfListSummary', [ 
-            'csf' => $csf, 'office_data' => $office, 
+            'csf' => $csf, 
+            'office_data' => $office, 
+            'office_count' => $officeCounts,
             'overallCSFCount' => $overallCSFCount, 
             'monthlyCSFCount' => $monthlyCSFCount,
             'groupedData' => $groupedData
@@ -139,16 +155,16 @@ class SuperAdminController extends Controller
     /**
      * Display the List view for all offices.
      */
-    public function officeDetails(){
+    public function office_Details(){
         $office = Office::with('customer_satisfaction')->paginate(10);
-        return view('super_admin.office.officeDetails', [ 'office' => $office]);
+        return view('super_admin.office.office_details', [ 'office' => $office]);
     }
      
 
     /**
      * Creat or add new offices.
      */
-    public function office_create(){
+    public function office_Create(){
         return view('super_admin.office.office_create');
     }
 
@@ -156,7 +172,7 @@ class SuperAdminController extends Controller
     /**
      * Create or add new offices.
      */
-    public function office_store(Request $request){
+    public function office_Store(Request $request){
         $validated = $request->validate([
             'office_name' => 'required',
         ]);

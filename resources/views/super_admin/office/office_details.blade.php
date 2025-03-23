@@ -38,9 +38,13 @@
 </div>
 
 <script>
+
   $("document").ready(function(){
+
       new DataTable('#office_table');
-  })
+      
+  });
+
 </script>
 
 @endsection

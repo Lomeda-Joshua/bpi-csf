@@ -24,6 +24,11 @@ Route::get('/customer-satisfaction-form', [ CsfController::class, 'index'])->nam
 Route::post('/customer-satisfaction-form/submitted', [ CsfController::class, 'store'])->name('csf.store');
 
 
+/*
+ * 
+ * Super admin middleware and routing
+ * 
+ */
 Route::middleware(['auth', 'role:3'])->controller(SuperAdminController::class)->group(function(){
     Route::prefix('/super-admin')->group(function(){
         Route::get('/dashboard', 'index')->name('index.super-admin');
@@ -33,9 +38,9 @@ Route::middleware(['auth', 'role:3'])->controller(SuperAdminController::class)->
         Route::get('/settings/profile', 'profile')->name('super.profile');
 
         // Add and delete Office details
-        Route::get('/settings/office-details', 'officeDetails')->name('super.office');
-        Route::get('/settings/office-details/create', 'office_create')->name('super.office.create');
-        Route::post('/settings/office-details/create', 'office_store')->name('super.office.store');
+        Route::get('/settings/office-details', 'office_Details')->name('super.office');
+        Route::get('/settings/office-details/create', 'office_Create')->name('super.office.create');
+        Route::post('/settings/office-details/create', 'office_Store')->name('super.office.store');
         Route::get('/settings/office-details/{id}/edit', 'office_edit')->name('super.office.edit');
         Route::put('/settings/office-details/{id}/edit', 'office_edit_save')->name('super.office.edit-save');
       
@@ -59,6 +64,11 @@ Route::middleware(['auth', 'role:3'])->controller(SuperAdminController::class)->
 });
 
 
+/*
+ * 
+ * Admin middleware and routing
+ * 
+ */
 Route::middleware(['auth', 'role:2'])->controller(AdminController::class)->prefix('/admin')->group(function(){
     Route::get('/dashboard', 'index')->name('index.admin');
     Route::get('/customer-satisfaction-list', 'csfList');
@@ -68,6 +78,11 @@ Route::middleware(['auth', 'role:2'])->controller(AdminController::class)->prefi
 });
 
 
+/*
+ * 
+ * Regular user middleware and routing
+ * 
+ */
 Route::middleware(['auth', 'role:1'])->controller(UserController::class)->prefix('/user')->group(function(){
     Route::get('/dashboard', 'index')->name('index.user');
     Route::get('/customer-satisfaction-list', 'csfList');

@@ -6,7 +6,7 @@
     <div class="card-body">
       <h5 class="card-title fw-semibold mb-4">Authorized Personnel</h5>
 
-      <a href="{{ route('super.admin-store.new.user') }}" id="new_user" class="btn btn-success m-1">Apply a new user</a>
+      <a href="{{ route('super.admin-store.new.user') }}" id="new_user" class="btn btn-primary m-1">Apply a new user</a>
 
       @if(auth()->user()->role_id == 3)
         <a id="restore_user" data-bs-toggle="modal" data-bs-target="#restore_deleted_modal" class="btn btn-danger m-1">Restore User</a>

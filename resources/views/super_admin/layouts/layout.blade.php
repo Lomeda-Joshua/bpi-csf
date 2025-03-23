@@ -33,10 +33,7 @@
             margin-left: 0px !important;
         }
     }
-</style>
 
-
-<style>
     @media (min-width: 1200px) {
         #main-wrapper[data-layout=vertical][data-header-position=fixed] .app-header {
             width: calc(100% - 30px) !important;
@@ -48,32 +45,41 @@
             margin-left: 0px !important;
         }
     }
+
+
+    
+  .card{
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+  }
+
 </style>
 
+
+
 <!--  Body Wrapper -->
+<div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full" data-sidebar-position="fixed" data-header-position="fixed">
 
+    <!--  Main wrapper -->
+    <div class="body-wrapper">
+        
+        @include('super_admin.layouts.header')
 
-<!--  Main wrapper -->
-<div class="body-wrapper">
-    
-    @include('super_admin.layouts.header')
+        <!-- Sidebar Start -->
+        <aside class="left-sidebar">
+            @include('super_admin.layouts.navigation')
+        </aside>
+        <!--  Sidebar End -->
 
-    <!-- Sidebar Start -->
-    <aside class="left-sidebar">
-        @include('super_admin.layouts.navigation')
-    </aside>
-    <!--  Sidebar End -->
+        <div class="container-fluid">        
+            @yield('contents')    
+        </div>
 
-    <div class="container-fluid">        
-        @yield('contents')    
+        
+        
+
     </div>
-
-    <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full" data-sidebar-position="fixed" data-header-position="fixed">
-    </div>
-
+    <!--  End Main wrapper -->
 </div>
-<!--  End Main wrapper -->
-
 
 
 @vite('resources/assets/libs/jquery/dist/jquery.min.js')

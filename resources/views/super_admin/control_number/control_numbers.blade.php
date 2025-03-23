@@ -6,6 +6,8 @@
     <div class="card-body">
 
         <a href="{{ route('super.set-control.number') }}" class="btn btn-success m-1">Set new control number</a>
+        <a href="{{ route('super.office') }}" class="btn btn-danger">Return</a>
+        
 
         <table id="control_number_list" class="striped" style="width:100%">
             <thead>
