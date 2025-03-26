@@ -72,7 +72,7 @@
     }
 
     .input_class{
-        box-shadow: rgba(17, 17, 26, 0.1) 0px 1px 0px, rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 48px !important;
+      box-shadow: rgba(0, 0, 0, 0.15) 2.4px 2.4px 3.2px !important;
     }
 
     .modal-header{
