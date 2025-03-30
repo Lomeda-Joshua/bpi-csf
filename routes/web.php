@@ -38,7 +38,7 @@ Route::middleware(['auth', 'role:3'])->controller(SuperAdminController::class)->
         Route::get('/settings/profile', 'profile')->name('super.profile');
 
         // Add and delete Office details
-        Route::get('/settings/office-details', 'office_Details')->name('super.office');
+        Route::get('/settings/office-details', 'offices')->name('super.office');
         Route::get('/settings/office-details/create', 'office_Create')->name('super.office.create');
         Route::post('/settings/office-details/create', 'office_Store')->name('super.office.store');
         Route::get('/settings/office-details/{id}/edit', 'office_edit')->name('super.office.edit');

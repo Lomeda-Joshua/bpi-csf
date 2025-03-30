@@ -8,7 +8,7 @@
                 <div class="card-body">
                     <div class="row alig n-items-start">
                         <div class="col-8">
-                            <h5 class="card-title mb-9 fw-semibold"> Total Customer Satisfaction form</h5>
+                            <h5 class="card-title mb-9 fw-semibold" style="font-size:15.5px;"> Total Customer Satisfaction form</h5>
                             <h4 class="fw-semibold mb-3">{{ $csf_data->count('id') ? $csf_data->count('id') : 0 }}</h4>
                             <div class="d-flex align-items-center pb-1">
                             </div>
@@ -31,7 +31,7 @@
                 <div class="card-body">
                     <div class="row alig n-items-start">
                         <div class="col-8">
-                            <h5 class="card-title mb-9 fw-semibold"> Total Internal Customers </h5>
+                            <h5 class="card-title mb-9 fw-semibold"> Total Internal CSF </h5>
                             <h4 class="fw-semibold mb-3">{{ $internal_total ? $internal_total : 0 }}</h4>
                             <div class="d-flex align-items-center pb-1">
                             </div>
@@ -54,7 +54,7 @@
                 <div class="card-body">
                     <div class="row alig n-items-start">
                         <div class="col-8">
-                            <h5 class="card-title mb-9 fw-semibold"> Total External Customers </h5>
+                            <h5 class="card-title mb-9 fw-semibold"> Total External CSF </h5>
                             <h4 class="fw-semibold mb-3">{{ $external_total ? $external_total : 0 }}</h4>
                             <div class="d-flex align-items-center pb-1">
 

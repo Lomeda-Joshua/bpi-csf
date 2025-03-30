@@ -106,12 +106,11 @@ class SuperAdminController extends Controller
 
         // Step 2: Get the latest feedback for each office and month
         $feedback = DB::table('customer_satisfactions as csf')
-        ->select(
-            'csf.office_id',
-            DB::raw('MONTH(csf.csf_date) as month'),
-            'csf.comments_suggestions',
-            DB::raw('MAX(csf.csf_date) as latest_date')
-        )
+        ->select( 'csf.office_id', 
+                   DB::raw('MONTH(csf.csf_date) as month'), 
+                   'csf.comments_suggestions', 
+                   DB::raw('MAX(csf.csf_date) as latest_date'),
+                )
         ->whereYear('csf.csf_date', $currentYear)
         ->groupBy('csf.office_id', 'month', 'csf.comments_suggestions')
         ->orderBy('csf.office_id')
@@ -134,6 +133,7 @@ class SuperAdminController extends Controller
             }
         }
 
+
         // Fill missing months with zeroes
         foreach ($monthlyCSFCount as $data) {
             $groupedData[$data->office_name][$data->month ?? 0] = $data->total_forms;
@@ -154,6 +154,31 @@ class SuperAdminController extends Controller
 
 
 
+
+        /**
+         * 
+         * For getting the Age
+         * 
+        **/
+        $ages = DB::table('customer_satisfactions as csf')
+            ->select(
+                DB::raw('MONTH(csf.csf_date) as month'),
+                DB::raw('JSON_ARRAYAGG(csf.age) as ages')
+            )
+        ->whereYear('csf.csf_date', now()->year)
+        ->groupBy('month')
+        ->orderBy('month')
+        ->get();
+
+
+
+
+        
+
+
+
+
+
         // Return view to blade
         return view('super_admin.csfListSummary', [
             'csf' => $csf,
@@ -168,40 +193,13 @@ class SuperAdminController extends Controller
 
 
 
-
-    /**
-     * Display the User profile.
-     */
-    public function profile()
-    {
-        $role_id = Auth::user()->role_id;
-
-        switch ($role_id) {
-            case 1:
-                $role_name = "User";
-                break;
-
-            case 2:
-                $role_name = "Admin";
-                break;
-
-            case 3:
-                $role_name = "Super admin";
-                break;
-        }
-
-        return view('super_admin.profile', ['role_name' => $role_name, 'user_data' => Auth::user()]);
-    }
-
-
-
     /**
      * Display the List view for all offices.
      */
-    public function office_Details()
+    public function offices()
     {
         $office = Office::with('customer_satisfaction')->paginate(10);
-        return view('super_admin.office.office_details', ['office' => $office]);
+        return view('super_admin.settings.office_module.office_details', ['office' => $office]);
     }
 
 
@@ -210,7 +208,7 @@ class SuperAdminController extends Controller
      */
     public function office_Create()
     {
-        return view('super_admin.office.office_create');
+        return view('super_admin.settings.office_module.office_create');
     }
 
 
@@ -260,6 +258,67 @@ class SuperAdminController extends Controller
     }
 
 
+    /**
+     * Set new control number.
+     */
+    public function ControlNumber()
+    {
+        $control_number_data = control_number::with('section')->get();
+        return view('super_admin.control_number.control_numbers', ['control_number' => $control_number_data]);
+    }
+
+
+    public function SetNewControlNumber()
+    {
+        $selectOffice = Office::all();
+        return view('super_admin.control_number.create_control_number', ['selectOffice' => $selectOffice]);
+    }
+
+
+    public function StoreControlNumber(Request $request)
+    {
+        control_number::create([
+            'section_office' => $request->section_office,
+            'control_number_year' => $request->control_number_year,
+            'control_number_month' => $request->control_number_month,
+            'control_number_count' => $request->control_number_count
+        ]);
+
+        Alert::success('Control number', 'Section control number set!');
+        return redirect(route('super.set-control.number'));
+    }
+
+
+
+
+
+
+    /**
+     * Display the User profile.
+     */
+    public function profile()
+    {
+        $role_id = Auth::user()->role_id;
+
+        switch ($role_id) {
+            case 1:
+                $role_name = "User";
+                break;
+
+            case 2:
+                $role_name = "Admin";
+                break;
+
+            case 3:
+                $role_name = "Super admin";
+                break;
+        }
+
+        return view('super_admin.settings.index_profile', ['role_name' => $role_name, 'user_data' => Auth::user()]);
+    }
+
+
+
 
     /**
      * Display the List view for all personnels of sections.
@@ -270,7 +329,7 @@ class SuperAdminController extends Controller
         $personnels = User::with('office')->get();
         $current_user = auth()->user()->role_id;
 
-        return view('super_admin.personnel_list.personnelList', ['personnels' => $personnels]);
+        return view('super_admin.settings.personnel_module.personnelList', ['personnels' => $personnels]);
     }
 
 
@@ -279,7 +338,7 @@ class SuperAdminController extends Controller
      */
     public function AddNewPersonnel()
     {
-        return view('super_admin.personnel_list.create_new_profile', ['office' => Office::all()]);
+        return view('super_admin.settings.personnel_module.create_new_profile', ['office' => Office::all()]);
     }
 
 
@@ -351,37 +410,6 @@ class SuperAdminController extends Controller
         $csf_data = customer_satisfaction::get();
 
         return view('super_admin.csf_summary', ['csf_data' => $csf_data]);
-    }
-
-
-    /**
-     * Set new control number.
-     */
-    public function ControlNumber()
-    {
-        $control_number_data = control_number::with('section')->get();
-        return view('super_admin.control_number.control_numbers', ['control_number' => $control_number_data]);
-    }
-
-
-    public function SetNewControlNumber()
-    {
-        $selectOffice = Office::all();
-        return view('super_admin.control_number.create_control_number', ['selectOffice' => $selectOffice]);
-    }
-
-
-    public function StoreControlNumber(Request $request)
-    {
-        control_number::create([
-            'section_office' => $request->section_office,
-            'control_number_year' => $request->control_number_year,
-            'control_number_month' => $request->control_number_month,
-            'control_number_count' => $request->control_number_count
-        ]);
-
-        Alert::success('Control number', 'Section control number set!');
-        return redirect(route('super.set-control.number'));
     }
 
 
