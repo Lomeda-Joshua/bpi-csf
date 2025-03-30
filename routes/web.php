@@ -49,8 +49,10 @@ Route::middleware(['auth', 'role:3'])->controller(SuperAdminController::class)->
         Route::get('/settings/personnel-list', 'PersonnelList')->name('super.personnel');
         Route::get('/settings/personnel-list/add-new-user', 'AddNewPersonnel')->name('super.admin-add.new.user');
         Route::post('/settings/personnel-list/add-new-user', 'SaveNewPersonnel')->name('super.admin-store.new.user');
+        // Delete and restore deleted personnel
         Route::delete('/settings/personnel-list/delete-user/{id}', 'DeletePersonnel')->name('super.admin-delete.user');
         Route::get('/settings/personnel-list/restore/source', 'restorePersonnelSource')->name('super.admin-restore.user');
+        Route::post('/settings/personnel-list/restore', 'restorePersonnel')->name('super.admin-restore-user');
 
         // Print Summary of csf lists
         Route::get('/print-summary', 'printSummary')->name('print-summary');

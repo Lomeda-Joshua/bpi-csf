@@ -20,20 +20,30 @@ class CsfController extends Controller
     public function store(Request $request)
     {
         date_default_timezone_set('Asia/Hong_Kong');
-        $office_id = $request->input('office_id');
+        
 
         $csf_time = date('H:i:s');
         $csf_date = date('Y-m-d');
 
-        $name = $request->input('name');
+
+        $validated = $request->validate([
+                'office_id' => 'required',
+                'name' => 'required|max:190',
+                'contact_details' => 'required|string|max:11',
+                'type_and_quantity' => 'nullable|string',
+                'gender' => 'required'
+        ]);
+
+        $office_id = $validated['office_id'];
+        $name = $validated['name'];
         $age = $request->input('age');
-        $gender = $request->input('gender');
-        $contact_details = $request->input('contact_details');
+        $gender = $validated['gender'];
+        $contact_details =  $validated['contact_details'];
         $individual_group = $request->input('individual_group');
         $nameOFAgency = $request->input('nameOFAgency');
         $private_government = $request->input('private_government');
         $internal_external = $request->input('internal_external');
-        $type_and_quantity = $request->input('type_and_quantity');
+        $type_and_quantity = $validated['type_and_quantity'];
         $criteria_quality_of_goods = $request->input('criteria_quality_of_goods');
         $criteria_courteousness = $request->input('criteria_courteousness');
         $criteria_responsiveness = $request->input('criteria_responsiveness');

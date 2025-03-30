@@ -99,23 +99,27 @@
                 </div>
 
                 <div class="modal-body">
-
                   <div class="container">
 
-                    <table id="restore_user_tbl" class="table display text-nowrap mb-0 align-middle" style="width:100%;">
-                        <thead class="text-dark fs-4">
+                    <div class="table-responsive">
+
+                      <table id="restore_user_tbl" class="table display text-nowrap mb-0 align-middle" style="width:100%;">
+                        <thead class="text-dark fs-4" style="background-color:gray;">
                             <tr>
-                                <th class="border-bottom-0"><h6 class="fw-semibold mb-0">Account Username</h6></th>
+                                <th class="border-bottom-0"><h6 class="fw-semibold mb-0 text-white text-center">Actions</h6></th>
+                                <th class="border-bottom-0"><h6 class="fw-semibold mb-0 text-white text-center">Account Username</h6></th>
+                                <th class="border-bottom-0"><h6 class="fw-semibold mb-0 text-white text-center">Deleted date stamp</h6></th>
                             </tr>
                         </thead>
-                        <tbody></tbody>
+                        <tbody>
+                        </tbody>
                     </table>
+                    </div>
+                    
+
+
 
                   </div>
-
-                  <p>sample</p>
-                  <p id="hello"></p>
-
 
                 </div>
                
@@ -127,6 +131,12 @@
 
 <script>
     $(document).ready(function(){
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+
 
         $('#restore_user_tbl').DataTable({
             processing: true,
@@ -138,23 +148,57 @@
                 url: "{{ route('super.admin-restore.user') }}",
                 type: "GET",
 
-                success: function(data){
-                    $('#hello').text(data.name);
-                    console.log(data);
-                },
-
                 error: function(xhr, status, error){
                     console.log(xhr);
                 }
             },
 
             columns: [
-                { data: 'name' }
+                { data: 'id',
+                  render: function(data, type, row) {
+                  return `<button class="btn btn-primary restore-btn" data-id="${data}">
+                            Restore
+                        </button>`;
+                  }
+                },
+                { data: 'name'},
+                { data: 'deleted_at'}
             ]
+        });
+
+
+        $(document).on('click', '.restore-btn', function(){
+            let userId = $(this).data('id'); // Get the ID from data-id attribute
+
+            $.ajax({
+                url: "{{ route('super.admin-restore-user') }}",
+                type: 'POST',
+                data: {
+                    userid: userId,
+                },
+
+                success: function(result){
+
+                    Swal.fire({
+                        icon: "success",
+                        title: "Restored!",
+                        text: result.message,
+
+                    }).then( (result) => {
+                        if(result.isConfirmed){
+                          $('#restore_user_tbl').DataTable().ajax.reload(); // Refresh DataTable
+                        }
+                    });
+                        
+
+                },
+                error: function(xhr, status, error){
+                    console.error("Error restoring user:", error);
+                }
+            });
 
 
         });
-
 
 
     });

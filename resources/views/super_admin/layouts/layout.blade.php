@@ -3,7 +3,9 @@
 
 <head>
     <meta charset="utf-8">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    
     <title>Customer Satisfaction Form | BPI</title>
     <link rel="shortcut icon" type="image/png" href="{{ asset('images/logos/bpi_logo.png') }}" />
 
@@ -17,7 +19,6 @@
 </head>
 
 <body>
-
 @include('sweetalert::alert', ['cdn' => "https://cdn.jsdelivr.net/npm/sweetalert2@9"])
 
 
@@ -75,8 +76,6 @@
         </div>
 
         
-        
-
     </div>
     <!--  End Main wrapper -->
 </div>

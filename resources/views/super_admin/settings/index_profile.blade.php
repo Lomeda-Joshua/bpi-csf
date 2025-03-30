@@ -8,7 +8,8 @@
 
 
       <div class="row">
-        <div class="col-3">
+
+        <div class="col-md-3">
             <p class="mb-0"><b>Account Name :</b></p>
             {{ $user_data->name }}
             <br><br>
@@ -19,7 +20,7 @@
           
         </div>
 
-        <div class="col-3">
+        <div class="col-md-3">
           
           <p class="mb-0"><b>Section :</b></p>
           {{ $user_data->office_id ? $user_data->office_id : "Super admin no section indicated"  }}
@@ -29,7 +30,7 @@
         </div>
 
 
-        <div class="col-3">
+        <div class="col-md-3">
           <p class="mb-0"><b>Date Created : </b></p>
           {{ date('F d, Y ', strtotime($user_data->created_at)) }}
           <br><br>

@@ -1,15 +1,21 @@
     <!-- Sidebar Start -->
     <aside class="left-sidebar">
+
       <!-- Sidebar scroll-->
       <div>
-        <div class="brand-logo d-flex align-items-center justify-content-between" style="margin-top:30px;">
-          <a href="{{ route('index.super-admin') }}" class="text-nowrap logo-img">
+        <div class="brand-logo d-flex align-items-center" style="margin-top:30px;">
+
+          <a href="{{ route('index.super-admin') }}" class="text-nowrap logo-img" style="width:180px;">
             <img src="{{asset('images/logos/bpi_logo.png')}}" width="90" alt="" />
           </a>
+
+          
           <div class="close-btn d-xl-none d-block sidebartoggler cursor-pointer" id="sidebarCollapse">
             <i class="ti ti-x fs-8"></i>
           </div>
+
         </div>
+
         <!-- Sidebar navigation-->
         <nav class="sidebar-nav scroll-sidebar" data-simplebar="">
           <ul id="sidebarnav">
@@ -25,6 +31,7 @@
                 <span class="hide-menu">Dashboard</span>
               </a>
             </li>
+
             <li class="nav-small-cap">
               <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
               <span class="hide-menu">MENU</span>
@@ -37,6 +44,24 @@
                 <span class="hide-menu">CSF Summary</span>
               </a>
             </li>
+            <li class="sidebar-item" disabled>
+              <a class="sidebar-link" href="#" aria-expanded="false" >
+                <span>
+                  <i class="ti ti-mail fs-6"></i>
+                </span>
+                <span class="hide-menu">Message Requests</span>
+              </a>
+            </li>
+            <li class="sidebar-item" disabled>
+              <a class="sidebar-link" href="#" aria-expanded="false" >
+                <span>
+                  <i class="ti ti-cards"></i>
+                </span>
+                <span class="hide-menu">Tasks</span>
+              </a>
+            </li>
+
+
             <li class="nav-small-cap">
               <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
               <span class="hide-menu">SETTINGS</span>

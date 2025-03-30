@@ -78,7 +78,7 @@
                 <div class="card-body">
                     <div class="row alig n-items-start">
                         <div class="col-8">
-                            <h5 class="card-title mb-9 fw-semibold"> Total Applied users </h5>
+                            <h5 class="card-title mb-9 fw-semibold"> Total Summary submitted </h5>
                             <h4 class="fw-semibold mb-3">{{ $user }}</h4>
                             <div class="d-flex align-items-center pb-1">
                             </div>
@@ -298,6 +298,7 @@
 
                     </tbody>
                 </table>
+                
             </div>
         </div>
     </div>

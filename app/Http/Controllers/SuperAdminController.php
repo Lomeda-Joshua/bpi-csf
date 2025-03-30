@@ -13,6 +13,7 @@ use App\Models\Office;
 use App\Models\control_number;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Crypt;
+use DataTables;
 
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\DB;
@@ -221,7 +222,7 @@ class SuperAdminController extends Controller
             'office_name' => 'required',
         ]);
 
-        $office_name_input = $request->input('office_name');
+        $office_name_input = $validated['office_name'];
 
 
         Office::create([
@@ -238,7 +239,7 @@ class SuperAdminController extends Controller
      */
     public function office_edit(Office $id)
     {
-        return view('super_admin.office.office_edit', ['office' => $id]);
+        return view('super_admin.settings.office_module.office_edit', ['office' => $id]);
     }
 
 
@@ -247,7 +248,7 @@ class SuperAdminController extends Controller
      */
     public function office_edit_save(Request $request, Office $id)
     {
-        $validated = $request->validate([
+        $request->validate([
             'office_name' => 'required',
         ]);
 
@@ -264,28 +265,36 @@ class SuperAdminController extends Controller
     public function ControlNumber()
     {
         $control_number_data = control_number::with('section')->get();
-        return view('super_admin.control_number.control_numbers', ['control_number' => $control_number_data]);
+        return view('super_admin.settings.office_module.control_number.control_numbers', ['control_number' => $control_number_data]);
     }
 
 
     public function SetNewControlNumber()
     {
         $selectOffice = Office::all();
-        return view('super_admin.control_number.create_control_number', ['selectOffice' => $selectOffice]);
+        return view('super_admin.settings.office_module.control_number.create_control_number', ['selectOffice' => $selectOffice]);
     }
 
 
     public function StoreControlNumber(Request $request)
     {
+        $validated = $request->validate([
+            'section_office' => 'required',
+            'control_number_year' => 'required',
+            'control_number_month' => 'required',
+            'control_number_count' => 'required',
+        ]);
+
+
         control_number::create([
-            'section_office' => $request->section_office,
-            'control_number_year' => $request->control_number_year,
-            'control_number_month' => $request->control_number_month,
-            'control_number_count' => $request->control_number_count
+            'section_office' => $validated['section_office'],
+            'control_number_year' => $validated['control_number_year'],
+            'control_number_month' => $validated['control_number_month'],
+            'control_number_count' => $validated['control_number_count']
         ]);
 
         Alert::success('Control number', 'Section control number set!');
-        return redirect(route('super.set-control.number'));
+        return redirect(route('super.control.number'));
     }
 
 
@@ -382,21 +391,38 @@ class SuperAdminController extends Controller
 
 
 
-
-    public function restorePersonnelSource()
+    public function restorePersonnelSource(Request $request)
     {
-        $query = User::withTrashed()->get();
-        $json_data = [];
-
-
-        foreach ($query as $item) {
-            $json_data = [
-                'name' => $item->name,
-            ];
+        if ($request->ajax()) {
+            $query = User::onlyTrashed()->select(['id', 'name', 'deleted_at']); // Select only needed columns
+    
+            return \DataTables::of($query)
+                ->addIndexColumn() // Optional: Adds auto-incrementing index
+                ->make(true);
         }
+    }
 
 
-        return response()->json($json_data);
+    public function restorePersonnel(Request $request){
+
+        $user_id = User::withTrashed()->where('id',$request->userid)->first();
+        
+
+        if ($user_id) {
+            $user_id->restore();
+            return response()->json([
+                'success' => true,
+                'message' => 'User restored successfully!'
+            ]);
+        }
+    
+        return response()->json([
+            'success' => false,
+            'message' => 'User not found!'
+        ], 404);
+
+
+        return response()->json();
     }
 
 
