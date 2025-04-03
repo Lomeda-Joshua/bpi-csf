@@ -32,10 +32,8 @@ class SuperAdminController extends Controller
         $external_total = customer_satisfaction::where('internal_external', '=', 2)->count();
         $user_data = User::count();
 
-        return view('super_admin.index', ['csf' => $csf, 'user' => $user_data, 'csf_data' => $csf_data, 'internal_total' => $internal_total, 'external_total' => $external_total]);
+        return view('users.super_admin.index', ['csf' => $csf, 'user' => $user_data, 'csf_data' => $csf_data, 'internal_total' => $internal_total, 'external_total' => $external_total]);
     }
-
-
 
 
 
@@ -93,6 +91,7 @@ class SuperAdminController extends Controller
         ->orderBy('month')
         ->get();
 
+        
 
 
         /**
@@ -181,7 +180,7 @@ class SuperAdminController extends Controller
 
 
         // Return view to blade
-        return view('super_admin.csfListSummary', [
+        return view('users.super_admin.summary_module.csfListSummary', [
             'csf' => $csf,
             'office_data' => $office,
             'office_count' => $officeCounts,
@@ -200,7 +199,7 @@ class SuperAdminController extends Controller
     public function offices()
     {
         $office = Office::with('customer_satisfaction')->paginate(10);
-        return view('super_admin.settings.office_module.office_details', ['office' => $office]);
+        return view('users.super_admin.settings.office_module.office_details', ['office' => $office]);
     }
 
 
@@ -209,7 +208,7 @@ class SuperAdminController extends Controller
      */
     public function office_Create()
     {
-        return view('super_admin.settings.office_module.office_create');
+        return view('users.super_admin.settings.office_module.office_create');
     }
 
 
@@ -230,7 +229,7 @@ class SuperAdminController extends Controller
         ]);
 
         Alert::success('Success', 'Added new office section');
-        return redirect(route('super.office'));
+        return redirect(route('users.super.office'));
     }
 
 
@@ -239,7 +238,7 @@ class SuperAdminController extends Controller
      */
     public function office_edit(Office $id)
     {
-        return view('super_admin.settings.office_module.office_edit', ['office' => $id]);
+        return view('users.super_admin.settings.office_module.office_edit', ['office' => $id]);
     }
 
 
@@ -262,21 +261,21 @@ class SuperAdminController extends Controller
     /**
      * Set new control number.
      */
-    public function ControlNumber()
+    public function controlNumber()
     {
         $control_number_data = control_number::with('section')->get();
-        return view('super_admin.settings.office_module.control_number.control_numbers', ['control_number' => $control_number_data]);
+        return view('users.super_admin.settings.office_module.control_number.control_numbers', ['control_number' => $control_number_data]);
     }
 
 
-    public function SetNewControlNumber()
+    public function setNewControlNumber()
     {
         $selectOffice = Office::all();
-        return view('super_admin.settings.office_module.control_number.create_control_number', ['selectOffice' => $selectOffice]);
+        return view('users.super_admin.settings.office_module.control_number.create_control_number', ['selectOffice' => $selectOffice]);
     }
 
 
-    public function StoreControlNumber(Request $request)
+    public function storeControlNumber(Request $request)
     {
         $validated = $request->validate([
             'section_office' => 'required',
@@ -323,7 +322,7 @@ class SuperAdminController extends Controller
                 break;
         }
 
-        return view('super_admin.settings.index_profile', ['role_name' => $role_name, 'user_data' => Auth::user()]);
+        return view('users.super_admin.settings.index_profile', ['role_name' => $role_name, 'user_data' => Auth::user()]);
     }
 
 
@@ -332,13 +331,13 @@ class SuperAdminController extends Controller
     /**
      * Display the List view for all personnels of sections.
      */
-    public function PersonnelList()
+    public function personnelList()
     {
 
         $personnels = User::with('office')->get();
-        $current_user = auth()->user()->role_id;
+        $assigned_personnel = User::with('office')->where('is_focal', 1)->get();
 
-        return view('super_admin.settings.personnel_module.personnelList', ['personnels' => $personnels]);
+        return view('users.super_admin.settings.personnel_module.personnelList', ['personnels' => $personnels, 'assigned_personnel' => $assigned_personnel]);
     }
 
 
@@ -347,14 +346,14 @@ class SuperAdminController extends Controller
      */
     public function AddNewPersonnel()
     {
-        return view('super_admin.settings.personnel_module.create_new_profile', ['office' => Office::all()]);
+        return view('users.super_admin.settings.personnel_module.create_new_profile', ['office' => Office::all()]);
     }
 
 
     /**
      * Store the new user
      */
-    public function SaveNewPersonnel(Request $request)
+    public function saveNewPersonnel(Request $request)
     {
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
@@ -378,7 +377,7 @@ class SuperAdminController extends Controller
     /**
      * Delete user.
      */
-    public function DeletePersonnel($id)
+    public function deletePersonnel($id)
     {
         $decrypted_user = Crypt::decryptString($id);
         $delete_user = User::find($decrypted_user);
@@ -427,6 +426,21 @@ class SuperAdminController extends Controller
 
 
 
+    public function assignFocal($id){
+        $decrypted_user = Crypt::decryptString($id);
+        $assignedUser = User::find($decrypted_user);
+
+        $assignedUser->update([
+            'is_focal' => 1,
+            'assignind_TimeStamp' => now()
+        ]);
+
+        Alert::success('Success', 'User assigned as focal');
+        return redirect()->back();
+    }
+
+
+
 
     /**
      * Display the print summary.
@@ -435,7 +449,7 @@ class SuperAdminController extends Controller
     {
         $csf_data = customer_satisfaction::get();
 
-        return view('super_admin.csf_summary', ['csf_data' => $csf_data]);
+        return view('users.super_admin.csf_summary', ['csf_data' => $csf_data]);
     }
 
 

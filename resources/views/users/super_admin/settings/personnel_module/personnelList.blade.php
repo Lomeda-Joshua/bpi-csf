@@ -1,4 +1,4 @@
-@extends('super_admin.layouts.layout')
+@extends('users.super_admin.layouts.layout')
 
 @section('contents')
     <div class="card">
@@ -84,21 +84,24 @@
         </div>
     </div>
 
+
+
+
+
     <div class="card" style="background-color: #13deb9;">
         <div class="card-body">
             <h5 class="card-title fw-semibold mb-4 text-white">Assigned Focal Personnel</h5>
 
             <div class="table-responsive">
 
-                <table id="personnel_list" class="table text-nowrap mb-0 align-middle" style="width:100%">
+                <table id="assign_focal" class="table text-nowrap mb-0 align-middle" style="width:100%">
                     <thead>
                         <tr style="background-color:gray; color:white;">
                             <th class="text-center">Name</th>
                             <th class="text-center">Role</th>
                             <th class="text-center">Office</th>
                             <th class="text-center">User email account</th>
-                            <th class="text-center">Created at</th>
-                            <th class="text-center">Updated at</th>
+                            <th class="text-center">Assigning date</th>
                             <th class="text-center">Actions:</th>
                         </tr>
                     </thead>
@@ -108,7 +111,8 @@
     
     
     
-                        @foreach ($personnels as $item)
+                        @foreach ($assigned_personnel as $item)
+
                             <tr>
                                 <td class="text-center">{{ $item->name }}</td>
                                 <td class="text-center">
@@ -131,23 +135,22 @@
                                 <td class="text-center">{{ $item->office->office_name ?? 'Super admin role' }}</td>
                                 <td class="text-center">{{ $item->email }}</td>
                                 <td class="text-center">{{ date('F d, Y', strtotime($item->created_at)) }}</td>
-                                <td class="text-center">{{ date('F d, Y', strtotime($item->updated_at)) }}</td>
                                 <td class="text-center">
     
                                     @php
-    
                                         $encrypted_id = Crypt::encryptString($item->id);
-    
                                     @endphp
     
-                                    <form method="POST" action="{{ route('super.admin-delete.user', $encrypted_id) }}">
+                                    <form method="POST" action="{{ route('super.admin-assign.focal', $encrypted_id) }}">
                                         @csrf
-                                        @method('DELETE')
-                                        <a data-bs-toggle="modal" data-bs-target="#personnel_modal"
-                                            class="btn btn-primary m-1">Edit</a>
-                                        @if ($item->role_id != 3)
-                                            <button type="submit" class="btn btn-danger m-1">Delete</button>
+                                        @method('POST')
+
+                                        @if ($item->is_focal != 1)
+                                            <button class="btn btn-danger m-1">Already a focal</button>
+                                        @elseif( $item->is_focal = 0 )
+                                            <button class="btn btn-danger m-1">Assign as focal</button>
                                         @endif
+
                                     </form>
                                 </td>
                             </tr>
@@ -164,14 +167,18 @@
     </div>
 
 
-    @include('super_admin.modal.edit_user_profile')
-    @include('super_admin.modal.restore_delete')
+    @include('users.super_admin.modal.edit_user_profile')
+    @include('users.super_admin.modal.restore_delete')
 
     <script>
         $("document").ready(function() {
 
             new DataTable('#personnel_list', {
                 searching: false
+            });
+
+            new DataTable('#assign_focal', {
+                searching: true
             });
 
 

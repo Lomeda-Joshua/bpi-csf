@@ -24,7 +24,9 @@ class User extends Authenticatable
         'email',
         'role_id',
         'password',
-        'office_id'
+        'office_id',
+        'is_focal',
+        'assigning_TimeStamp'
     ];
 
     /**

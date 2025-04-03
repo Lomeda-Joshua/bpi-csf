@@ -1,4 +1,4 @@
-@extends('super_admin.layouts.layout')
+@extends('users.super_admin.layouts.layout')
 
 @section('contents')
     <div class="row">
@@ -304,7 +304,7 @@
     </div>
 
 
-    @include('super_admin.modal.view_csf_customer')
+    @include('users.super_admin.modal.view_csf_customer')
 
 
 

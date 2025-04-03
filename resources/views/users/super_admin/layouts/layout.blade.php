@@ -63,11 +63,11 @@
     <!--  Main wrapper -->
     <div class="body-wrapper">
         
-        @include('super_admin.layouts.header')
+        @include('users.super_admin.layouts.header')
 
         <!-- Sidebar Start -->
         <aside class="left-sidebar">
-            @include('super_admin.layouts.navigation')
+            @include('users.super_admin.layouts.navigation')
         </aside>
         <!--  Sidebar End -->
 

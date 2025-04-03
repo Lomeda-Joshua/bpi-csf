@@ -21,7 +21,7 @@ class customer_satisfactionFactory extends Factory
     {
         return [
             'csf_time' => $this->faker->time('H:i:s'), // Random time
-            'csf_date' => $this->faker->date('Y-m-d'), // Random date
+            'csf_date' => $this->faker->dateTimeBetween('first day of January this year', 'last day of December this year')->format('Y-m-d'), // Random date for the entire year
             'name' => $this->faker->name, // Random name
             'age' => $this->faker->numberBetween(1, 3), // Random age between 18 and 80
             'gender' => $this->faker->numberBetween(1, 2), // Random gender
@@ -38,6 +38,7 @@ class customer_satisfactionFactory extends Factory
             'promoter_score' => $this->faker->numberBetween(1, 5), // Random promoter score (0-10)
             'comments_suggestions' => $this->faker->text(100), // Random comments/suggestions
             'office_id' => $this->faker->numberBetween(1, 4), // Random office ID (assuming 1-10)
+            'created_at' => $this->faker->date('Y-m-d')
         ];
     }
 }

@@ -48,19 +48,23 @@ Route::middleware(['auth', 'role:3'])->controller(SuperAdminController::class)->
         // Add new authorized personnel
         Route::get('/settings/personnel-list', 'PersonnelList')->name('super.personnel');
         Route::get('/settings/personnel-list/add-new-user', 'AddNewPersonnel')->name('super.admin-add.new.user');
-        Route::post('/settings/personnel-list/add-new-user', 'SaveNewPersonnel')->name('super.admin-store.new.user');
+        Route::post('/settings/personnel-list/add-new-user', 'saveNewPersonnel')->name('super.admin-store.new.user');
+
         // Delete and restore deleted personnel
-        Route::delete('/settings/personnel-list/delete-user/{id}', 'DeletePersonnel')->name('super.admin-delete.user');
+        Route::delete('/settings/personnel-list/delete-user/{id}', 'deletePersonnel')->name('super.admin-delete.user');
         Route::get('/settings/personnel-list/restore/source', 'restorePersonnelSource')->name('super.admin-restore.user');
         Route::post('/settings/personnel-list/restore', 'restorePersonnel')->name('super.admin-restore-user');
+
+        // Assign user as focal
+        Route::post('/settings/personnel-list/assign-user-focal/{id}', 'assignFocal')->name('super.admin-assign.focal');
 
         // Print Summary of csf lists
         Route::get('/print-summary', 'printSummary')->name('print-summary');
 
         // Add and set control number to an office for csf
-        Route::get('/settings/set-control-number', 'ControlNumber')->name('super.control.number');
-        Route::get('/settings/set-control-number/set-new-control-no', 'SetNewControlNumber')->name('super.set-control.number');
-        Route::post('/settings/set-control-number/set-new-control-no', 'StoreControlNumber')->name('super.store-control.number');
+        Route::get('/settings/set-control-number', 'controlNumber')->name('super.control.number');
+        Route::get('/settings/set-control-number/set-new-control-no', 'setNewControlNumber')->name('super.set-control.number');
+        Route::post('/settings/set-control-number/set-new-control-no', 'storeControlNumber')->name('super.store-control.number');
     });
 
 });
