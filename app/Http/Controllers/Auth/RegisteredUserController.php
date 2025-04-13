@@ -26,7 +26,17 @@ class RegisteredUserController extends Controller
      */
     public function create(): View{
 
-        return view('auth.register');
+        $userCount = DB::table('users')->get()->count();
+
+        if( $userCount <= 0 ){
+            return view('auth.register');
+        }else{
+            Alert::warning('Error', 'Not allowed at this time, see administrator');
+            return view('auth.login');
+        }
+        
+
+        
 
         // if(  ) {
         //     $role_id = auth()->user()->role_id;
@@ -68,10 +78,9 @@ class RegisteredUserController extends Controller
         $userCount = DB::table('users')->get()->count();
 
         if( $userCount <= 0 ){
-
             $user = User::create([
-                'first_name' => $request->first_name,
-                'last_name' => $request->last_name,
+                'first_name' => strtoupper($request->first_name),
+                'last_name' => strtoupper($request->last_name),
                 'email' => $request->email,
                 'password' => Hash::make($request->password),
             ]);

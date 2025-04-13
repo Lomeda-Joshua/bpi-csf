@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Office;
 use App\Models\customer_satisfaction;
-
+use RealRashid\SweetAlert\Facades\Alert;
 
 class UserController extends Controller
 {
@@ -38,7 +38,7 @@ class UserController extends Controller
         $csf = customer_satisfaction::with('office')->where('office_id', '=', $office_id )->get();
         
         
-        return view('users.csfList', [ 'csf' => $csf ]);
+        return view('users.public_users.csfList', [ 'csf' => $csf ]);
     }
 
     public function profile()
@@ -46,7 +46,7 @@ class UserController extends Controller
         $role_id_check = User::where( 'role_id', 'LIKE', '3%' )->count();     
         $profile = Auth::user();        
 
-        return view('users.profile', [ 'profile' => $profile,  'role_id_check' => $role_id_check ]);
+        return view('users.public_users.profile', [ 'profile' => $profile,  'role_id_check' => $role_id_check ]);
     }
     
     
@@ -56,13 +56,14 @@ class UserController extends Controller
         $profile_update = $request->all();
         $id->update($profile_update);
 
+        Alert::success('Success', 'User account set to Super admin');
         return redirect('/');
     }
 
     
     public function officeDetails()
     {
-        return view('users.officeDetails');
+        return view('users.public_users.officeDetails');
     }
 
     /**
@@ -95,7 +96,7 @@ class UserController extends Controller
         $government = customer_satisfaction::with('office')->where('private_government', '=', 2)->where('office_id', $office_id)->whereBetween('csf_date', [$startDate, $endDate])->get();
 
         
-        return view('users.csf_summary', [ 'csf_data' => $csf_data, 'office_user' => $office_user, 'individual' => $individual, 'group' => $group, 'male' => $male, 'female' => $female, 'startDate' => $startDate, 'endDate' => $endDate, 'startDateText' => $startDateText, 'endDateText' => $endDateText, 'private' => $private, 'government' => $government ]);
+        return view('users.public_users.csf_summary', [ 'csf_data' => $csf_data, 'office_user' => $office_user, 'individual' => $individual, 'group' => $group, 'male' => $male, 'female' => $female, 'startDate' => $startDate, 'endDate' => $endDate, 'startDateText' => $startDateText, 'endDateText' => $endDateText, 'private' => $private, 'government' => $government ]);
     }
 
 
