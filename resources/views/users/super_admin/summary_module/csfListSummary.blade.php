@@ -134,8 +134,7 @@
                     <thead>
                         <tr style="background-color:orange; color:white;" rowspan="2">
                             <th class="text-center" rowspan="2" style="width:190px;">NAME OF OPERATING UNITS</th>
-                            <th class="text-center" colspan="12">PERIOD FOR EVALUATION <span class = "year_copyright"
-                                    style="font-weight:bold;"></span></th>
+                            <th class="text-center" colspan="12">PERIOD FOR EVALUATION <span class = "year_copyright" style="font-weight:bold;"></span></th>
                             <th rowspan="2">TOTAL</th>
                             <th rowspan="2">AVERAGE PER OFFICE</th>
                         </tr>
@@ -165,14 +164,17 @@
                         @foreach ($groupedData as $office => $data)
                             <tr class="dataRow">
                                 <td>{{ $office }}</td>
+
                                 @foreach (range(1, 12) as $month)
                                     @php
                                         // Find the data for the current month, default to 0 if missing
                                         $monthData = $data->firstWhere('month', $month);
                                     @endphp
-                                    <td class="num" style="font-weight:bold; text-align:center;">
-                                        {{ $monthData ? $monthData->total_forms : 0 }}</td>
+
+                                    <td class="num" style="font-weight:bold; text-align:center;">{{ $monthData ? $monthData->total_forms : 0 }}</td>
+
                                 @endforeach
+                                
                                 <td class="rowSum" style="font-weight:bold; text-align:center;">0</td>
                                 <td class="rowAverage" style="font-weight:bold; text-align:center;">0</td>
 
@@ -196,8 +198,8 @@
                             <td class="colSum" data-col="9">0</td>
                             <td class="colSum" data-col="10">0</td>
                             <td class="colSum" data-col="11">0</td>
-                            <td class="colSum" data-col="12">0</td>
-                            <td class="colSum" data-col="13">0</td>
+                            <td class="colTotalSum" data-col="12">0</td>
+                            <td class="colAverage" data-col="13">0</td>
                         </tr>
                     </tfoot>
                 </table>
@@ -300,7 +302,7 @@
                             <td class="colSum" data-col="9">0</td>
                             <td class="colSum" data-col="10">0</td>
                             <td class="colSum" data-col="11">0</td>
-                            <td class="colSum" data-col="12">0</td>
+                            <td class="colAverage" data-col="12">0</td>
                         </tr>
                         
                     </tfoot>
@@ -570,12 +572,6 @@
             });
 
 
-
-            const date = new Date();
-            $('.year_copyright').text(date.getFullYear());
-
-
-
             function sumEachRow() {
                 let rows = document.querySelectorAll(".dataRow"); // Select all rows
 
@@ -603,8 +599,6 @@
                     }
 
                     // row.querySelector(".rowAverage") ? row.querySelector(".rowAverage").innerText = average : row.querySelector(".rowAverage").innerText = "0" ;
-
-
                 });
             }
 
@@ -612,6 +606,7 @@
             function sumEachColumn() {
                 let rows = $(".dataRow"); // Select all rows
                 let columnCount = rows.first().find(".num").length; // Get number of columns
+             
 
                 for (let col = 0; col < columnCount; col++) {
                     let total = 0;
@@ -632,9 +627,30 @@
                 }
             }
 
+
+            function specificColumn(){
+                const table = $("#csf_table");
+                const rows = table.rows;
+                let sum = 0;
+
+                for(let i = 2; i < rows.length; i++){
+                    const cellValue = rows[i].cells[columnIndex].textContent.trim();
+
+                }
+            }
+
+            
+
+      
+
+            const date = new Date();
+            $('.year_copyright').text(date.getFullYear());
+
+
             // Run when page loads
             sumEachRow();
             sumEachColumn();
+            
 
         });
 </script>

@@ -37,45 +37,56 @@
                 </a>
                 <h5 class="text-center"><b>Customer Satisfaction Application</b></h5>
                 <p class="text-center">Registration</p>
+                    <form method="POST" action="{{ route('register') }}">
+                        @csrf
+                        @method('POST')
 
+                          <div class="row">
+                            <div class="col-md-6">
+                                <!-- first Name -->
+                                <div>
+                                    <x-input-label for="first_name" :value="__('First name')" />
+                                    <input id="first_name" class="block mt-1 w-full form-control" type="text" name="first_name" :value="old('first_name')" required autofocus autocomplete="firstname" />                    
+                                    <x-input-error :messages="$errors->get('first_name')" class="mt-2" />
+                                </div>
+                            </div>
 
+                            <div class="col-md-6">
+                                  <!-- last Name -->
+                                  <div>
+                                    <x-input-label for="last_name" :value="__('Last name')" />
+                                    <input id="last_name" class="block mt-1 w-full form-control" type="text" name="last_name" :value="old('last_name')" required autofocus autocomplete="lastname" />                    
+                                    <x-input-error :messages="$errors->get('last_name')" class="mt-2" />
+                                  </div>
+                            </div>
 
-                <form method="POST" action="{{ route('register') }}">
-                  @csrf
-          
-                  <!-- Name -->
-                  <div>
-                      <x-input-label for="name" :value="__('Name')" />
-                      <input id="name" class="block mt-1 w-full form-control" type="text" name="name" :value="old('name')" required autofocus autocomplete="username" />                    
-                      <x-input-error :messages="$errors->get('name')" class="mt-2" />
-                  </div>
-          
-                  <!-- Email Address -->
-                  <div class="mt-4">
-                      <x-input-label for="email" :value="__('Email')" />
-                      <input id="email" class="block mt-1 w-full form-control" type="email" name="email" :value="old('email')" required autofocus autocomplete="email" />                    
-                      <x-input-error :messages="$errors->get('email')" class="mt-2" />
-                  </div>
-          
-                  <!-- Password -->
-                  <div class="mt-4">
-                      <x-input-label for="password" :value="__('Password')" />
-                      <input id="password" class="block mt-1 w-full form-control" type="password" name="password" :value="old('password')" required autofocus autocomplete="new-password" />                    
-                      <x-input-error :messages="$errors->get('password')" class="mt-2" />
-                  </div>
-          
-                  <!-- Confirm Password -->
-                  <div class="mt-4">
-                      <x-input-label for="password_confirmation" :value="__('Confirm Password')" />
-                      <input id="password_confirmation" class="block mt-1 w-full form-control" type="password" name="password_confirmation" :value="old('password_confirmation')" required autofocus autocomplete="new-password" />                    
-                      <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
-                  </div>
-          
-                  <div class="flex items-center justify-end mt-4"> 
-                      <button type="submit" class="btn btn-warning w-100 py-8 fs-4 mb-4 rounded-2">{{ __('Register') }}</button>
-                  </div>
-              </form>
+                          </div>
+                          <!-- Email Address -->
+                          <div class="mt-4">
+                              <x-input-label for="email" :value="__('Email')" />
+                              <input id="email" class="block mt-1 w-full form-control" type="email" name="email" :value="old('email')" required autofocus autocomplete="email" />                    
+                              <x-input-error :messages="$errors->get('email')" class="mt-2" />
+                          </div>
+                  
+                          <!-- Password -->
+                          <div class="mt-4">
+                              <x-input-label for="password" :value="__('Password')" />
+                              <input id="password" class="block mt-1 w-full form-control" type="password" name="password" :value="old('password')" required autofocus autocomplete="new-password" />                    
+                              <x-input-error :messages="$errors->get('password')" class="mt-2" />
+                          </div>
+                  
+                          <!-- Confirm Password -->
+                          <div class="mt-4">
+                              <x-input-label for="password_confirmation" :value="__('Confirm Password')" />
+                              <input id="password_confirmation" class="block mt-1 w-full form-control" type="password" name="password_confirmation" :value="old('password_confirmation')" required autofocus autocomplete="new-password" />                    
+                              <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
+                          </div>
+                  
+                          <div class="flex items-center justify-end mt-4"> 
+                              <button type="submit" class="btn btn-warning w-100 py-8 fs-4 mb-4 rounded-2">{{ __('Register') }}</button>
+                          </div>
 
+                    </form>
               </div>
             </div>
 

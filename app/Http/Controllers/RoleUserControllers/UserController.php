@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\RoleUserControllers;
 
 use Illuminate\Support\Facades\Auth;
-
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Office;
@@ -29,7 +29,7 @@ class UserController extends Controller
         $min_created = customer_satisfaction::with('office')->min('created_at');
         $total_month = customer_satisfaction::where('office_id', '=', $office_id )->whereBetween('created_at', [ $min_created, $max_created ])->get();
 
-        return view('users.index', [ 'office_data' => $office_data, 'csf' => $csf , 'office_user' => $office_user, 'csf_total' => $csf_total, 'internal_total' => $internal_total, 'external_total' => $external_total, 'total_month'  => $total_month ]);
+        return view('users.public_users.index', [ 'office_data' => $office_data, 'csf' => $csf , 'office_user' => $office_user, 'csf_total' => $csf_total, 'internal_total' => $internal_total, 'external_total' => $external_total, 'total_month'  => $total_month ]);
     }
 
     public function csfList()

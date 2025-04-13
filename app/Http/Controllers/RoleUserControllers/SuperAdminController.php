@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\RoleUserControllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -448,7 +448,6 @@ class SuperAdminController extends Controller
     public function printSummary()
     {
         $csf_data = customer_satisfaction::get();
-
         return view('users.super_admin.csf_summary', ['csf_data' => $csf_data]);
     }
 
@@ -460,5 +459,22 @@ class SuperAdminController extends Controller
         $toJsonFormat = json_encode($csf_retrieved_data);
 
         return $toJsonFormat;
+    }
+
+
+    /**
+     * Message requests.
+     */
+    public function messageRequestsView(){
+        return view('users.super_admin.message_requests.index');
+    }
+
+
+
+    /**
+     * tasks view.
+     */
+    public function tasksView(){
+        return view('users.super_admin.tasks.index');
     }
 }

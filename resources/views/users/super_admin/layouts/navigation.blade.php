@@ -45,7 +45,7 @@
               </a>
             </li>
             <li class="sidebar-item" disabled>
-              <a class="sidebar-link" href="#" aria-expanded="false" >
+              <a class="sidebar-link" href="{{ route('super.message.requests') }}" aria-expanded="false" >
                 <span>
                   <i class="ti ti-mail fs-6"></i>
                 </span>
@@ -53,7 +53,7 @@
               </a>
             </li>
             <li class="sidebar-item" disabled>
-              <a class="sidebar-link" href="#" aria-expanded="false" >
+              <a class="sidebar-link" href="{{ route('super.tasks') }}" aria-expanded="false" >
                 <span>
                   <i class="ti ti-cards"></i>
                 </span>

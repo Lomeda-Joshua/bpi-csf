@@ -19,9 +19,9 @@ class RouteServiceProvider extends ServiceProvider
      */
 
      
-    public const USER_HOME = '/user/dashboard';
-    public const ADMIN_HOME = '/admin/dashboard';
     public const SUPER_ADMIN_HOME = '/super-admin/dashboard';
+    public const ADMIN_HOME = '/admin/dashboard';
+    public const USER_HOME = '/user/dashboard';
     
 
     /**
@@ -42,4 +42,6 @@ class RouteServiceProvider extends ServiceProvider
                 ->group(base_path('routes/web.php'));
         });
     }
+
+
 }

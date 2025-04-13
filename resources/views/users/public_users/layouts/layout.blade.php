@@ -25,7 +25,7 @@
   data-sidebar-position="fixed" data-header-position="fixed">
       <!-- Sidebar Start -->
       <aside class="left-sidebar">
-        @include('users.layouts.navigation')
+        @include('users.public_users.layouts.navigation')
       </aside>
       <!--  Sidebar End -->
 </div>
@@ -33,7 +33,7 @@
 <!--  Main wrapper -->
 <div class="body-wrapper">
     @include('sweetalert::alert', ['cdn' => "https://cdn.jsdelivr.net/npm/sweetalert2@9"])
-    @include('users.layouts.header')
+    @include('users.public_users.layouts.header')
     <div class="container-fluid">
 
         @yield('contents')

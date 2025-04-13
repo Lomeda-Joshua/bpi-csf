@@ -3,9 +3,9 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
-use App\Http\Controllers\SuperAdminController;
-use App\Http\Controllers\AdminController;
-use App\Http\Controllers\UserController;
+use App\Http\Controllers\RoleUserControllers\SuperAdminController;
+use App\Http\Controllers\RoleUserControllers\AdminController;
+use App\Http\Controllers\RoleUserControllers\UserController;
 
 use App\Http\Controllers\CsfController;
 use App\Http\Controllers\Auth\RegisteredUserController;
@@ -37,6 +37,13 @@ Route::middleware(['auth', 'role:3'])->controller(SuperAdminController::class)->
         Route::get('/customer-satisfaction-list/summary', 'csfListSummary')->name('super.list');
         Route::get('/settings/profile', 'profile')->name('super.profile');
 
+
+        // Message requests
+        Route::get('/message-requests', 'messageRequestsView')->name('super.message.requests');
+
+        // tasks
+        Route::get('/tasks', 'tasksView')->name('super.tasks');
+        
         // Add and delete Office details
         Route::get('/settings/office-details', 'offices')->name('super.office');
         Route::get('/settings/office-details/create', 'office_Create')->name('super.office.create');
@@ -50,24 +57,30 @@ Route::middleware(['auth', 'role:3'])->controller(SuperAdminController::class)->
         Route::get('/settings/personnel-list/add-new-user', 'AddNewPersonnel')->name('super.admin-add.new.user');
         Route::post('/settings/personnel-list/add-new-user', 'saveNewPersonnel')->name('super.admin-store.new.user');
 
+
         // Delete and restore deleted personnel
         Route::delete('/settings/personnel-list/delete-user/{id}', 'deletePersonnel')->name('super.admin-delete.user');
         Route::get('/settings/personnel-list/restore/source', 'restorePersonnelSource')->name('super.admin-restore.user');
         Route::post('/settings/personnel-list/restore', 'restorePersonnel')->name('super.admin-restore-user');
 
+
         // Assign user as focal
         Route::post('/settings/personnel-list/assign-user-focal/{id}', 'assignFocal')->name('super.admin-assign.focal');
 
+
         // Print Summary of csf lists
         Route::get('/print-summary', 'printSummary')->name('print-summary');
+
 
         // Add and set control number to an office for csf
         Route::get('/settings/set-control-number', 'controlNumber')->name('super.control.number');
         Route::get('/settings/set-control-number/set-new-control-no', 'setNewControlNumber')->name('super.set-control.number');
         Route::post('/settings/set-control-number/set-new-control-no', 'storeControlNumber')->name('super.store-control.number');
+
     });
 
 });
+
 
 
 /*
@@ -84,6 +97,8 @@ Route::middleware(['auth', 'role:2'])->controller(AdminController::class)->prefi
 });
 
 
+
+
 /*
  * 
  * Regular user middleware and routing
@@ -98,8 +113,6 @@ Route::middleware(['auth', 'role:1'])->controller(UserController::class)->prefix
     Route::put('/settings/profile/{id}', 'profile_update')->name('profile.update');    
     Route::post('/print-summary', 'printSummary')->name('print-summary-user');
 });
-
-
 
 
 require __DIR__.'/auth.php';
