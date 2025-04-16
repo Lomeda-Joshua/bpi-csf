@@ -1,10 +1,12 @@
 @extends('users.super_admin.layouts.layout')
 
 @section('contents')
+
     <div class="card">
         <div class="card-body">
-            <h5 class="card-title fw-semibold mb-4">Authorized Personnel</h5>
 
+
+            <h5 class="card-title fw-semibold mb-4">Authorized Personnel</h5>
             <a href="{{ route('super.admin-store.new.user') }}" id="new_user" class="btn btn-primary m-1">Apply a new user</a>
 
             @if (auth()->user()->role_id == 3)
@@ -33,7 +35,7 @@
     
                         @foreach ($personnels as $item)
                             <tr>
-                                <td class="text-center">{{ $item->name }}</td>
+                                <td class="text-center">{{ $item->last_name . ", " . $item->first_name }}</td>
                                 <td class="text-center">
                                     @switch($item->role_id)
                                         @case(1)
@@ -80,7 +82,6 @@
                 </table>
             </div>
 
-
         </div>
     </div>
 
@@ -90,10 +91,9 @@
 
     <div class="card" style="background-color: #13deb9;">
         <div class="card-body">
+
             <h5 class="card-title fw-semibold mb-4 text-white">Assigned Focal Personnel</h5>
-
             <div class="table-responsive">
-
                 <table id="assign_focal" class="table text-nowrap mb-0 align-middle" style="width:100%">
                     <thead>
                         <tr style="background-color:gray; color:white;">
@@ -114,7 +114,7 @@
                         @foreach ($assigned_personnel as $item)
 
                             <tr>
-                                <td class="text-center">{{ $item->name }}</td>
+                                <td class="text-center">{{ $item->last_name . " " . $item->first_name }}</td>
                                 <td class="text-center">
                                     @switch($item->role_id)
                                         @case(1)
@@ -160,9 +160,6 @@
                 </table>
             </div>
 
-            
-
-
         </div>
     </div>
 
@@ -183,7 +180,6 @@
 
 
             $('#restore_deleted_modal').on('hidden.bs.modal', function () {
-                console.log("Modal has been closed!");
                 window.location.reload();
             });
 

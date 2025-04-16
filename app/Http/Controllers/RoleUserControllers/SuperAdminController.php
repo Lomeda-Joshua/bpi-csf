@@ -182,7 +182,7 @@ class SuperAdminController extends Controller
         // Return view to blade
         return view('users.super_admin.summary_module.csfListSummary', [
             'csf' => $csf,
-            'office_data' => $office,
+            // 'office_data' => $office,
             'office_count' => $officeCounts,
             'overallCSFCount' => $overallCSFCount,
             'monthlyCSFCount' => $monthlyCSFCount,
@@ -229,7 +229,7 @@ class SuperAdminController extends Controller
         ]);
 
         Alert::success('Success', 'Added new office section');
-        return redirect(route('users.super.office'));
+        return redirect(route('super.office'));
     }
 
 
@@ -356,14 +356,16 @@ class SuperAdminController extends Controller
     public function saveNewPersonnel(Request $request)
     {
         $request->validate([
-            'name' => ['required', 'string', 'max:255'],
+            'first_name' => ['required', 'string', 'max:255'],
+            'last_name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:' . User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
             'office_id' => ['required']
         ]);
 
         User::create([
-            'name' => $request->name,
+            'first_name' => strtoupper($request->first_name),
+            'last_name' => strtoupper($request->last_name),
             'email' => $request->email,
             'password' => Hash::make($request->password),
             'office_id' => $request->office_id
@@ -393,7 +395,7 @@ class SuperAdminController extends Controller
     public function restorePersonnelSource(Request $request)
     {
         if ($request->ajax()) {
-            $query = User::onlyTrashed()->select(['id', 'name', 'deleted_at']); // Select only needed columns
+            $query = User::onlyTrashed()->select(['id', 'first_name', 'last_name', 'deleted_at']); // Select only needed columns
     
             return \DataTables::of($query)
                 ->addIndexColumn() // Optional: Adds auto-incrementing index

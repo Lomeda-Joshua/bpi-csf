@@ -14,6 +14,6 @@ class customer_satisfaction_seeder extends Seeder
      */
     public function run(): void
     {
-        customer_satisfaction::factory()->count(145)->create(); // Generates 50 customers
+        customer_satisfaction::factory()->count(2000)->create(); // Generates count of customers
     }
 }

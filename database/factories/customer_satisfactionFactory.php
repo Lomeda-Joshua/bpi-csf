@@ -38,7 +38,6 @@ class customer_satisfactionFactory extends Factory
             'promoter_score' => $this->faker->numberBetween(1, 5), // Random promoter score (0-10)
             'comments_suggestions' => $this->faker->text(100), // Random comments/suggestions
             'office_id' => $this->faker->numberBetween(1, 4), // Random office ID (assuming 1-10)
-            'created_at' => $this->faker->date('Y-m-d')
         ];
     }
 }

@@ -11,12 +11,24 @@
         <form method="POST" action="{{ route('super.admin-store.new.user') }}">
             @csrf
     
-            <!-- Name -->
-            <div>
-                <x-input-label for="name" :value="__('Name')" />
-                <input id="name" class="block mt-1 w-full form-control" type="text" name="name" required autofocus autocomplete="username" />                    
-                <x-input-error :messages="$errors->get('name')" class="mt-2" />
-            </div>
+        
+            <!-- first Name -->
+          
+            <div class="mt-4">
+                    <x-input-label for="first_name" :value="__('First name')" />
+                    <input class="block mt-1 w-full form-control" id="first_name" name="first_name" type="text" :value="old('first_name')" required autofocus autocomplete="firstname" />                    
+                    <x-input-error :messages="$errors->get('first_name')" class="mt-2" />
+                </div>
+            
+
+            <!-- last Name -->
+            
+            <div class="mt-4">
+                    <x-input-label for="last_name" :value="__('Last name')" />
+                    <input class="block mt-1 w-full form-control" id="last_name" name="last_name" type="text" :value="old('last_name')" required autofocus autocomplete="lastname" />                    
+                    <x-input-error :messages="$errors->get('last_name')" class="mt-2" />
+                  </div>
+            
     
             <!-- Email Address -->
             <div class="mt-4">

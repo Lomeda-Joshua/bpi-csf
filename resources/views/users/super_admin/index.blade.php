@@ -201,8 +201,11 @@
 
 
     <div class="card">
-        <div class="card-body p-4">
+        <div class="card-header mt-4">
             <h5 class="card-title fw-semibold mb-4">Recent CSF received by all the section</h5>
+        </div>
+        <div class="card-body p-4">
+            
 
             <div class="table-responsive">
 
@@ -237,63 +240,53 @@
                         </tr>
                     </thead>
                     <tbody>
-
-
-                        @if ($csf->count() == 0)
-                            <tr>
-                                <td class="border-bottom-0 text-center" colspan='8'>
-                                    <h6 class="fw-semibold mb-0"><span style="color:red; font-size:16px;">No Data record
-                                            yet!</span></h6>
-                                </td>
-                            </tr>
-                        @else
+                        @if ($csf->count() != 0)
                             @foreach ($csf as $items)
-                                <tr>
-                                    <td class="border-bottom-0">
-                                        <div class="d-flex align-items-center gap-2">
-                                            <button class="badge bg-success rounded-3 fw-semibold btnCSF" data-bs-toggle="modal"
-                                                data-bs-target="#viewModal" data-id="{{$items->id}}" >View</button>
-                                        </div>
-                                    </td>
-                                    <td class="border-bottom-0">
-                                        <h6 class="fw-semibold mb-0">{{ $items->id }}</h6>
-                                    </td>
-                                    <td class="border-bottom-0">
-                                        <h6 class="fw-semibold mb-1">{{ $items->name }}</h6>
-                                        <span
-                                            class="fw-normal">{{ $items->internal_external == 2 ? 'External customer' : 'Internal customer' }}</span>
-                                    </td>
-                                    <td class="border-bottom-0">
-                                        <p class="mb-0 fw-normal">{{ $items->office->office_name }}</p>
-                                    </td>
-                                    <td class="border-bottom-0">
-                                        <p class="mb-0 fw-normal">
-                                            @switch($items->age)
-                                                @case(1)
-                                                    < 17 (Under 17 years old')
-                                                @break
-                                                @case(2) 
-                                                    18 - 59
-                                                @break
-                                                @case(3)
-                                                    60 > (60 years old and over) 
-                                                @break
-                                            @endswitch
-                                            
-                                        </p>
-                                    </td>
-                                    <td class="border-bottom-0">
-                                        <p class="mb-0 fw-normal">{{ $items->contact_details }}</p>
-                                    </td>
-                                    <td class="border-bottom-0">
-                                        <p class="mb-0 fw-normal">{{ date('F d, Y', strtotime($items->csf_date)) }}</p>
-                                    </td>
-                                    <td class="border-bottom-0">
-                                        <h6 class="fw-semibold mb-0 fs-4">{{ date('h:i a', strtotime($items->csf_time)) }}
-                                        </h6>
-                                    </td>
-                                </tr>
-                            @endforeach
+                                    <tr>
+                                        <td class="border-bottom-0">
+                                            <div class="d-flex align-items-center gap-2">
+                                                <button class="badge bg-success rounded-3 fw-semibold btnCSF" data-bs-toggle="modal" data-bs-target="#viewModal" data-id="{{$items->id}}" >View</button>
+                                            </div>
+                                        </td>
+                                        <td class="border-bottom-0">
+                                            <h6 class="fw-semibold mb-0">{{ $items->id }}</h6>
+                                        </td>
+                                        <td class="border-bottom-0">
+                                            <h6 class="fw-semibold mb-1">{{ $items->name }}</h6>
+                                            <span
+                                                class="fw-normal">{{ $items->internal_external == 2 ? 'External customer' : 'Internal customer' }}</span>
+                                        </td>
+                                        <td class="border-bottom-0">
+                                            <p class="mb-0 fw-normal">{{ $items->office->office_name }}</p>
+                                        </td>
+                                        <td class="border-bottom-0">
+                                            <p class="mb-0 fw-normal">
+                                                @switch($items->age)
+                                                    @case(1)
+                                                        < 17 (Under 17 years old')
+                                                    @break
+                                                    @case(2) 
+                                                        18 - 59
+                                                    @break
+                                                    @case(3)
+                                                        60 > (60 years old and over) 
+                                                    @break
+                                                @endswitch
+                                                
+                                            </p>
+                                        </td>
+                                        <td class="border-bottom-0">
+                                            <p class="mb-0 fw-normal">{{ $items->contact_details }}</p>
+                                        </td>
+                                        <td class="border-bottom-0">
+                                            <p class="mb-0 fw-normal">{{ date('F d, Y', strtotime($items->csf_date)) }}</p>
+                                        </td>
+                                        <td class="border-bottom-0">
+                                            <h6 class="fw-semibold mb-0 fs-4">{{ date('h:i a', strtotime($items->csf_time)) }}
+                                            </h6>
+                                        </td>
+                                    </tr>
+                                @endforeach
                         @endif
 
                     </tbody>
@@ -384,9 +377,7 @@
         });
 
 
-        new DataTable('#table_csf', {
-            searching: false
-        });
+        new DataTable('#table_csf');
 
     
 

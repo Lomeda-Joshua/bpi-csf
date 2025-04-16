@@ -11,7 +11,7 @@
 
         <div class="col-md-3">
             <p class="mb-0"><b>Account Name :</b></p>
-            {{ $user_data->name }}
+            {{ $user_data->last_name . ", " . $user_data->first_name }}
             <br><br>
       
             <p class="mb-0"><b>Role :</b></p>

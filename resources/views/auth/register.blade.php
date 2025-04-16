@@ -42,8 +42,9 @@
                         @method('POST')
 
                           <div class="row">
+
+                            <!-- first Name -->
                             <div class="col-md-6">
-                                <!-- first Name -->
                                 <div>
                                     <x-input-label for="first_name" :value="__('First name')" />
                                     <input id="first_name" class="block mt-1 w-full form-control" type="text" name="first_name" :value="old('first_name')" required autofocus autocomplete="firstname" />                    
@@ -51,16 +52,17 @@
                                 </div>
                             </div>
 
+                            <!-- last Name -->
                             <div class="col-md-6">
-                                  <!-- last Name -->
                                   <div>
                                     <x-input-label for="last_name" :value="__('Last name')" />
                                     <input id="last_name" class="block mt-1 w-full form-control" type="text" name="last_name" :value="old('last_name')" required autofocus autocomplete="lastname" />                    
                                     <x-input-error :messages="$errors->get('last_name')" class="mt-2" />
                                   </div>
                             </div>
-
                           </div>
+
+                          
                           <!-- Email Address -->
                           <div class="mt-4">
                               <x-input-label for="email" :value="__('Email')" />

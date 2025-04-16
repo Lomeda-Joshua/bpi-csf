@@ -1,5 +1,4 @@
 <style>
-
     .csf_info{
       padding:10px;
     }
@@ -111,7 +110,7 @@
                                 <th class="border-bottom-0"><h6 class="fw-semibold mb-0 text-white text-center">Deleted date stamp</h6></th>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody class="text-center">
                         </tbody>
                     </table>
                     </div>
@@ -154,15 +153,23 @@
             },
 
             columns: [
-                { data: 'id',
+                { 
+                  data: 'id',
                   render: function(data, type, row) {
                   return `<button class="btn btn-primary restore-btn" data-id="${data}">
                             Restore
                         </button>`;
                   }
                 },
-                { data: 'name'},
-                { data: 'deleted_at'}
+                { 
+                  data: null,
+                  render: function(data, type, row){
+                      return `${row.last_name} ${row.first_name}`;
+                  }
+                },
+                { 
+                  data: 'deleted_at'
+                }
             ]
         });
 

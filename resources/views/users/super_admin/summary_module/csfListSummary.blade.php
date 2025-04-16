@@ -57,7 +57,7 @@
     </style>
 
 
-    <div class="card" style="width:1500px;">
+    <div class="card" style="width:1400px;">
         <div class="card-body">
 
 
