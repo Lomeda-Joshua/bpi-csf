@@ -34,7 +34,9 @@
             <div class="card mb-0">
               <div class="card-body">
                 <div class="text-nowrap logo-img text-center d-block py-3 w-100">
-                  <img src="{{ asset('images/logos/bpi_logo.png')}}" width="180" alt="">
+                  <a href="{{ route('login') }}" class="text-nowrap logo-img text-center d-block py-3 w-100">
+                    <img src="{{ asset('images/logos/bpi_logo.png')}}" width="180" alt="">
+                  </a>
                 </div>
                 <h5 class="text-center"><b>Customer Satisfaction Application</b></h5>
 
@@ -43,6 +45,7 @@
                     @if (Route::has('login'))
                       
                               @auth
+                              
                                   @if( $auth_id )
 
                                     @switch($auth_id->role_id)

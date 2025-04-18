@@ -27,37 +27,16 @@ class RegisteredUserController extends Controller
     public function create(): View{
 
         $userCount = DB::table('users')->get()->count();
+        $auth_profile = Auth::user();     
 
         if( $userCount <= 0 ){
             return view('auth.register');
-        }else{
+        }else{            
             Alert::warning('Error', 'Not allowed at this time, see administrator');
-            return view('auth.login');
-        }
-        
-
-        
-
-        // if(  ) {
-        //     $role_id = auth()->user()->role_id;
-
-        //     if($superAdminCount == 1){
-        //         return view('auth.login', [ 'role_verify' => $role_id ]);
-        //     }else{
-        //         return view('auth.login', [ 'role_verify' => $role_id ]);
-        //     }
-
-        // }elseif( $superAdminCount == 0 ){
-
-        //     return view('auth.register');
-
-        // }else{
-        //     $role_id = auth()->user()->role_id;
-        //     return view('auth.login', [ 'role_verify' => $role_id ]);
-        // }
+            return view('layouts.error');
+        }        
 
     }
-
 
 
     /**
@@ -70,8 +49,8 @@ class RegisteredUserController extends Controller
         $request->validate([
             'first_name' => ['required', 'string', 'max:255'],
             'last_name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
-            'password' => ['required', 'confirmed', Rules\Password::defaults()],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:'.User::class],
+            'password' => ['required', 'min:7', 'confirmed', Rules\Password::defaults()],
         ]);
 
         $superAdminCount = DB::table('users')->select('role_id')->where('role_id', 3)->count();
@@ -109,7 +88,7 @@ class RegisteredUserController extends Controller
 
         }elseif( $superAdminCount <= 0 ){
             Alert::info('Notice!', 'Kindly assign a super admin account! Contact administrator');
-            return redirect('/');
+            return redirect('login');
         }
 
 

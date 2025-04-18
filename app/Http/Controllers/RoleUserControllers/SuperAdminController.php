@@ -335,7 +335,7 @@ class SuperAdminController extends Controller
     {
 
         $personnels = User::with('office')->get();
-        $assigned_personnel = User::with('office')->where('is_focal', 1)->get();
+        $assigned_personnel = User::with('office')->where('is_focal', 0)->get();
 
         return view('users.super_admin.settings.personnel_module.personnelList', ['personnels' => $personnels, 'assigned_personnel' => $assigned_personnel]);
     }
@@ -358,7 +358,7 @@ class SuperAdminController extends Controller
         $request->validate([
             'first_name' => ['required', 'string', 'max:255'],
             'last_name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:' . User::class],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:' . User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
             'office_id' => ['required']
         ]);

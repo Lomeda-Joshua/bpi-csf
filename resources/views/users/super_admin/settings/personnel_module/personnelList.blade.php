@@ -69,7 +69,7 @@
                                         @csrf
                                         @method('DELETE')
                                         <a data-bs-toggle="modal" data-bs-target="#personnel_modal"
-                                            class="btn btn-primary m-1">Edit</a>
+                                            class="btn btn-primary m-1 personnel_modal" data-info={{$item}}>Edit</a>
                                         @if ($item->role_id != 3)
                                             <button type="submit" class="btn btn-danger m-1">Delete</button>
                                         @endif
@@ -84,9 +84,6 @@
 
         </div>
     </div>
-
-
-
 
 
     <div class="card" style="background-color: #13deb9;">
@@ -145,9 +142,9 @@
                                         @csrf
                                         @method('POST')
 
-                                        @if ($item->is_focal != 1)
+                                        @if ($item->is_focal == 1)
                                             <button class="btn btn-danger m-1">Already a focal</button>
-                                        @elseif( $item->is_focal = 0 )
+                                        @elseif( $item->is_focal == 0 )
                                             <button class="btn btn-danger m-1">Assign as focal</button>
                                         @endif
 
@@ -164,25 +161,31 @@
     </div>
 
 
-    @include('users.super_admin.modal.edit_user_profile')
-    @include('users.super_admin.modal.restore_delete')
+    @include('users.super_admin.settings.personnel_module.modal.edit_user_profile')
+    @include('users.super_admin.settings.personnel_module.modal.restore_delete')
 
     <script>
         $("document").ready(function() {
 
-            new DataTable('#personnel_list', {
-                searching: false
-            });
+                new DataTable('#personnel_list', {
+                    searching: false
+                });
 
-            new DataTable('#assign_focal', {
-                searching: true
-            });
+                new DataTable('#assign_focal', {
+                    searching: true
+                });
 
 
-            $('#restore_deleted_modal').on('hidden.bs.modal', function () {
-                window.location.reload();
-            });
+                $('#restore_deleted_modal').on('hidden.bs.modal', function () {
+                    window.location.reload();
+                });
 
+                
+                $('.personnel_modal').on('click', function(){
+                    let personnel_id = $(this).data('info');
+                    console.log(personnel_id.first_name);
+                });
+                
         });
     </script>
 @endsection

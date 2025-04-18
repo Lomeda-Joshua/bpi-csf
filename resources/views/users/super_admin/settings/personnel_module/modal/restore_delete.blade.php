@@ -176,6 +176,7 @@
 
         $(document).on('click', '.restore-btn', function(){
             let userId = $(this).data('id'); // Get the ID from data-id attribute
+            
 
             $.ajax({
                 url: "{{ route('super.admin-restore-user') }}",

@@ -16,6 +16,7 @@ Route::get('/', function () {
     return view('auth.login', [ 'auth_id' => $auth_id ] );
 });
 
+Route::get('/error-404',);
 
 Route::get('super-admin/register', [RegisteredUserController::class, 'create'])->name('register');
 Route::post('super-admin/register', [RegisteredUserController::class, 'store']);

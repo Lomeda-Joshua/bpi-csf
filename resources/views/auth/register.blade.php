@@ -32,19 +32,21 @@
 
             <div class="card mb-0">
               <div class="card-body">
-                <a href="./index.html" class="text-nowrap logo-img text-center d-block py-3 w-100">
+
+                <a href="{{ route('login') }}" class="text-nowrap logo-img text-center d-block py-3 w-100">
                   <img src="{{ asset('images/logos/bpi_logo.png')}}" width="180" alt="">
                 </a>
+
                 <h5 class="text-center"><b>Customer Satisfaction Application</b></h5>
-                <p class="text-center">Registration</p>
+                <p class="text-center">Super-admin ONE time System Registration</p>
                     <form method="POST" action="{{ route('register') }}">
                         @csrf
                         @method('POST')
 
                           <div class="row">
 
-                            <!-- first Name -->
-                            <div class="col-md-6">
+                          <!-- first Name -->
+                          <div class="col-md-6">
                                 <div>
                                     <x-input-label for="first_name" :value="__('First name')" />
                                     <input id="first_name" class="block mt-1 w-full form-control" type="text" name="first_name" :value="old('first_name')" required autofocus autocomplete="firstname" />                    
@@ -52,8 +54,8 @@
                                 </div>
                             </div>
 
-                            <!-- last Name -->
-                            <div class="col-md-6">
+                          <!-- last Name -->
+                          <div class="col-md-6">
                                   <div>
                                     <x-input-label for="last_name" :value="__('Last name')" />
                                     <input id="last_name" class="block mt-1 w-full form-control" type="text" name="last_name" :value="old('last_name')" required autofocus autocomplete="lastname" />                    
@@ -73,7 +75,7 @@
                           <!-- Password -->
                           <div class="mt-4">
                               <x-input-label for="password" :value="__('Password')" />
-                              <input id="password" class="block mt-1 w-full form-control" type="password" name="password" :value="old('password')" required autofocus autocomplete="new-password" />                    
+                              <input id="password" minlength="7" class="block mt-1 w-full form-control" type="password" name="password" :value="old('password')" required autofocus autocomplete="new-password" />                    
                               <x-input-error :messages="$errors->get('password')" class="mt-2" />
                           </div>
                   
@@ -84,6 +86,7 @@
                               <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
                           </div>
                   
+                          
                           <div class="flex items-center justify-end mt-4"> 
                               <button type="submit" class="btn btn-warning w-100 py-8 fs-4 mb-4 rounded-2">{{ __('Register') }}</button>
                           </div>

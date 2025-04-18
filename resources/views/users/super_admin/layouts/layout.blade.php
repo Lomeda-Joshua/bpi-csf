@@ -53,6 +53,35 @@
     box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
   }
 
+
+
+  /* 
+    * Custom night mode option 
+  */
+  .page-wrapper{
+    background-color: #29353e;
+  }
+
+  .left-sidebar{
+    background-color: #29353e;
+  }
+
+  .nav-small-cap{
+    color:white;
+  }
+
+  .sidebar-item .sidebar-link{
+    color:white !important;
+  }
+
+  .app-header{
+    background-color: #29353e;
+  }
+
+  h5{
+    /* font-size:100px !important; */
+  }
+
 </style>
 
 
