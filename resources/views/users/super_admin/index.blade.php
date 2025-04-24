@@ -17,7 +17,7 @@
                             <div class="d-flex justify-content-end">
                                 <div
                                     class="text-white bg-success rounded-circle p-6 d-flex align-items-center justify-content-center">
-                                    <i class="ti ti-album fs-6"></i>
+                                    <i class="ti ti-files"></i>
                                 </div>
                             </div>
                         </div>
@@ -78,7 +78,7 @@
                 <div class="card-body">
                     <div class="row alig n-items-start">
                         <div class="col-8">
-                            <h5 class="card-title mb-9 fw-semibold"> Total Summary submitted </h5>
+                            <h5 class="card-title mb-9 fw-semibold"> Office with the most CSF </h5>
                             <h4 class="fw-semibold mb-3">{{ $user }}</h4>
                             <div class="d-flex align-items-center pb-1">
                             </div>
@@ -117,7 +117,7 @@
                             <div class="d-flex justify-content-end">
                                 <div
                                     class="text-white bg-success rounded-circle p-6 d-flex align-items-center justify-content-center">
-                                    <i class="ti ti-album fs-6"></i>
+                                    <i class="ti ti-folder fs-6"></i>
                                 </div>
                             </div>
                         </div>

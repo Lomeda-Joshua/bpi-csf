@@ -40,12 +40,7 @@
 
             <!-- Office assignment -->
 
-            @if( empty(count($office)) )
-            
-            <br>
-                <a href="{{ route('super.office') }}" class="btn btn-primary">To create a new office</a>
-                
-            @else
+            @if( !empty(count($office)) )
                 <br>
                 <div>  
                     <x-input-label for="office_id" :value="__('Office assignment')" />                
@@ -58,8 +53,6 @@
 
                     <x-input-error :messages="$errors->get('office_id')" class="mt-2" />
                 </div>
-               
-
             @endif
 
            
@@ -80,7 +73,13 @@
             
     
             <div class="flex items-center justify-end mt-4"> 
-                <button type="submit" class="btn btn-primary">{{ __('Register') }}</button>
+
+                @if(empty(count($office)) )
+                    <a href="{{ route('super.office') }}" class="btn btn-danger">To create a new office before assigning</a>
+                @else
+                    <button type="submit" class="btn btn-primary">{{ __('Register') }}</button>
+                @endif
+
             </div>
         </form>
 

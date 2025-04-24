@@ -78,7 +78,7 @@
             <li class="sidebar-item">
               <a class="sidebar-link {{ request()->routeIs('super.control.number') || request()->routeIs('super.set-control.number') || request()->routeIs('super.store-control.number') || request()->routeIs('super.office.create')  ? 'active' : ' '  }}"  href="{{route('super.office')}}" aria-expanded="false">
                 <span>
-                  <i class="ti ti-building-skyscraper"></i>
+                  <i class="ti ti-files"></i>
                 </span>
                 <span class="hide-menu">Office Details</span>
               </a>

@@ -59,23 +59,24 @@
     * Custom night mode option 
   */
   .page-wrapper{
-    background-color: #29353e;
+    /* background-color: #29353e; */
   }
 
   .left-sidebar{
-    background-color: #29353e;
+    /* background-color: #29353e; */
+    
   }
 
   .nav-small-cap{
-    color:white;
+    /* color:white; */
   }
 
   .sidebar-item .sidebar-link{
-    color:white !important;
+    /* color:white !important; */
   }
 
   .app-header{
-    background-color: #29353e;
+    /* background-color: #29353e; */
   }
 
   h5{

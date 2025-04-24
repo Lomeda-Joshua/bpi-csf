@@ -38,17 +38,17 @@
                                 <td class="text-center">{{ $item->last_name . ", " . $item->first_name }}</td>
                                 <td class="text-center">
                                     @switch($item->role_id)
-                                        @case(1)
-                                            {{ 'User' }}
-                                        @break
-    
-                                        @case(2)
-                                            {{ 'Admin' }}
-                                        @break
-    
-                                        @case(3)
-                                            {{ 'Super admin' }}
-                                        @break
+                                            @case(1)
+                                                {{ 'User' }}
+                                            @break
+        
+                                            @case(2)
+                                                {{ 'Admin' }}
+                                            @break
+        
+                                            @case(3)
+                                                {{ 'Super admin' }}
+                                            @break
                                     @endswitch
                                 </td>
     
@@ -60,9 +60,7 @@
                                 <td class="text-center">
     
                                     @php
-    
                                         $encrypted_id = Crypt::encryptString($item->id);
-    
                                     @endphp
     
                                     <form method="POST" action="{{ route('super.admin-delete.user', $encrypted_id) }}">
@@ -143,9 +141,11 @@
                                         @method('POST')
 
                                         @if ($item->is_focal == 1)
-                                            <button class="btn btn-danger m-1">Already a focal</button>
+                                            <p class="btn btn-warning m-1">Already a focal</p>
+                                            <button class="btn btn-danger m-1" name="assign_as_focal" value="0">Remove as focal</button>
+
                                         @elseif( $item->is_focal == 0 )
-                                            <button class="btn btn-danger m-1">Assign as focal</button>
+                                            <button class="btn btn-primary m-1" name="assign_as_focal" value="1" >Assign as focal</button>
                                         @endif
 
                                     </form>

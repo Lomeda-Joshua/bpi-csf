@@ -335,7 +335,7 @@ class SuperAdminController extends Controller
     {
 
         $personnels = User::with('office')->get();
-        $assigned_personnel = User::with('office')->where('is_focal', 0)->get();
+        $assigned_personnel = User::with('office')->where('role_id', '!=' ,3)->get();
 
         return view('users.super_admin.settings.personnel_module.personnelList', ['personnels' => $personnels, 'assigned_personnel' => $assigned_personnel]);
     }
@@ -428,16 +428,27 @@ class SuperAdminController extends Controller
 
 
 
-    public function assignFocal($id){
+    public function assignFocal(Request $request, $id){
         $decrypted_user = Crypt::decryptString($id);
         $assignedUser = User::find($decrypted_user);
 
+        $assignment_focal = $request->assign_as_focal;
+
         $assignedUser->update([
-            'is_focal' => 1,
+            'is_focal' => $assignment_focal,
             'assignind_TimeStamp' => now()
         ]);
 
-        Alert::success('Success', 'User assigned as focal');
+        switch( $assignment_focal ){
+            case 0:
+                Alert::warning('Information', 'Remove assigned focal');
+                break;
+            case 1:
+                Alert::success('Success', 'User assigned as focal');
+                break;
+        }
+
+
         return redirect()->back();
     }
 

@@ -540,118 +540,120 @@
     </div>
 
 
+    
 <script>
-        $("document").ready(function() {
+    $("document").ready(function() {
 
-            let arraySummary = @json($office_count);
-            let officeCountArray = @json($office_count) || [];
+        let arraySummary = @json($office_count);
+        let officeCountArray = @json($office_count) || [];
 
-            // Extract labels properly
-            const officeNames = officeCountArray.map(office => office.office_name);
-            const officeNumbers = officeCountArray.map(office => office.customer_satisfaction_count);
+        // Extract labels properly
+        const officeNames = officeCountArray.map(office => office.office_name);
+        const officeNumbers = officeCountArray.map(office => office.customer_satisfaction_count);
 
 
-            const ctx = document.getElementById('summaryChart');
-            new Chart(ctx, {
-                type: 'bar',
-                data: {
-                    labels: officeNames,
-                    datasets: [{
-                        label: 'BPI CSF ANALYSIS OVERALL TOTAL',
-                        data: officeNumbers,
-                        borderWidth: 1
-                    }]
-                },
-                options: {
-                    scales: {
-                        y: {
-                            beginAtZero: true
-                        }
+        const ctx = document.getElementById('summaryChart');
+        new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: officeNames,
+                datasets: [{
+                    label: 'BPI CSF ANALYSIS OVERALL TOTAL',
+                    data: officeNumbers,
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
                     }
                 }
-            });
-
-
-            function sumEachRow() {
-                let rows = document.querySelectorAll(".dataRow"); // Select all rows
-
-                rows.forEach(row => {
-                    let cells = row.querySelectorAll(".num");
-                    let total = 0;
-
-                    // Sum up all values in the row
-                    cells.forEach(cell => {
-                        total += parseFloat(cell.innerText) || 0; // Convert text to number, avoid NaN
-                    });
-
-                    // Compute the average AFTER summing up
-                    let average = (total / 12).toFixed(2); // Ensures 2 decimal places
-
-                    // Update sum and average columns
-                    row.querySelector(".rowSum").innerText = total;
-
-
-                    let avgCell = row.querySelector(".rowAverage");
-                    if (avgCell) {
-                        avgCell.innerText = average;
-                    } else {
-                        console.warn("No .rowAverage found in this row:", row); // Debugging log
-                    }
-
-                    // row.querySelector(".rowAverage") ? row.querySelector(".rowAverage").innerText = average : row.querySelector(".rowAverage").innerText = "0" ;
-                });
             }
-
-
-            function sumEachColumn() {
-                let rows = $(".dataRow"); // Select all rows
-                let columnCount = rows.first().find(".num").length; // Get number of columns
-             
-
-                for (let col = 0; col < columnCount; col++) {
-                    let total = 0;
-
-                    // Loop through each row and get the corresponding column value
-                    rows.each(function() {
-                        let cell = $(this).find(".num").eq(col); // Get the cell in this column
-                        total += parseFloat(cell.text()) || 0; // Convert text to number, avoid NaN
-                    });
-
-                    // Find the last row where we will display the sum & average
-                    let sumCell = $(`.colSum[data-col='${col}']`);
-                    let avgCell = $(`.colAverage[data-col='${col}']`);
-
-                    // Update total sum & average
-                    sumCell.text(total);
-                    avgCell.text((total / rows.length).toFixed(2)); // Compute average
-                }
-            }
-
-
-            function specificColumn(){
-                const table = $("#csf_table");
-                const rows = table.rows;
-                let sum = 0;
-
-                for(let i = 2; i < rows.length; i++){
-                    const cellValue = rows[i].cells[columnIndex].textContent.trim();
-
-                }
-            }
-
-            
-
-      
-
-            const date = new Date();
-            $('.year_copyright').text(date.getFullYear());
-
-
-            // Run when page loads
-            sumEachRow();
-            sumEachColumn();
-            
-
         });
+
+
+        function sumEachRow() {
+            let rows = document.querySelectorAll(".dataRow"); // Select all rows
+
+            rows.forEach(row => {
+                let cells = row.querySelectorAll(".num");
+                let total = 0;
+
+                // Sum up all values in the row
+                cells.forEach(cell => {
+                    total += parseFloat(cell.innerText) || 0; // Convert text to number, avoid NaN
+                });
+
+                // Compute the average AFTER summing up
+                let average = (total / 12).toFixed(2); // Ensures 2 decimal places
+
+                // Update sum and average columns
+                row.querySelector(".rowSum").innerText = total;
+
+
+                let avgCell = row.querySelector(".rowAverage");
+                if (avgCell) {
+                    avgCell.innerText = average;
+                } else {
+                    console.warn("No .rowAverage found in this row:", row); // Debugging log
+                }
+
+                // row.querySelector(".rowAverage") ? row.querySelector(".rowAverage").innerText = average : row.querySelector(".rowAverage").innerText = "0" ;
+            });
+        }
+
+
+        function sumEachColumn() {
+            let rows = $(".dataRow"); // Select all rows
+            let columnCount = rows.first().find(".num").length; // Get number of columns
+            
+
+            for (let col = 0; col < columnCount; col++) {
+                let total = 0;
+
+                // Loop through each row and get the corresponding column value
+                rows.each(function() {
+                    let cell = $(this).find(".num").eq(col); // Get the cell in this column
+                    total += parseFloat(cell.text()) || 0; // Convert text to number, avoid NaN
+                });
+
+                // Find the last row where we will display the sum & average
+                let sumCell = $(`.colSum[data-col='${col}']`);
+                let avgCell = $(`.colAverage[data-col='${col}']`);
+
+                // Update total sum & average
+                sumCell.text(total);
+                avgCell.text((total / rows.length).toFixed(2)); // Compute average
+            }
+        }
+
+
+        function specificColumn(){
+            const table = $("#csf_table");
+            const rows = table.rows;
+            let sum = 0;
+
+            for(let i = 2; i < rows.length; i++){
+                const cellValue = rows[i].cells[columnIndex].textContent.trim();
+
+            }
+        }
+
+        
+
+    
+
+        const date = new Date();
+        $('.year_copyright').text(date.getFullYear());
+
+
+        // Run when page loads
+        sumEachRow();
+        sumEachColumn();
+        
+
+    });
 </script>
+
 @endsection
