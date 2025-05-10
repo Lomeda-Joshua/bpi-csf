@@ -31,7 +31,7 @@ return new class extends Migration
             $table->tinyinteger('promoter_score')->default(1);
             $table->string('comments_suggestions')->nullable();
             $table->string('encoder_id')->default(0)->comment('0 - guest entry');
-            $table->string('office_id')->default(0);
+            $table->integer('office_id')->default(0);
             $table->string('control_number')->nullable()->comment('per sections control number');
             $table->softDeletes();
             $table->timestamps();
