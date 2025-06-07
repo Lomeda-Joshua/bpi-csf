@@ -3,16 +3,18 @@
         padding: 7px;
     }
 </style>
+
 <!-- Edit User Modal -->
-<div class="modal fade" id="personnel_modal" tabindex="-1" aria-labelledby="viewModalLabel" aria-hidden="true">
+<div class="modal fade personnel_modal_{{ $item->id }}" id="personnel_modal" tabindex="-1" aria-labelledby="viewModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
+
             <div class="modal-header">
                 <div class="container">
                     <h1 class="modal-title fs-5 text-white">Edit personnel</h1>
                 </div>
-
             </div>
+
             <div class="modal-body">
 
                 <div class="container csf_info">

@@ -9,6 +9,7 @@ export default defineConfig({
                 'resources/css/app.css',
                 'resources/js/app.js',
                 'resources/assets/css/styles.min.css',
+                'resources/assets/css/super_admin/super_admin_custom_styles.css',
                 
                 'resources/assets/libs/jquery/dist/jquery.min.js',
                 'resources/assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js',

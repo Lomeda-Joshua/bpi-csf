@@ -1,24 +1,23 @@
 @extends('users.super_admin.layouts.layout')
 
 @section('contents')
+
+<style>
+    .dashboard_ti{
+        font-size:25px !important;
+    }
+</style>
+
     <div class="row">
 
         <div class="col-sm-6 col-xl-3">
             <div class="card">
                 <div class="card-body">
                     <div class="row alig n-items-start">
-                        <div class="col-8">
-                            <h5 class="card-title mb-9 fw-semibold" style="font-size:15.5px;"> Total Customer Satisfaction form</h5>
+                        <div class="col-12">
+                            <h5 class="card-title mb-9 fw-semibold" style="font-size:16.5px;"> Total Customer Satisfaction form</h5>
                             <h4 class="fw-semibold mb-3">{{ $csf_data->count('id') ? $csf_data->count('id') : 0 }}</h4>
                             <div class="d-flex align-items-center pb-1">
-                            </div>
-                        </div>
-                        <div class="col-4">
-                            <div class="d-flex justify-content-end">
-                                <div
-                                    class="text-white bg-success rounded-circle p-6 d-flex align-items-center justify-content-center">
-                                    <i class="ti ti-files"></i>
-                                </div>
                             </div>
                         </div>
                     </div>
@@ -30,20 +29,13 @@
             <div class="card">
                 <div class="card-body">
                     <div class="row alig n-items-start">
-                        <div class="col-8">
+                        <div class="col-12">
                             <h5 class="card-title mb-9 fw-semibold"> Total Internal CSF </h5>
                             <h4 class="fw-semibold mb-3">{{ $internal_total ? $internal_total : 0 }}</h4>
                             <div class="d-flex align-items-center pb-1">
                             </div>
                         </div>
-                        <div class="col-4">
-                            <div class="d-flex justify-content-end">
-                                <div
-                                    class="text-white bg-success rounded-circle p-6 d-flex align-items-center justify-content-center">
-                                    <i class="ti ti-calendar fs-6"></i>
-                                </div>
-                            </div>
-                        </div>
+                        
                     </div>
                 </div>
             </div>
@@ -53,19 +45,10 @@
             <div class="card">
                 <div class="card-body">
                     <div class="row alig n-items-start">
-                        <div class="col-8">
+                        <div class="col-12">
                             <h5 class="card-title mb-9 fw-semibold"> Total External CSF </h5>
                             <h4 class="fw-semibold mb-3">{{ $external_total ? $external_total : 0 }}</h4>
                             <div class="d-flex align-items-center pb-1">
-
-                            </div>
-                        </div>
-                        <div class="col-4">
-                            <div class="d-flex justify-content-end">
-                                <div
-                                    class="text-white bg-success rounded-circle p-6 d-flex align-items-center justify-content-center">
-                                    <i class="ti ti-currency-dollar fs-6"></i>
-                                </div>
                             </div>
                         </div>
                     </div>
@@ -73,28 +56,35 @@
             </div>
         </div>
 
-        <div class="col-sm-6 col-xl-3">
+          <div class="col-sm-6 col-xl-3">
             <div class="card">
                 <div class="card-body">
                     <div class="row alig n-items-start">
-                        <div class="col-8">
+                        <div class="col-12">
+                            <h5 class="card-title mb-9 fw-semibold"> Total Applied users </h5>
+                            <h4 class="fw-semibold mb-3">{{ $user }}</h4>
+                            <div class="d-flex align-items-center pb-1">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        {{-- <div class="col-sm-6 col-xl-3">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row alig n-items-start">
+                        <div class="col-12">
                             <h5 class="card-title mb-9 fw-semibold"> Office with the most CSF </h5>
                             <h4 class="fw-semibold mb-3">{{ $user }}</h4>
                             <div class="d-flex align-items-center pb-1">
                             </div>
                         </div>
-                        <div class="col-4">
-                            <div class="d-flex justify-content-end">
-                                <div
-                                    class="text-white bg-success rounded-circle p-6 d-flex align-items-center justify-content-center">
-                                    <i class="ti ti-users fs-6"></i>
-                                </div>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </div> --}}
 
     </div>
 
@@ -103,47 +93,31 @@
 
     <div class="row">
 
-        <div class="col-sm-6 col-xl-3">
+        {{-- <div class="col-sm-6 col-xl-3">
             <div class="card">
                 <div class="card-body">
                     <div class="row alig n-items-start">
-                        <div class="col-8">
+                        <div class="col-12">
                             <h5 class="card-title mb-9 fw-semibold"> Total CSF generated</h5>
                             <h4 class="fw-semibold mb-3">{{ $csf_data->count('id') ? $csf_data->count('id') : 0 }}</h4>
                             <div class="d-flex align-items-center pb-1">
                             </div>
                         </div>
-                        <div class="col-4">
-                            <div class="d-flex justify-content-end">
-                                <div
-                                    class="text-white bg-success rounded-circle p-6 d-flex align-items-center justify-content-center">
-                                    <i class="ti ti-folder fs-6"></i>
-                                </div>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </div> --}}
 
-        <div class="col-sm-6 col-xl-3">
+        {{-- <div class="col-sm-6 col-xl-3">
             <div class="card">
                 <div class="card-body">
                     <div class="row alig n-items-start">
-                        <div class="col-8">
+                        <div class="col-12">
                             <h5 class="card-title mb-9 fw-semibold"> Total Internal Customers </h5>
                             <h4 class="fw-semibold mb-3">{{ $internal_total ? $internal_total : 0 }}</h4>
                             <div class="d-flex align-items-center pb-1">
                             </div>
                         </div>
-                        <div class="col-4">
-                            <div class="d-flex justify-content-end">
-                                <div
-                                    class="text-white bg-success rounded-circle p-6 d-flex align-items-center justify-content-center">
-                                    <i class="ti ti-calendar fs-6"></i>
-                                </div>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -152,49 +126,17 @@
         <div class="col-sm-6 col-xl-3">
             <div class="card">
                 <div class="card-body">
-                    <div class="row alig n-items-start">
-                        <div class="col-8">
-                            <h5 class="card-title mb-9 fw-semibold"> Total External Customers </h5>
+                    <div class="row align-items-start">
+                        <div class="col-12">
+                            <h5 class="card-title mb-9 fw-semibold" style="font-size:17.5px;">Total External Customers</h5>
                             <h4 class="fw-semibold mb-3">{{ $external_total ? $external_total : 0 }}</h4>
-                            <div class="d-flex align-items-center pb-1">
-
-                            </div>
-                        </div>
-                        <div class="col-4">
-                            <div class="d-flex justify-content-end">
-                                <div
-                                    class="text-white bg-success rounded-circle p-6 d-flex align-items-center justify-content-center">
-                                    <i class="ti ti-currency-dollar fs-6"></i>
-                                </div>
-                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </div> --}}
 
-        <div class="col-sm-6 col-xl-3">
-            <div class="card">
-                <div class="card-body">
-                    <div class="row alig n-items-start">
-                        <div class="col-8">
-                            <h5 class="card-title mb-9 fw-semibold"> Total Applied users </h5>
-                            <h4 class="fw-semibold mb-3">{{ $user }}</h4>
-                            <div class="d-flex align-items-center pb-1">
-                            </div>
-                        </div>
-                        <div class="col-4">
-                            <div class="d-flex justify-content-end">
-                                <div
-                                    class="text-white bg-success rounded-circle p-6 d-flex align-items-center justify-content-center">
-                                    <i class="ti ti-users fs-6"></i>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+      
 
     </div>
 

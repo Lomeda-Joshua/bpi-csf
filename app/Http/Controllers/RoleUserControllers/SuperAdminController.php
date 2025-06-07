@@ -76,23 +76,21 @@ class SuperAdminController extends Controller
 
             $overallCSFCount[] = DB::table('offices')->rightJoin('customer_satisfactions', 'offices.id', '=', 'customer_satisfactions.office_id')->whereBetween('csf_date', [$arrayStart[$i][$months[$i]], $arrayEnd[$i][$months[$i]]])->select('offices.*', 'customer_satisfactions.*')->count();
         }
-
+         
 
         $groupedData = [];
         $months = range(1, 12); // List of all months
+
         $monthlyCSFCount = DB::table('offices')
             ->leftJoin('customer_satisfactions', function ($join) use ($currentYear) {
                 $join->on('offices.id', '=', 'customer_satisfactions.office_id')
                     ->whereYear('customer_satisfactions.csf_date', $currentYear);
             })
-        ->selectRaw('offices.office_name, MONTH(customer_satisfactions.csf_date) as month, COUNT(customer_satisfactions.id) as total_forms')
+        ->selectRaw('offices.office_name, EXTRACT(MONTH FROM customer_satisfactions.csf_date) as month, COUNT(customer_satisfactions.id) as total_forms')
         ->groupBy('offices.office_name', 'month')
         ->orderBy('offices.office_name')
         ->orderBy('month')
         ->get();
-
-        
-
 
         /**
          * 
@@ -107,7 +105,7 @@ class SuperAdminController extends Controller
         // Step 2: Get the latest feedback for each office and month
         $feedback = DB::table('customer_satisfactions as csf')
         ->select( 'csf.office_id', 
-                   DB::raw('MONTH(csf.csf_date) as month'), 
+                   DB::raw('EXTRACT(MONTH FROM csf.csf_date) as month'), 
                    'csf.comments_suggestions', 
                    DB::raw('MAX(csf.csf_date) as latest_date'),
                 )
@@ -162,20 +160,13 @@ class SuperAdminController extends Controller
         **/
         $ages = DB::table('customer_satisfactions as csf')
             ->select(
-                DB::raw('MONTH(csf.csf_date) as month'),
-                DB::raw('JSON_ARRAYAGG(csf.age) as ages')
+                DB::raw('EXTRACT(MONTH FROM csf.csf_date) as month'),
+                DB::raw('json_agg(csf.age) as ages')
             )
         ->whereYear('csf.csf_date', now()->year)
         ->groupBy('month')
         ->orderBy('month')
         ->get();
-
-
-
-
-        
-
-
 
 
 

@@ -1,0 +1,66 @@
+ #Overall_submission {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    width: 500px;
+    text-align: center;
+}
+
+#Overall_submission tr td {
+    border: 1px solid;
+}
+
+
+#color_reference {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    width: 500px;
+    text-align: center;
+}
+
+#color_reference tr td {
+    border: 1px solid;
+    border-color: white;
+}
+
+
+#csf_table tr td {
+    border: 1px solid;
+    border-color: rgb(241, 230, 230);
+}
+
+#csf_table thead th {
+    border: 1px solid;
+    border-color: rgb(241, 230, 230);
+}
+
+#csf_table {
+    width: 100%;
+}
+
+.block-data {
+    width: 90px;
+}
+
+.csf_submiision_per_month {
+    display: inline-grid;
+    grid-template-columns: auto auto;
+    column-gap: 30px;
+}
+
+.header_sub_table {
+    background-color: red;
+    padding: 10px;
+    color: white;
+    font-weight: 900;
+    text-align: center;
+
+}
+
+.colSum {
+    font-weight: bold;
+    text-align: center;
+}
+
+.container_card {
+    padding: 17px;
+}

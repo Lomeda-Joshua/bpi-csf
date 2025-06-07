@@ -20,47 +20,59 @@
     "src": "resources/assets/css/icons/tabler-icons/fonts/tabler-icons.woff2"
   },
   "resources/assets/css/styles.min.css": {
-    "file": "assets/styles-D8uWreQU.css",
+    "file": "assets/styles-5YEAuX-K.css",
     "src": "resources/assets/css/styles.min.css",
     "isEntry": true
   },
+  "resources/assets/css/super_admin/super_admin_custom_styles.css": {
+    "file": "assets/super_admin_custom_styles-DK0bhcwp.css",
+    "src": "resources/assets/css/super_admin/super_admin_custom_styles.css",
+    "isEntry": true
+  },
   "resources/assets/js/app.min.js": {
-    "file": "assets/app.min-SGuLIMOD.js",
+    "file": "assets/app.min-zyfJd0RO.js",
+    "name": "app.min",
     "src": "resources/assets/js/app.min.js",
     "isEntry": true
   },
   "resources/assets/js/dashboard.js": {
     "file": "assets/dashboard-B2bA0ceP.js",
+    "name": "dashboard",
     "src": "resources/assets/js/dashboard.js",
     "isEntry": true
   },
   "resources/assets/js/sidebarmenu.js": {
     "file": "assets/sidebarmenu-Cqe42Uci.js",
+    "name": "sidebarmenu",
     "src": "resources/assets/js/sidebarmenu.js",
     "isEntry": true
   },
   "resources/assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js": {
-    "file": "assets/bootstrap.bundle.min-BnYmbUj2.js",
+    "file": "assets/bootstrap.bundle.min-CG15VuCB.js",
+    "name": "bootstrap.bundle.min",
     "src": "resources/assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js",
     "isEntry": true
   },
   "resources/assets/libs/jquery/dist/jquery.min.js": {
-    "file": "assets/jquery.min-B3p5-zax.js",
+    "file": "assets/jquery.min-BKAeZxF2.js",
+    "name": "jquery.min",
     "src": "resources/assets/libs/jquery/dist/jquery.min.js",
     "isEntry": true
   },
   "resources/assets/libs/simplebar/dist/simplebar.js": {
-    "file": "assets/simplebar-D5vw5oa7.js",
+    "file": "assets/simplebar-DGVxJfmp.js",
+    "name": "simplebar",
     "src": "resources/assets/libs/simplebar/dist/simplebar.js",
     "isEntry": true
   },
   "resources/css/app.css": {
-    "file": "assets/app-DmyIpArJ.css",
+    "file": "assets/app-D29ZzBmX.css",
     "src": "resources/css/app.css",
     "isEntry": true
   },
   "resources/js/app.js": {
-    "file": "assets/app-9mbrzSRH.js",
+    "file": "assets/app-Bo-u61x1.js",
+    "name": "app",
     "src": "resources/js/app.js",
     "isEntry": true
   }

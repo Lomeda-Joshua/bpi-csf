@@ -1,61 +1,7 @@
 @extends('users.super_admin.layouts.layout')
 
 @section('contents')
-    <style>
-        #Overall_submission {
-            margin-top: 20px;
-            margin-bottom: 20px;
-            width: 500px;
-            text-align: center;
-        }
-
-        #Overall_submission tr td {
-            border: 1px solid;
-        }
-
-        #csf_table tr td {
-            border: 1px solid;
-            border-color: rgb(241, 230, 230);
-        }
-
-        #csf_table thead th {
-            border: 1px solid;
-            border-color: rgb(241, 230, 230);
-        }
-
-        #csf_table {
-            width: 100%;
-        }
-
-        .block-data {
-            width: 90px;
-        }
-
-        .csf_submiision_per_month {
-            display: inline-grid;
-            grid-template-columns: auto auto;
-            column-gap: 30px;
-        }
-
-        .header_sub_table {
-            background-color: red;
-            padding: 10px;
-            color: white;
-            font-weight: 900;
-            text-align: center;
-
-        }
-
-        .colSum {
-            font-weight: bold;
-            text-align: center;
-        }
-
-        .container_card {
-            padding: 17px;
-        }
-    </style>
-
+    @vite('resources/assets/css/super_admin/super_admin_custom_styles.css')
 
     <div class="card" style="width:1400px;">
         <div class="card-body">
@@ -111,7 +57,7 @@
 
                 <div class="panelTable">
                     <h4>Color Reference:</h4>
-                    <table id="Overall_submission">
+                    <table id="color_reference">
                         <tr>
                             <td style="text-transform:uppercase; background-color:#0096FF; color:white; padding:6px;">with
                                 submission</td>

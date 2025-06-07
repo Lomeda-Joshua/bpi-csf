@@ -66,8 +66,10 @@
                                     <form method="POST" action="{{ route('super.admin-delete.user', $encrypted_id) }}">
                                         @csrf
                                         @method('DELETE')
+
                                         <a data-bs-toggle="modal" data-bs-target="#personnel_modal"
-                                            class="btn btn-primary m-1 personnel_modal" data-info={{$item}}>Edit</a>
+                                            class="btn btn-primary m-1 personnel_modal_button" data-info={{ $item }} >Edit</a>
+
                                         @if ($item->role_id != 3)
                                             <button type="submit" class="btn btn-danger m-1">Delete</button>
                                         @endif
@@ -181,9 +183,16 @@
                 });
 
                 
-                $('.personnel_modal').on('click', function(){
-                    let personnel_id = $(this).data('info');
-                    console.log(personnel_id.first_name);
+                $('.personnel_modal_button').on('click', function(){
+                    let personnel_data = $(this).data('info');
+                    let personnel_data_id = personnel_data.id;
+
+                    $('#personnel_modal_' + personnel_data_id);
+
+                    
+                    console.log(personnel_data);
+                    // $('.first_name_input').val(personnel_data.first_name);
+                    // $('.last_name_input').val(personnel_data.last_name);
                 });
                 
         });

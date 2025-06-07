@@ -16,6 +16,7 @@
         "vite": "^5.0.0"
     },
     "dependencies": {
+        "latest": "^0.2.0",
         "moment": "^2.30.1"
     }
 }
