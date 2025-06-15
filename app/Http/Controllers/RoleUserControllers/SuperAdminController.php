@@ -86,11 +86,13 @@ class SuperAdminController extends Controller
                 $join->on('offices.id', '=', 'customer_satisfactions.office_id')
                     ->whereYear('customer_satisfactions.csf_date', $currentYear);
             })
-        ->selectRaw('offices.office_name, EXTRACT(MONTH FROM customer_satisfactions.csf_date) as month, COUNT(customer_satisfactions.id) as total_forms')
+        ->selectRaw('offices.office_name, EXTRACT(MONTH FROM customer_satisfactions.csf_date) as month, COUNT(DISTINCT customer_satisfactions.id) as total_forms')
         ->groupBy('offices.office_name', 'month')
         ->orderBy('offices.office_name')
         ->orderBy('month')
         ->get();
+
+        
 
         /**
          * 
@@ -180,6 +182,8 @@ class SuperAdminController extends Controller
             'groupedData' => $groupedData,
             'officeData' => $officeData
         ]);
+
+
     }
 
 

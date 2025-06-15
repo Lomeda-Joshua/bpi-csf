@@ -87,44 +87,44 @@
 
 
 <!-- Modal -->
-    <div class="modal fade" id="restore_deleted_modal" tabindex="-1" aria-labelledby="viewModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-xl">
-            <div class="modal-content">
+<div class="modal fade" id="restore_deleted_modal" tabindex="-1" aria-labelledby="viewModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
 
-                <div class="modal-header bg-danger">
-                    <div class="container">
-                        <h1 class="modal-title fs-5 text-white">Restore Personnel </h1>
-                    </div>
+            <div class="modal-header bg-danger">
+                <div class="container">
+                    <h1 class="modal-title fs-5 text-white">Restore Personnel </h1>
                 </div>
-
-                <div class="modal-body">
-                  <div class="container">
-
-                    <div class="table-responsive">
-
-                      <table id="restore_user_tbl" class="table display text-nowrap mb-0 align-middle" style="width:100%;">
-                        <thead class="text-dark fs-4" style="background-color:gray;">
-                            <tr>
-                                <th class="border-bottom-0"><h6 class="fw-semibold mb-0 text-white text-center">Actions</h6></th>
-                                <th class="border-bottom-0"><h6 class="fw-semibold mb-0 text-white text-center">Account Username</h6></th>
-                                <th class="border-bottom-0"><h6 class="fw-semibold mb-0 text-white text-center">Deleted date stamp</h6></th>
-                            </tr>
-                        </thead>
-                        <tbody class="text-center">
-                        </tbody>
-                    </table>
-                    </div>
-                    
-
-
-
-                  </div>
-
-                </div>
-               
             </div>
+
+            <div class="modal-body">
+              <div class="container">
+
+                <div class="table-responsive">
+
+                  <table id="restore_user_tbl" class="table display text-nowrap mb-0 align-middle" style="width:100%;">
+                    <thead class="text-dark fs-4" style="background-color:gray;">
+                        <tr>
+                            <th class="border-bottom-0"><h6 class="fw-semibold mb-0 text-white text-center">Actions</h6></th>
+                            <th class="border-bottom-0"><h6 class="fw-semibold mb-0 text-white text-center">Account Username</h6></th>
+                            <th class="border-bottom-0"><h6 class="fw-semibold mb-0 text-white text-center">Deleted date stamp</h6></th>
+                        </tr>
+                    </thead>
+                    <tbody class="text-center">
+                    </tbody>
+                </table>
+                </div>
+                
+
+
+
+              </div>
+
+            </div>
+            
         </div>
     </div>
+</div>
 <!-- End Modal -->
 
 

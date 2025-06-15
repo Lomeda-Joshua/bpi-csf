@@ -2,6 +2,10 @@
 
 @section('contents')
 
+<h1 style="text-transform:uppercase; font-weight:bold; font-size:1.5rem;">
+    Office Details
+</h1>
+
 <div class="card">
     <div class="card-body">
 
@@ -11,7 +15,7 @@
       <div class="table-responsive">
         <table id="office_table" class="table align-middle striped" style="width:100%">
             <thead>
-                <tr style="background-color:gray; color:white;">
+                <tr style="background-color:#29734a !important; color:white;">
                     <th class="text-center">Name</th>
                     <th class="text-center">Total CSF</th>
                     <th class="text-center">Created At</th>

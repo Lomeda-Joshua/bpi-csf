@@ -1,12 +1,14 @@
 @extends('users.super_admin.layouts.layout')
 
 @section('contents')
+    
+<h1 style="text-transform:uppercase; font-weight:bold; font-size:1.5rem;">
+    Profile
+</h1>
 
 <div class="card">
     <div class="card-body">
-      <h5 class="card-title fw-semibold mb-4">Profile</h5>
-
-
+      
       <div class="row">
 
         <div class="col-md-3">

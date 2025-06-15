@@ -1,3 +1,10 @@
+  <style>
+    .sidebar-nav ul .sidebar-item.selected>.sidebar-link, .sidebar-nav ul .sidebar-item.selected>.sidebar-link.active, .sidebar-nav ul .sidebar-item>.sidebar-link.active
+    {
+        background-color: #29734a !important;
+    }
+  </style>    
+
     <!-- Sidebar Start -->
     <aside class="left-sidebar">
 

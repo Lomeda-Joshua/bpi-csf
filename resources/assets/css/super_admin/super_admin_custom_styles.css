@@ -1,4 +1,5 @@
- #Overall_submission {
+/* Summary module css styles */
+#Overall_submission {
     margin-top: 20px;
     margin-bottom: 20px;
     width: 500px;
@@ -53,7 +54,6 @@
     color: white;
     font-weight: 900;
     text-align: center;
-
 }
 
 .colSum {
@@ -64,3 +64,21 @@
 .container_card {
     padding: 17px;
 }
+
+@media (min-width: 1200px) {
+    .modal-xl {
+        --bs-modal-width: 1540px !important;
+    }
+}
+
+/* End Summary module css styles */
+
+
+
+
+/* Dashboard module css styles */
+.dashboard_ti{
+    font-size:25px !important;
+}
+
+/* End Dashboard module css styles */

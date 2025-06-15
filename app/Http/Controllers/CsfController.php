@@ -29,6 +29,7 @@ class CsfController extends Controller
         $validated = $request->validate([
                 'office_id' => 'required',
                 'name' => 'required|max:190',
+                'age' => 'required',
                 'contact_details' => 'required|string|max:11',
                 'type_and_quantity' => 'nullable|string',
                 'gender' => 'required'

@@ -21,13 +21,13 @@
                 <i class="ti ti-user fs-6"></i>
                 <p class="mb-0 fs-3">Profile</p>
               </a>
-              <a href="javascript:void(0)" class="d-flex align-items-center gap-2 dropdown-item">
+              <a href="{{ route('super.message.requests') }}" class="d-flex align-items-center gap-2 dropdown-item">
                 <i class="ti ti-mail fs-6"></i>
                 <p class="mb-0 fs-3">Message Request</p>
               </a>
-              <a href="javascript:void(0)" class="d-flex align-items-center gap-2 dropdown-item">
+              <a href="{{ route('super.tasks') }}" class="d-flex align-items-center gap-2 dropdown-item">
                 <i class="ti ti-list-check fs-6"></i>
-                <p class="mb-0 fs-3">Pending Task</p>
+                <p class="mb-0 fs-3">Tasks</p>
               </a>
               <form method="POST" action="{{ route('logout') }}">
                 @csrf

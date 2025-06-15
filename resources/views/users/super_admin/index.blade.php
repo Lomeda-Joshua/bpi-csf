@@ -1,12 +1,7 @@
 @extends('users.super_admin.layouts.layout')
 
 @section('contents')
-
-<style>
-    .dashboard_ti{
-        font-size:25px !important;
-    }
-</style>
+@vite('resources/assets/css/super_admin/super_admin_custom_styles.css')
 
     <div class="row">
 
@@ -15,7 +10,7 @@
                 <div class="card-body">
                     <div class="row alig n-items-start">
                         <div class="col-12">
-                            <h5 class="card-title mb-9 fw-semibold" style="font-size:16.5px;"> Total Customer Satisfaction form</h5>
+                            <h5 class="card-title mb-9 fw-semibold" style="font-size:0.9rem;"> Total Customer Satisfaction form</h5>
                             <h4 class="fw-semibold mb-3">{{ $csf_data->count('id') ? $csf_data->count('id') : 0 }}</h4>
                             <div class="d-flex align-items-center pb-1">
                             </div>
@@ -71,76 +66,7 @@
             </div>
         </div>
 
-        {{-- <div class="col-sm-6 col-xl-3">
-            <div class="card">
-                <div class="card-body">
-                    <div class="row alig n-items-start">
-                        <div class="col-12">
-                            <h5 class="card-title mb-9 fw-semibold"> Office with the most CSF </h5>
-                            <h4 class="fw-semibold mb-3">{{ $user }}</h4>
-                            <div class="d-flex align-items-center pb-1">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div> --}}
-
     </div>
-
-
-
-
-    <div class="row">
-
-        {{-- <div class="col-sm-6 col-xl-3">
-            <div class="card">
-                <div class="card-body">
-                    <div class="row alig n-items-start">
-                        <div class="col-12">
-                            <h5 class="card-title mb-9 fw-semibold"> Total CSF generated</h5>
-                            <h4 class="fw-semibold mb-3">{{ $csf_data->count('id') ? $csf_data->count('id') : 0 }}</h4>
-                            <div class="d-flex align-items-center pb-1">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div> --}}
-
-        {{-- <div class="col-sm-6 col-xl-3">
-            <div class="card">
-                <div class="card-body">
-                    <div class="row alig n-items-start">
-                        <div class="col-12">
-                            <h5 class="card-title mb-9 fw-semibold"> Total Internal Customers </h5>
-                            <h4 class="fw-semibold mb-3">{{ $internal_total ? $internal_total : 0 }}</h4>
-                            <div class="d-flex align-items-center pb-1">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-sm-6 col-xl-3">
-            <div class="card">
-                <div class="card-body">
-                    <div class="row align-items-start">
-                        <div class="col-12">
-                            <h5 class="card-title mb-9 fw-semibold" style="font-size:17.5px;">Total External Customers</h5>
-                            <h4 class="fw-semibold mb-3">{{ $external_total ? $external_total : 0 }}</h4>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div> --}}
-
-      
-
-    </div>
-
-
 
     <div class="card">
         <div class="card-header mt-4">
