@@ -40,7 +40,7 @@ Route::middleware(['auth', 'role:3'])->controller(SuperAdminController::class)->
 
 
         // Message requests
-        Route::get('/message-requests', 'messageRequestsView')->name('super.message.requests');
+        Route::get('/messages', 'messagesView')->name('super.messages');
 
         // tasks
         Route::get('/tasks', 'tasksView')->name('super.tasks');

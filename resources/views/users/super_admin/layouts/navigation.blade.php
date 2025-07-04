@@ -1,9 +1,34 @@
+  <?php use Illuminate\Http\Request; ?>
+
   <style>
     .sidebar-nav ul .sidebar-item.selected>.sidebar-link, .sidebar-nav ul .sidebar-item.selected>.sidebar-link.active, .sidebar-nav ul .sidebar-item>.sidebar-link.active
     {
         background-color: #29734a !important;
     }
+
+    .login-div{
+      height:0px !important;
+      padding: 30px 27px 20px 27px;
+      margin-bottom: 30px;
+    }
+
+    .login-label{
+      font-size: 13px;
+      font-weight: bold;
+      text-transform: uppercase;
+    }
+
+    .login-name{
+      font-size: 13px;
+      font-weight: bold;
+      text-transform: uppercase;
+      background-color:#4395f3;
+      color:white;
+      padding:10px;
+    }
   </style>    
+
+  
 
     <!-- Sidebar Start -->
     <aside class="left-sidebar">
@@ -16,12 +41,17 @@
             <img src="{{asset('images/logos/bpi_logo.png')}}" width="90" alt="" />
           </a>
 
-          
           <div class="close-btn d-xl-none d-block sidebartoggler cursor-pointer" id="sidebarCollapse">
             <i class="ti ti-x fs-8"></i>
           </div>
 
         </div>
+
+        <div class="login-div">
+          <h1 class="login-label">Logged in as</h1>
+          <p class="login-name" >{{ Auth::user()->first_name . " " . Auth::user()->last_name;  }}</p>
+        </div>
+
 
         <!-- Sidebar navigation-->
         <nav class="sidebar-nav scroll-sidebar" data-simplebar="">
@@ -52,11 +82,11 @@
               </a>
             </li>
             <li class="sidebar-item" disabled>
-              <a class="sidebar-link" href="{{ route('super.message.requests') }}" aria-expanded="false" >
+              <a class="sidebar-link" href="{{ route('super.messages') }}" aria-expanded="false" >
                 <span>
                   <i class="ti ti-mail fs-6"></i>
                 </span>
-                <span class="hide-menu">Message Requests</span>
+                <span class="hide-menu">Messages</span>
               </a>
             </li>
             <li class="sidebar-item" disabled>

@@ -6,77 +6,16 @@
 <div class="card" style="width:1400px;">
     <div class="card-body">
 
-        <h4 style="text-align: center; background-color: #29734a; padding:12px; color:white;">BPI (OVERALL) CSF SUBMISSION
+        <h4 style="text-align: center; background-color: #29734a; padding:12px; color:white;">OVERALL FORM SUBMISSION
             PER MONTH</h4>
         <h4 style="text-align: center;"><span class = "year_copyright"></span> Analysis</h4>
-        <button class="btn btn-primary m-1">LEGEND</button>
+        <button class="btn btn-primary m-1" data-bs-toggle="modal" data-bs-target="#scoringModal">LEGEND</button>
         
         <h4 style="color:red;">Deadline of submission: <span style="font-weight:bold;">Every 25th of the month</span></h4>
 
         
 
-        <div class="csf_submiision_per_month">
-
-            <div class="panelTable">
-                <table id="Overall_submission">
-                    <tr>
-                        <td colspan="4" style="background-color:#29734a; padding:10px; color:white"
-                            class="text-center"><b>Average Rating</b></td>
-                    </tr>
-                    <tr>
-                        <td>Adjectival Rating</td>
-                        <td>Range</td>
-                        <td>Numerical Rating</td>
-                    </tr>
-                    <tr>
-                        <td>Very Satisfied</td>
-                        <td>4.50 - 5</td>
-                        <td>5</td>
-                    </tr>
-                    <tr>
-                        <td>Satisfied</td>
-                        <td>3.50 - 4.49</td>
-                        <td>4</td>
-                    </tr>
-                    <tr>
-                        <td>Neutral</td>
-                        <td>2.50 - 3.49</td>
-                        <td>3</td>
-                    </tr>
-                    <tr>
-                        <td>Dissatisfied</td>
-                        <td>1.50 - 2.49</td>
-
-                        <td>2</td>
-                    </tr>
-                    <tr>
-                        <td>Very Dissatisfied</td>
-                        <td>1 - 1.49</td>
-
-                        <td>1</td>
-                    </tr>
-                </table>
-            </div>
-
-            <div class="panelTable">
-                <h4>Color Reference:</h4>
-                <table id="color_reference">
-                    <tr>
-                        <td style="text-transform:uppercase; background-color:#0096FF; color:white; padding:6px;">with
-                            submission</td>
-                    </tr>
-                    <tr>
-                        <td style="background-color:#DFFF00; text-transform:uppercase; padding:6px;"> late submission
-                            (no submission on or before the deadline)</td>
-                    </tr>
-                    <tr>
-                        <td style="background-color:red; color:white; text-transform:uppercase; padding:6px;">no
-                            collected CSF</td>
-                    </tr>
-                </table>
-            </div>
-
-        </div>
+        
 
         <div class="table-container" style="overflow-x:auto; ">
             <table id="csf_table" class="table align-middle striped">
@@ -233,6 +172,82 @@
 @include('users.super_admin.summary_module.modal.summary_module_modals')
 
 
+<div class="modal fade" id="scoringModal" tabindex="-1" aria-labelledby="viewModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+                <div class="modal-header">
+                        <div class="container">
+                            <h1 class="modal-title fs-5" id="viewModalLabel">Customer Satisafaction form legends: </h1><span class="name_title"></span>
+                        </div>
+                </div>
+                <div class="modal-body">
+                           <div class="csf_submiision_per_month">
+
+                            <div class="panelTable">
+                                <table id="Overall_submission">
+                                    <tr>
+                                        <td colspan="4" style="background-color:#29734a; padding:10px; color:white"
+                                            class="text-center"><b>Average Rating</b></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Adjectival Rating</td>
+                                        <td>Range</td>
+                                        <td>Numerical Rating</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Very Satisfied</td>
+                                        <td>4.50 - 5</td>
+                                        <td>5</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Satisfied</td>
+                                        <td>3.50 - 4.49</td>
+                                        <td>4</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Neutral</td>
+                                        <td>2.50 - 3.49</td>
+                                        <td>3</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Dissatisfied</td>
+                                        <td>1.50 - 2.49</td>
+
+                                        <td>2</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Very Dissatisfied</td>
+                                        <td>1 - 1.49</td>
+
+                                        <td>1</td>
+                                    </tr>
+                                </table>
+                            </div>
+
+                                <div class="panelTable">
+                                    <h4>Color Reference:</h4>
+                                    <table id="color_reference">
+                                        <tr>
+                                            <td style="text-transform:uppercase; background-color:#0096FF; color:white; padding:6px;">with
+                                                submission</td>
+                                        </tr>
+                                        <tr>
+                                            <td style="background-color:#DFFF00; text-transform:uppercase; padding:6px;"> late submission
+                                                (no submission on or before the deadline)</td>
+                                        </tr>
+                                        <tr>
+                                            <td style="background-color:red; color:white; text-transform:uppercase; padding:6px;">no
+                                                collected CSF</td>
+                                        </tr>
+                                    </table>
+                                </div>
+                        </div>
+                </div>
+            </div>
+        </div>
+</div>
+
+
 <script>
 $("document").ready(function() {
 
@@ -265,6 +280,7 @@ $("document").ready(function() {
     });
 
 
+  
     function sumEachRow() {
         let rows = document.querySelectorAll(".dataRow"); // Select all rows
 
@@ -331,9 +347,6 @@ $("document").ready(function() {
 
         }
     }
-
-    
-
 
 
     const date = new Date();

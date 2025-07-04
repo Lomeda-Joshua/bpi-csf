@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+
+use Illuminate\Database\Eloquent\Relations\hasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -55,5 +57,11 @@ class User extends Authenticatable
     public function office() : belongsTo
     {
        return $this->belongsTo(Office::class, 'office_id');
+    }
+
+
+    public function messageRequests() : hasMany
+    {
+        return $this->hasMany( MessageRequest::class, 'id'  );
     }
 }

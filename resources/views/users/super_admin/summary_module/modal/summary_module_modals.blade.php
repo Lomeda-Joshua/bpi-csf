@@ -1,3 +1,33 @@
+<style>
+    @media (min-width: 1200px) {
+        .modal-xl {
+            --bs-modal-width: 1480px !important;
+        }
+    }
+
+    @media (min-width: 992px) {
+        .modal-lg, .modal-xl {
+            --bs-modal-width: 800px;
+        }
+    }
+
+    .container, .container-fluid, .container-lg, .container-md, .container-sm, .container-xl, .container-xxl {
+    --bs-gutter-x: -30px !important;
+    --bs-gutter-y: 0;
+        width: 100%;
+        padding-right: calc(var(--bs-gutter-x) * .5);
+        padding-left: calc(var(--bs-gutter-x) * .5);
+        margin-right: auto;
+        margin-left: auto;
+    }
+
+    .modal-body {
+        position: relative;
+        flex: 1 1 auto;
+        padding: var(--bs-modal-padding);
+    }   
+</style>
+
 <!-- Modal Total number of customers -->
 <div class="modal fade" id="total_number_customers" tabindex="-1" aria-labelledby="viewModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-xl">

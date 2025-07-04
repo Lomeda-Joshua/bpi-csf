@@ -13,9 +13,11 @@ use App\Models\Office;
 use App\Models\control_number;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Crypt;
-use DataTables;
 
 use RealRashid\SweetAlert\Facades\Alert;
+
+use DataTables;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 
 
@@ -24,15 +26,17 @@ class SuperAdminController extends Controller
     /**
      * Display the dashboard.
      */
-    public function index()
+    public function index(Request $request)
     {
         $csf = customer_satisfaction::paginate(10);
         $csf_data = customer_satisfaction::get();
         $internal_total = customer_satisfaction::where('internal_external', '=', 1)->count();
         $external_total = customer_satisfaction::where('internal_external', '=', 2)->count();
-        $user_data = User::count();
+        $user_count = User::count();
+        $office_data = DB::table('customer_satisfactions')->orderBy('office_id')->get();
 
-        return view('users.super_admin.index', ['csf' => $csf, 'user' => $user_data, 'csf_data' => $csf_data, 'internal_total' => $internal_total, 'external_total' => $external_total]);
+
+        return view('users.super_admin.index', ['csf' => $csf, 'user_count' => $user_count, 'csf_data' => $csf_data, 'internal_total' => $internal_total, 'external_total' => $external_total]);
     }
 
 
@@ -100,7 +104,7 @@ class SuperAdminController extends Controller
          * 
         **/
 
-         // Step 1: Get all offices
+         // Step 1: Get all offices 
         $offices = DB::table('offices')->select('id', 'office_name')->orderBy('office_name')->get();
 
 
@@ -471,10 +475,10 @@ class SuperAdminController extends Controller
 
 
     /**
-     * Message requests.
+     * Messages.
      */
-    public function messageRequestsView(){
-        return view('users.super_admin.message_requests.index');
+    public function messagesView(){
+        return view('users.super_admin.messages.index');
     }
 
 

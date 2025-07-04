@@ -2,6 +2,12 @@
 
 @section('contents')
 @vite('resources/assets/css/super_admin/super_admin_custom_styles.css')
+<style>
+    .btnCSF:hover{
+        cursor:pointer;
+        background-color: rgba(20, 170, 143);
+    }
+</style>
 
     <div class="row">
 
@@ -10,7 +16,7 @@
                 <div class="card-body">
                     <div class="row alig n-items-start">
                         <div class="col-12">
-                            <h5 class="card-title mb-9 fw-semibold" style="font-size:0.9rem;"> Total Customer Satisfaction form</h5>
+                            <h5 class="card-title mb-9 fw-semibold"> Total CS form</h5>
                             <h4 class="fw-semibold mb-3">{{ $csf_data->count('id') ? $csf_data->count('id') : 0 }}</h4>
                             <div class="d-flex align-items-center pb-1">
                             </div>
@@ -56,8 +62,8 @@
                 <div class="card-body">
                     <div class="row alig n-items-start">
                         <div class="col-12">
-                            <h5 class="card-title mb-9 fw-semibold"> Total Applied users </h5>
-                            <h4 class="fw-semibold mb-3">{{ $user }}</h4>
+                            <h5 class="card-title mb-9 fw-semibold"> Office with the most CSF </h5>
+                            <h4 class="fw-semibold mb-3">{{ $user_count }}</h4>
                             <div class="d-flex align-items-center pb-1">
                             </div>
                         </div>
@@ -70,7 +76,7 @@
 
     <div class="card">
         <div class="card-header mt-4">
-            <h5 class="card-title fw-semibold mb-4">Recent CSF received by all the section</h5>
+            <h5 class="card-title fw-semibold mb-4">10 Recent Customer forms </h5>
         </div>
         <div class="card-body p-4">
             
@@ -113,7 +119,7 @@
                                     <tr>
                                         <td class="border-bottom-0">
                                             <div class="d-flex align-items-center gap-2">
-                                                <button class="badge bg-success rounded-3 fw-semibold btnCSF" data-bs-toggle="modal" data-bs-target="#viewModal" data-id="{{$items->id}}" >View</button>
+                                                <span class="badge bg-success rounded-3 fw-semibold btnCSF" data-bs-toggle="modal" data-bs-target="#viewModal" data-id="{{$items->id}}" >View</span>
                                             </div>
                                         </td>
                                         <td class="border-bottom-0">
@@ -237,8 +243,6 @@
 
                 $('.types_of_goods_received').text(types_of_goods_services);
 
-                
-               
             }
 
             });
