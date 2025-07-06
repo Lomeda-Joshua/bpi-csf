@@ -30,10 +30,16 @@ class SuperAdminController extends Controller
     {
         $csf = customer_satisfaction::paginate(10);
         $csf_data = customer_satisfaction::get();
+
         $internal_total = customer_satisfaction::where('internal_external', '=', 1)->count();
         $external_total = customer_satisfaction::where('internal_external', '=', 2)->count();
         $user_count = User::count();
+
+        
+
         $office_data = DB::table('customer_satisfactions')->orderBy('office_id')->get();
+
+
 
 
         return view('users.super_admin.index', ['csf' => $csf, 'user_count' => $user_count, 'csf_data' => $csf_data, 'internal_total' => $internal_total, 'external_total' => $external_total]);
