@@ -49,7 +49,27 @@
 
         <div class="login-div">
           <h1 class="login-label">Logged in as</h1>
-          <p class="login-name" >{{ Auth::user()->first_name . " " . Auth::user()->last_name;  }}</p>
+          <p class="login-name" ><span style="font-size:11px;">{{ Auth::user()->first_name . " " . Auth::user()->last_name;  }} | 
+            <?php 
+                  $role_name = Auth::user()->role_id;
+                  switch( $role_name ){
+                    case 1:
+                        echo "User";
+                    break;
+
+                    case 2:
+                        echo "Admin";
+                    break;
+
+                    case 3:
+                        echo "Super-Admin";
+                    break;
+
+                  }
+                  
+            ?>
+            </span>
+          </p>
         </div>
 
 
