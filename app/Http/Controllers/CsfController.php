@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+
 use App\Models\customer_satisfaction;
 use App\Models\Office;
+use App\Models\control_number;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class CsfController extends Controller
@@ -20,8 +23,6 @@ class CsfController extends Controller
     public function store(Request $request)
     {
         date_default_timezone_set('Asia/Hong_Kong');
-        
-
         $csf_time = date('H:i:s');
         $csf_date = date('Y-m-d');
 
@@ -51,8 +52,20 @@ class CsfController extends Controller
         $criteria_overall_experience = $request->input('criteria_overall_experience');
         $promoter_score = $request->input('promoter_score');
         $comments_suggestions = $request->input('comments_suggestions');
-    
-        
+
+        /** Get variables for setting control number **/
+        $control_number_count = DB::table('customer_satisfactions')->where('office_id', $office_id)->count();
+        $control_number = DB::table('control_numbers')->where('section_office', $office_id)->first();
+
+
+        /** Set control number **/
+        if( $control_number_count == 0){
+            $set_control_number = $control_number->control_number_count;
+        }elseif( $control_number_count > 0){
+            $set_control_number =  ($control_number_count + 1) + $control_number->control_number_count;
+        }
+
+        /** Save control number **/
         customer_satisfaction::create([
             'csf_time' => $csf_time,
             'csf_date' => $csf_date,
@@ -72,10 +85,11 @@ class CsfController extends Controller
             'promoter_score' => $promoter_score,
             'comments_suggestions' => $comments_suggestions,
             'office_id' => $office_id,
+            'control_number' => $set_control_number
         ]);
 
-        Alert::success('Customer Satisfaction Form', 'Your response is recorded');
 
+        Alert::success('Customer Satisfaction Form', 'Your response is recorded');
         return redirect(route('csf.index'));
     }
 
