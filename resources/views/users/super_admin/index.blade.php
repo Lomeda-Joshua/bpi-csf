@@ -10,68 +10,70 @@
 </style>
 
     <div class="row">
-
-        <div class="col-sm-6 col-xl-3">
-            <div class="card">
-                <div class="card-body">
-                    <div class="row alig n-items-start">
-                        <div class="col-12">
-                            <h5 class="card-title mb-9 fw-semibold"> Total CS form</h5>
-                            <h4 class="fw-semibold mb-3">{{ $csf_data->count('id') ? $csf_data->count('id') : 0 }}</h4>
-                            <div class="d-flex align-items-center pb-1">
+            <div class="col-sm-6 col-xl-3">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row alig n-items-start">
+                            <div class="col-12">
+                                <h5 class="card-title mb-9 fw-semibold"> Total CS form</h5>
+                                <h4 class="fw-semibold mb-3">{{ $csf_data->count('id') ? $csf_data->count('id') : 0 }}</h4>
+                                <div class="d-flex align-items-center pb-1">
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <div class="col-sm-6 col-xl-3">
-            <div class="card">
-                <div class="card-body">
-                    <div class="row alig n-items-start">
-                        <div class="col-12">
-                            <h5 class="card-title mb-9 fw-semibold"> Total Internal CSF </h5>
-                            <h4 class="fw-semibold mb-3">{{ $internal_total ? $internal_total : 0 }}</h4>
-                            <div class="d-flex align-items-center pb-1">
+            <div class="col-sm-6 col-xl-3">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row alig n-items-start">
+                            <div class="col-12">
+                                <h5 class="card-title mb-9 fw-semibold"> Total Internal CSF </h5>
+                                <h4 class="fw-semibold mb-3">{{ $internal_total ? $internal_total : 0 }}</h4>
+                                <div class="d-flex align-items-center pb-1">
+                                </div>
                             </div>
-                        </div>
-                        
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-sm-6 col-xl-3">
-            <div class="card">
-                <div class="card-body">
-                    <div class="row alig n-items-start">
-                        <div class="col-12">
-                            <h5 class="card-title mb-9 fw-semibold"> Total External CSF </h5>
-                            <h4 class="fw-semibold mb-3">{{ $external_total ? $external_total : 0 }}</h4>
-                            <div class="d-flex align-items-center pb-1">
-                            </div>
+                            
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
 
-          <div class="col-sm-6 col-xl-3">
-            <div class="card">
-                <div class="card-body">
-                    <div class="row alig n-items-start">
-                        <div class="col-12">
-                            <h5 class="card-title mb-9 fw-semibold"> Office with the most CSF </h5>
-                            <h4 class="fw-semibold mb-3">0</h4>
-                            <div class="d-flex align-items-center pb-1">
+            <div class="col-sm-6 col-xl-3">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row alig n-items-start">
+                            <div class="col-12">
+                                <h5 class="card-title mb-9 fw-semibold"> Total External CSF </h5>
+                                <h4 class="fw-semibold mb-3">{{ $external_total ? $external_total : 0 }}</h4>
+                                <div class="d-flex align-items-center pb-1">
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
 
+            <div class="col-sm-6 col-xl-3">
+                <div class="card" >
+                    <div class="card-body" style="padding-bottom:10px !important;">
+                        <div class="row alig n-items-start">
+                            <div class="col-12">
+                                <h5 class="card-title mb-9 fw-semibold">Office with the most CSF</h5>
+                                <p style="font-size:16px; font-weight:800;" class="fw-semibold mb-3">{{ $office_with_most_csf_name->office_name }}</p>
+                                <div class="d-flex align-items-center pb-1">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </div>
+
+
+    <div class="row">
     </div>
 
     <div class="card">

@@ -25,7 +25,7 @@
     "isEntry": true
   },
   "resources/assets/css/super_admin/super_admin_custom_styles.css": {
-    "file": "assets/super_admin_custom_styles-DK0bhcwp.css",
+    "file": "assets/super_admin_custom_styles-DWd8AAHP.css",
     "src": "resources/assets/css/super_admin/super_admin_custom_styles.css",
     "isEntry": true
   },
@@ -66,12 +66,12 @@
     "isEntry": true
   },
   "resources/css/app.css": {
-    "file": "assets/app-D29ZzBmX.css",
+    "file": "assets/app-b1BoXkz1.css",
     "src": "resources/css/app.css",
     "isEntry": true
   },
   "resources/js/app.js": {
-    "file": "assets/app-Bo-u61x1.js",
+    "file": "assets/app-DaBYqt0m.js",
     "name": "app",
     "src": "resources/js/app.js",
     "isEntry": true

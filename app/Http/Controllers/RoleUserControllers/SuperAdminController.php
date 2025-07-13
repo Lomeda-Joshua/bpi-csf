@@ -22,7 +22,7 @@ use Illuminate\Support\Facades\DB;
 
 
 class SuperAdminController extends Controller
-{
+{   
     /**
      * Display the dashboard.
      */
@@ -35,14 +35,10 @@ class SuperAdminController extends Controller
         $external_total = customer_satisfaction::where('internal_external', '=', 2)->count();
         $user_count = User::count();
 
-        
+        $office_with_most_csf = DB::table('customer_satisfactions')->select('office_id', DB::raw('count(office_id) as office_count'))->groupBy('office_id')->orderByDesc('office_count')->first();        
+        $office_with_most_csf_name = DB::table('offices')->select('office_name')->where('id', $office_with_most_csf->office_id)->first();
 
-        $office_data = DB::table('customer_satisfactions')->orderBy('office_id')->get();
-
-
-
-
-        return view('users.super_admin.index', ['csf' => $csf, 'user_count' => $user_count, 'csf_data' => $csf_data, 'internal_total' => $internal_total, 'external_total' => $external_total]);
+        return view('users.super_admin.index', ['csf' => $csf, 'user_count' => $user_count, 'csf_data' => $csf_data, 'internal_total' => $internal_total, 'external_total' => $external_total, 'office_with_most_csf_name' => $office_with_most_csf_name ]);
     }
 
 

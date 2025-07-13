@@ -22,4 +22,10 @@ class control_number extends Model
         return $this->belongsTo( Office::class, 'section_office' );
     }
 
+    public function office(): belongsTo
+    {
+        return $this->belongsTo( Office::class, 'section_office');
+    }
+
+
 }

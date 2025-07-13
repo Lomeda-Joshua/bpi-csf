@@ -15,7 +15,7 @@ class CsfController extends Controller
 
     public function index()
     {
-        $office_data = Office::all();
+        $office_data = Office::with('control_number')->get();
         return view('customer_satisfaction_form', ['office_data' => $office_data] );
     }
 
@@ -57,9 +57,8 @@ class CsfController extends Controller
         $control_number_count = DB::table('customer_satisfactions')->where('office_id', $office_id)->count();
         $control_number = DB::table('control_numbers')->where('section_office', $office_id)->first();
 
-
         /** Set control number **/
-        if( $control_number_count == 0){
+        if( $control_number_count == 0 || $control_number_count == null ){
             $set_control_number = $control_number->control_number_count;
         }elseif( $control_number_count > 0){
             $set_control_number =  ($control_number_count + 1) + $control_number->control_number_count;

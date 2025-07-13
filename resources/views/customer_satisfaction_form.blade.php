@@ -77,11 +77,16 @@
                                 </div>
                             @endif
 
+                            
+
                             <label for="office_id"><span class="fw-semibold" style="font-weight:700">Section where services is catered:</span><span style="color:red;"> *</span></label>
                                 <select name="office_id" class="form-control" style="padding:10px;" required>
                                     <option selected disabled>-- Select section services catered --</option>
+
                                         @foreach( $office_data as $item )
-                                            <option value="{{$item->id}}">{{ $item->office_name }}</option>
+                                            @if( $item->control_number != null)
+                                                <option value="{{$item->id}}">{{ $item->office_name }}</option>
+                                            @endif
                                         @endforeach
                                 </select>
                             <br>
