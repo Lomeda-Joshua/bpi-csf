@@ -12,12 +12,12 @@ The platform helps monitor overall service performance and customer satisfaction
 
 <h3>🚀 Key Features</h3>
 
-- 📈 Automated summary report generation
-- 📝 Digital submission of customer satisfaction forms
-- 👥 Role-Based Access Control (RBAC)
-- 🏢 Department and office management modules
-- 📊 Dashboard with performance insights
-- 🗂 Structured data storage for evaluation and documentation
+- Automated summary report generation
+- Digital submission of customer satisfaction forms
+- Role-Based Access Control (RBAC)
+- Department and office management modules
+- Dashboard with performance insights
+- Structured data storage for evaluation and documentation
 
 ---
 
